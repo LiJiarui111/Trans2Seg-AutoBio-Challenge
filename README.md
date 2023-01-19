@@ -1,4 +1,10 @@
-# Transparent Transformer Segmentation
+# The Auto-Bio Challenge: the final project of PKU Computer Vision course
+## Firstly ...
+This repository is forked and modified from the Trans2Seg official repository, the environment, installation and using method are almost the same. However there are several different points:
+* The dataset is our own AUtoBio dataset, you should place the `data` folder in the correct position in the `data` in the root path. 
+* When training and testing the model, you should use the `train_autobio.py` in the `tools` folder, and other parameters are the same to use. (I mean the command in the terminal)
+* In the original repository, the `demo.py` cannot be used but here you can use the `demo.py` to conduct inference, the using method is the same as training. 
+****
 ## Introduction
 This repository contains the data and code for IJCAI 2021 paper [Segmenting transparent object in the wild with transformer](https://arxiv.org/abs/2101.08461).
 
@@ -18,7 +24,7 @@ This repository contains the data and code for IJCAI 2021 paper [Segmenting tran
 python setup.py develop --user
 ```
 
-## Data Preparation
+<!-- ## Data Preparation
 1. create dirs './datasets/transparent/Trans10K_v2' 
 2. put the train/validation/test data under './datasets/transparent/Trans10K_v2'. 
 Data Structure is shown below.
@@ -35,7 +41,7 @@ Trans10K_v2
     └── masks_12
 ```
 Download Dataset: [Google Drive](https://drive.google.com/file/d/1YzAAMY8xfL9BMTIDU-nFC3dcGbSIBPu5/view?usp=sharing).
-[Baidu Drive](https://pan.baidu.com/s/1P-2l-Q2brbnwRd2kXi--Dg). code: oqms
+[Baidu Drive](https://pan.baidu.com/s/1P-2l-Q2brbnwRd2kXi--Dg). code: oqms -->
 
 ## Network Define
 The code of Network pipeline is in `segmentron/models/trans2seg.py`.
