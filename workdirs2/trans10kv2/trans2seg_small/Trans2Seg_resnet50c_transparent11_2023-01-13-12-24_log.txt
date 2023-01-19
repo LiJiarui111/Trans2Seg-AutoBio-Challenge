@@ -1,0 +1,212 @@
+2023-01-13 12:24:49,347 Segmentron INFO: Using 1 GPUs
+2023-01-13 12:24:49,347 Segmentron INFO: Namespace(config_file='configs/trans10kv2/trans2seg/trans2seg_medium.yaml', no_cuda=False, local_rank=0, resume=None, log_iter=10, val_epoch=1, skip_val=False, test=False, vis=False, input_img='tools/demo_vis.jpg', opts=[], num_gpus=1, distributed=False, device='cuda')
+2023-01-13 12:24:49,348 Segmentron INFO: {
+        "SEED": 1024,
+        "TIME_STAMP": "2023-01-13-12-24",
+        "ROOT_PATH": "C:\\Users\\19000\\Downloads\\Trans2Seg-master\\Trans2Seg-master",
+        "PHASE": "train",
+        "DATASET": {
+                "NAME": "transparent11",
+                "MEAN": [
+                        0.485,
+                        0.456,
+                        0.406
+                ],
+                "STD": [
+                        0.229,
+                        0.224,
+                        0.225
+                ],
+                "IGNORE_INDEX": -1,
+                "WORKERS": 0,
+                "MODE": "testval"
+        },
+        "AUG": {
+                "MIRROR": true,
+                "BLUR_PROB": 0.0,
+                "BLUR_RADIUS": 0.0,
+                "COLOR_JITTER": null,
+                "CROP": false
+        },
+        "TRAIN": {
+                "EPOCHS": 150,
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "BASE_SIZE": 512,
+                "MODEL_SAVE_DIR": "workdirs2/trans10kv2/trans2seg_small",
+                "LOG_SAVE_DIR": "workdirs/",
+                "PRETRAINED_MODEL_PATH": "workdirs2/trans10kv2/trans2seg_small/100.pth",
+                "BACKBONE_PRETRAINED": true,
+                "BACKBONE_PRETRAINED_PATH": "",
+                "RESUME_MODEL_PATH": "",
+                "SYNC_BATCH_NORM": true,
+                "SNAPSHOT_EPOCH": 1,
+                "APEX": false
+        },
+        "SOLVER": {
+                "LR": 0.0001,
+                "OPTIMIZER": "adam",
+                "EPSILON": 1e-08,
+                "MOMENTUM": 0.9,
+                "WEIGHT_DECAY": 0.0001,
+                "DECODER_LR_FACTOR": 10.0,
+                "LR_SCHEDULER": "poly",
+                "POLY": {
+                        "POWER": 0.9
+                },
+                "STEP": {
+                        "GAMMA": 0.1,
+                        "DECAY_EPOCH": [
+                                10,
+                                20
+                        ]
+                },
+                "WARMUP": {
+                        "EPOCHS": 0.0,
+                        "FACTOR": 0.3333333333333333,
+                        "METHOD": "linear"
+                },
+                "OHEM": false,
+                "AUX": false,
+                "AUX_WEIGHT": 0.4,
+                "LOSS_NAME": ""
+        },
+        "TEST": {
+                "TEST_MODEL_PATH": "workdirs2/trans10kv2/trans2seg_small/100.pth",
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "SCALES": [
+                        1.0
+                ],
+                "FLIP": false
+        },
+        "VISUAL": {
+                "OUTPUT_DIR": "../runs/visual/"
+        },
+        "MODEL": {
+                "MODEL_NAME": "Trans2Seg",
+                "BACKBONE": "resnet50c",
+                "BACKBONE_SCALE": 1.0,
+                "MULTI_LOSS_WEIGHT": [
+                        1.0
+                ],
+                "DEFAULT_GROUP_NUMBER": 32,
+                "DEFAULT_EPSILON": 1e-05,
+                "BN_TYPE": "BN",
+                "BN_EPS_FOR_ENCODER": null,
+                "BN_EPS_FOR_DECODER": null,
+                "OUTPUT_STRIDE": 16,
+                "BN_MOMENTUM": null,
+                "DANET": {
+                        "MULTI_DILATION": null,
+                        "MULTI_GRID": false
+                },
+                "DEEPLABV3_PLUS": {
+                        "USE_ASPP": true,
+                        "ENABLE_DECODER": true,
+                        "ASPP_WITH_SEP_CONV": true,
+                        "DECODER_USE_SEP_CONV": true
+                },
+                "OCNet": {
+                        "OC_ARCH": "base"
+                },
+                "ENCNET": {
+                        "SE_LOSS": true,
+                        "SE_WEIGHT": 0.2,
+                        "LATERAL": true
+                },
+                "CCNET": {
+                        "RECURRENCE": 2
+                },
+                "CGNET": {
+                        "STAGE2_BLOCK_NUM": 3,
+                        "STAGE3_BLOCK_NUM": 21
+                },
+                "POINTREND": {
+                        "BASEMODEL": "DeepLabV3_Plus"
+                },
+                "HRNET": {
+                        "PRETRAINED_LAYERS": [
+                                "*"
+                        ],
+                        "STEM_INPLANES": 64,
+                        "FINAL_CONV_KERNEL": 1,
+                        "WITH_HEAD": true,
+                        "STAGE1": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 1,
+                                "NUM_BLOCKS": [
+                                        1
+                                ],
+                                "NUM_CHANNELS": [
+                                        32
+                                ],
+                                "BLOCK": "BOTTLENECK",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE2": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 2,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE3": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 3,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE4": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 4,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128,
+                                        256
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        }
+                },
+                "TRANS2Seg": {
+                        "embed_dim": 256,
+                        "depth": 4,
+                        "num_heads": 8,
+                        "mlp_ratio": 3.0,
+                        "hid_dim": 64
+                }
+        }
+}
+2023-01-13 12:24:50,309 Segmentron INFO: load pretrained model from workdirs2/trans10kv2/trans2seg_small/100.pth
+2023-01-13 12:24:50,870 Segmentron INFO: Shape unmatched weights: []

@@ -1,0 +1,306 @@
+2023-01-13 12:33:48,454 Segmentron INFO: Using 1 GPUs
+2023-01-13 12:33:48,455 Segmentron INFO: Namespace(config_file='configs/trans10kv2/trans2seg/trans2seg_medium.yaml', no_cuda=False, local_rank=0, resume=None, log_iter=10, val_epoch=1, skip_val=False, test=False, vis=False, input_img='tools/demo_vis.jpg', opts=[], num_gpus=1, distributed=False, device='cuda')
+2023-01-13 12:33:48,455 Segmentron INFO: {
+        "SEED": 1024,
+        "TIME_STAMP": "2023-01-13-12-33",
+        "ROOT_PATH": "C:\\Users\\19000\\Downloads\\Trans2Seg-master\\Trans2Seg-master",
+        "PHASE": "train",
+        "DATASET": {
+                "NAME": "transparent11",
+                "MEAN": [
+                        0.485,
+                        0.456,
+                        0.406
+                ],
+                "STD": [
+                        0.229,
+                        0.224,
+                        0.225
+                ],
+                "IGNORE_INDEX": -1,
+                "WORKERS": 0,
+                "MODE": "testval"
+        },
+        "AUG": {
+                "MIRROR": true,
+                "BLUR_PROB": 0.0,
+                "BLUR_RADIUS": 0.0,
+                "COLOR_JITTER": null,
+                "CROP": false
+        },
+        "TRAIN": {
+                "EPOCHS": 150,
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "BASE_SIZE": 512,
+                "MODEL_SAVE_DIR": "workdirs2/trans10kv2/trans2seg_small",
+                "LOG_SAVE_DIR": "workdirs/",
+                "PRETRAINED_MODEL_PATH": "workdirs2/trans10kv2/trans2seg_small/100.pth",
+                "BACKBONE_PRETRAINED": true,
+                "BACKBONE_PRETRAINED_PATH": "",
+                "RESUME_MODEL_PATH": "",
+                "SYNC_BATCH_NORM": true,
+                "SNAPSHOT_EPOCH": 1,
+                "APEX": false
+        },
+        "SOLVER": {
+                "LR": 0.0005,
+                "OPTIMIZER": "adam",
+                "EPSILON": 1e-08,
+                "MOMENTUM": 0.9,
+                "WEIGHT_DECAY": 0.0001,
+                "DECODER_LR_FACTOR": 10.0,
+                "LR_SCHEDULER": "poly",
+                "POLY": {
+                        "POWER": 0.9
+                },
+                "STEP": {
+                        "GAMMA": 0.1,
+                        "DECAY_EPOCH": [
+                                10,
+                                20
+                        ]
+                },
+                "WARMUP": {
+                        "EPOCHS": 0.0,
+                        "FACTOR": 0.3333333333333333,
+                        "METHOD": "linear"
+                },
+                "OHEM": false,
+                "AUX": false,
+                "AUX_WEIGHT": 0.4,
+                "LOSS_NAME": ""
+        },
+        "TEST": {
+                "TEST_MODEL_PATH": "workdirs3/trans10kv2/trans2seg_small/100.pth",
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "SCALES": [
+                        1.0
+                ],
+                "FLIP": false
+        },
+        "VISUAL": {
+                "OUTPUT_DIR": "../runs/visual/"
+        },
+        "MODEL": {
+                "MODEL_NAME": "Trans2Seg",
+                "BACKBONE": "resnet50c",
+                "BACKBONE_SCALE": 1.0,
+                "MULTI_LOSS_WEIGHT": [
+                        1.0
+                ],
+                "DEFAULT_GROUP_NUMBER": 32,
+                "DEFAULT_EPSILON": 1e-05,
+                "BN_TYPE": "BN",
+                "BN_EPS_FOR_ENCODER": null,
+                "BN_EPS_FOR_DECODER": null,
+                "OUTPUT_STRIDE": 16,
+                "BN_MOMENTUM": null,
+                "DANET": {
+                        "MULTI_DILATION": null,
+                        "MULTI_GRID": false
+                },
+                "DEEPLABV3_PLUS": {
+                        "USE_ASPP": true,
+                        "ENABLE_DECODER": true,
+                        "ASPP_WITH_SEP_CONV": true,
+                        "DECODER_USE_SEP_CONV": true
+                },
+                "OCNet": {
+                        "OC_ARCH": "base"
+                },
+                "ENCNET": {
+                        "SE_LOSS": true,
+                        "SE_WEIGHT": 0.2,
+                        "LATERAL": true
+                },
+                "CCNET": {
+                        "RECURRENCE": 2
+                },
+                "CGNET": {
+                        "STAGE2_BLOCK_NUM": 3,
+                        "STAGE3_BLOCK_NUM": 21
+                },
+                "POINTREND": {
+                        "BASEMODEL": "DeepLabV3_Plus"
+                },
+                "HRNET": {
+                        "PRETRAINED_LAYERS": [
+                                "*"
+                        ],
+                        "STEM_INPLANES": 64,
+                        "FINAL_CONV_KERNEL": 1,
+                        "WITH_HEAD": true,
+                        "STAGE1": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 1,
+                                "NUM_BLOCKS": [
+                                        1
+                                ],
+                                "NUM_CHANNELS": [
+                                        32
+                                ],
+                                "BLOCK": "BOTTLENECK",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE2": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 2,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE3": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 3,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE4": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 4,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128,
+                                        256
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        }
+                },
+                "TRANS2Seg": {
+                        "embed_dim": 256,
+                        "depth": 4,
+                        "num_heads": 8,
+                        "mlp_ratio": 3.0,
+                        "hid_dim": 64
+                }
+        }
+}
+2023-01-13 12:33:49,440 Segmentron INFO: load pretrained model from workdirs2/trans10kv2/trans2seg_small/100.pth
+2023-01-13 12:33:49,982 Segmentron INFO: Shape unmatched weights: []
+2023-01-13 12:33:50,083 Segmentron INFO: <All keys matched successfully>
+2023-01-13 12:33:52,507 Segmentron INFO: Trans2Seg flops: 52.118G input shape is [3, 512, 512], params: 56.236M
+2023-01-13 12:33:52,508 Segmentron INFO: Not use SyncBatchNorm!
+2023-01-13 12:33:52,509 Segmentron INFO: Start training, Total Epochs: 150 = Total Iterations 135000
+2023-01-13 12:33:54,588 Segmentron INFO: Epoch: 1/150 || Iters: 10/900 || Lr: 0.000500 || Loss: 0.1063 || Cost Time: 0:00:02 || Estimated Time: 7:28:43
+2023-01-13 12:33:56,066 Segmentron INFO: Epoch: 1/150 || Iters: 20/900 || Lr: 0.000500 || Loss: 0.0460 || Cost Time: 0:00:03 || Estimated Time: 6:30:17
+2023-01-13 12:33:57,543 Segmentron INFO: Epoch: 1/150 || Iters: 30/900 || Lr: 0.000500 || Loss: 0.0623 || Cost Time: 0:00:05 || Estimated Time: 6:11:15
+2023-01-13 12:33:59,024 Segmentron INFO: Epoch: 1/150 || Iters: 40/900 || Lr: 0.000500 || Loss: 0.1234 || Cost Time: 0:00:06 || Estimated Time: 6:02:10
+2023-01-13 12:34:00,512 Segmentron INFO: Epoch: 1/150 || Iters: 50/900 || Lr: 0.000500 || Loss: 0.0585 || Cost Time: 0:00:08 || Estimated Time: 5:56:10
+2023-01-13 12:34:02,075 Segmentron INFO: Epoch: 1/150 || Iters: 60/900 || Lr: 0.000500 || Loss: 0.0645 || Cost Time: 0:00:09 || Estimated Time: 5:55:02
+2023-01-13 12:34:03,683 Segmentron INFO: Epoch: 1/150 || Iters: 70/900 || Lr: 0.000500 || Loss: 0.1751 || Cost Time: 0:00:11 || Estimated Time: 5:55:46
+2023-01-13 12:34:05,241 Segmentron INFO: Epoch: 1/150 || Iters: 80/900 || Lr: 0.000500 || Loss: 0.0418 || Cost Time: 0:00:12 || Estimated Time: 5:55:40
+2023-01-13 12:34:06,797 Segmentron INFO: Epoch: 1/150 || Iters: 90/900 || Lr: 0.000500 || Loss: 0.0279 || Cost Time: 0:00:14 || Estimated Time: 5:54:46
+2023-01-13 12:34:08,718 Segmentron INFO: Epoch: 1/150 || Iters: 100/900 || Lr: 0.000500 || Loss: 0.1007 || Cost Time: 0:00:16 || Estimated Time: 6:01:07
+2023-01-13 12:34:10,431 Segmentron INFO: Epoch: 1/150 || Iters: 110/900 || Lr: 0.000500 || Loss: 0.0421 || Cost Time: 0:00:17 || Estimated Time: 6:04:26
+2023-01-13 12:34:11,971 Segmentron INFO: Epoch: 1/150 || Iters: 120/900 || Lr: 0.000500 || Loss: 0.0980 || Cost Time: 0:00:19 || Estimated Time: 6:02:51
+2023-01-13 12:34:13,441 Segmentron INFO: Epoch: 1/150 || Iters: 130/900 || Lr: 0.000500 || Loss: 0.1282 || Cost Time: 0:00:20 || Estimated Time: 6:00:36
+2023-01-13 12:34:14,928 Segmentron INFO: Epoch: 1/150 || Iters: 140/900 || Lr: 0.000500 || Loss: 0.0624 || Cost Time: 0:00:22 || Estimated Time: 5:58:36
+2023-01-13 12:34:16,672 Segmentron INFO: Epoch: 1/150 || Iters: 150/900 || Lr: 0.000499 || Loss: 0.0257 || Cost Time: 0:00:24 || Estimated Time: 5:59:57
+2023-01-13 12:34:18,317 Segmentron INFO: Epoch: 1/150 || Iters: 160/900 || Lr: 0.000499 || Loss: 0.1661 || Cost Time: 0:00:25 || Estimated Time: 6:01:16
+2023-01-13 12:34:20,031 Segmentron INFO: Epoch: 1/150 || Iters: 170/900 || Lr: 0.000499 || Loss: 0.0514 || Cost Time: 0:00:27 || Estimated Time: 6:02:06
+2023-01-13 12:34:21,927 Segmentron INFO: Epoch: 1/150 || Iters: 180/900 || Lr: 0.000499 || Loss: 0.0331 || Cost Time: 0:00:29 || Estimated Time: 6:05:39
+2023-01-13 12:34:23,603 Segmentron INFO: Epoch: 1/150 || Iters: 190/900 || Lr: 0.000499 || Loss: 0.1163 || Cost Time: 0:00:31 || Estimated Time: 6:06:26
+2023-01-13 12:34:25,156 Segmentron INFO: Epoch: 1/150 || Iters: 200/900 || Lr: 0.000499 || Loss: 0.1443 || Cost Time: 0:00:32 || Estimated Time: 6:05:39
+2023-01-13 12:34:26,989 Segmentron INFO: Epoch: 1/150 || Iters: 210/900 || Lr: 0.000499 || Loss: 0.0647 || Cost Time: 0:00:34 || Estimated Time: 6:07:34
+2023-01-13 12:34:28,613 Segmentron INFO: Epoch: 1/150 || Iters: 220/900 || Lr: 0.000499 || Loss: 0.0328 || Cost Time: 0:00:36 || Estimated Time: 6:07:34
+2023-01-13 12:34:30,144 Segmentron INFO: Epoch: 1/150 || Iters: 230/900 || Lr: 0.000499 || Loss: 0.1040 || Cost Time: 0:00:37 || Estimated Time: 6:06:44
+2023-01-13 12:34:31,762 Segmentron INFO: Epoch: 1/150 || Iters: 240/900 || Lr: 0.000499 || Loss: 0.0858 || Cost Time: 0:00:39 || Estimated Time: 6:06:15
+2023-01-13 12:34:33,340 Segmentron INFO: Epoch: 1/150 || Iters: 250/900 || Lr: 0.000499 || Loss: 0.0448 || Cost Time: 0:00:40 || Estimated Time: 6:06:04
+2023-01-13 12:34:34,887 Segmentron INFO: Epoch: 1/150 || Iters: 260/900 || Lr: 0.000499 || Loss: 0.0435 || Cost Time: 0:00:42 || Estimated Time: 6:05:19
+2023-01-13 12:34:36,377 Segmentron INFO: Epoch: 1/150 || Iters: 270/900 || Lr: 0.000499 || Loss: 0.0764 || Cost Time: 0:00:43 || Estimated Time: 6:04:08
+2023-01-13 12:34:37,945 Segmentron INFO: Epoch: 1/150 || Iters: 280/900 || Lr: 0.000499 || Loss: 0.0207 || Cost Time: 0:00:45 || Estimated Time: 6:03:29
+2023-01-13 12:34:39,775 Segmentron INFO: Epoch: 1/150 || Iters: 290/900 || Lr: 0.000499 || Loss: 0.0674 || Cost Time: 0:00:47 || Estimated Time: 6:05:02
+2023-01-13 12:34:41,396 Segmentron INFO: Epoch: 1/150 || Iters: 300/900 || Lr: 0.000499 || Loss: 0.0585 || Cost Time: 0:00:48 || Estimated Time: 6:05:03
+2023-01-13 12:34:42,938 Segmentron INFO: Epoch: 1/150 || Iters: 310/900 || Lr: 0.000499 || Loss: 0.0850 || Cost Time: 0:00:50 || Estimated Time: 6:04:35
+2023-01-13 12:34:44,416 Segmentron INFO: Epoch: 1/150 || Iters: 320/900 || Lr: 0.000499 || Loss: 0.0781 || Cost Time: 0:00:51 || Estimated Time: 6:03:30
+2023-01-13 12:34:45,905 Segmentron INFO: Epoch: 1/150 || Iters: 330/900 || Lr: 0.000499 || Loss: 0.0753 || Cost Time: 0:00:53 || Estimated Time: 6:02:35
+2023-01-13 12:34:47,385 Segmentron INFO: Epoch: 1/150 || Iters: 340/900 || Lr: 0.000499 || Loss: 0.0532 || Cost Time: 0:00:54 || Estimated Time: 6:01:40
+2023-01-13 12:34:48,862 Segmentron INFO: Epoch: 1/150 || Iters: 350/900 || Lr: 0.000499 || Loss: 0.0391 || Cost Time: 0:00:56 || Estimated Time: 6:00:48
+2023-01-13 12:34:50,538 Segmentron INFO: Epoch: 1/150 || Iters: 360/900 || Lr: 0.000499 || Loss: 0.0388 || Cost Time: 0:00:58 || Estimated Time: 6:00:54
+2023-01-13 12:34:52,057 Segmentron INFO: Epoch: 1/150 || Iters: 370/900 || Lr: 0.000499 || Loss: 0.0317 || Cost Time: 0:00:59 || Estimated Time: 6:00:38
+2023-01-13 12:34:53,670 Segmentron INFO: Epoch: 1/150 || Iters: 380/900 || Lr: 0.000499 || Loss: 0.0846 || Cost Time: 0:01:01 || Estimated Time: 6:00:20
+2023-01-13 12:34:55,418 Segmentron INFO: Epoch: 1/150 || Iters: 390/900 || Lr: 0.000499 || Loss: 0.0629 || Cost Time: 0:01:02 || Estimated Time: 6:01:23
+2023-01-13 12:34:56,921 Segmentron INFO: Epoch: 1/150 || Iters: 400/900 || Lr: 0.000499 || Loss: 0.0195 || Cost Time: 0:01:04 || Estimated Time: 6:00:48
+2023-01-13 12:34:58,439 Segmentron INFO: Epoch: 1/150 || Iters: 410/900 || Lr: 0.000499 || Loss: 0.1238 || Cost Time: 0:01:05 || Estimated Time: 6:00:14
+2023-01-13 12:34:59,950 Segmentron INFO: Epoch: 1/150 || Iters: 420/900 || Lr: 0.000499 || Loss: 0.1607 || Cost Time: 0:01:07 || Estimated Time: 5:59:47
+2023-01-13 12:35:01,472 Segmentron INFO: Epoch: 1/150 || Iters: 430/900 || Lr: 0.000499 || Loss: 0.0480 || Cost Time: 0:01:08 || Estimated Time: 5:59:16
+2023-01-13 12:35:03,197 Segmentron INFO: Epoch: 1/150 || Iters: 440/900 || Lr: 0.000499 || Loss: 0.1546 || Cost Time: 0:01:10 || Estimated Time: 5:59:46
+2023-01-13 12:35:05,166 Segmentron INFO: Epoch: 1/150 || Iters: 450/900 || Lr: 0.000498 || Loss: 0.0376 || Cost Time: 0:01:12 || Estimated Time: 6:01:29
+2023-01-13 12:35:06,787 Segmentron INFO: Epoch: 1/150 || Iters: 460/900 || Lr: 0.000498 || Loss: 0.0711 || Cost Time: 0:01:14 || Estimated Time: 6:01:40
+2023-01-13 12:35:08,510 Segmentron INFO: Epoch: 1/150 || Iters: 470/900 || Lr: 0.000498 || Loss: 0.0778 || Cost Time: 0:01:16 || Estimated Time: 6:02:11
+2023-01-13 12:35:10,242 Segmentron INFO: Epoch: 1/150 || Iters: 480/900 || Lr: 0.000498 || Loss: 0.0443 || Cost Time: 0:01:17 || Estimated Time: 6:02:39
+2023-01-13 12:35:11,747 Segmentron INFO: Epoch: 1/150 || Iters: 490/900 || Lr: 0.000498 || Loss: 0.0298 || Cost Time: 0:01:19 || Estimated Time: 6:02:06
+2023-01-13 12:35:13,248 Segmentron INFO: Epoch: 1/150 || Iters: 500/900 || Lr: 0.000498 || Loss: 0.1039 || Cost Time: 0:01:20 || Estimated Time: 6:01:34
+2023-01-13 12:35:14,758 Segmentron INFO: Epoch: 1/150 || Iters: 510/900 || Lr: 0.000498 || Loss: 0.1074 || Cost Time: 0:01:22 || Estimated Time: 6:01:05
+2023-01-13 12:35:16,270 Segmentron INFO: Epoch: 1/150 || Iters: 520/900 || Lr: 0.000498 || Loss: 0.0292 || Cost Time: 0:01:23 || Estimated Time: 6:00:33
+2023-01-13 12:35:17,800 Segmentron INFO: Epoch: 1/150 || Iters: 530/900 || Lr: 0.000498 || Loss: 0.0335 || Cost Time: 0:01:25 || Estimated Time: 6:00:17
+2023-01-13 12:35:19,324 Segmentron INFO: Epoch: 1/150 || Iters: 540/900 || Lr: 0.000498 || Loss: 0.0751 || Cost Time: 0:01:26 || Estimated Time: 5:59:55
+2023-01-13 12:35:20,848 Segmentron INFO: Epoch: 1/150 || Iters: 550/900 || Lr: 0.000498 || Loss: 0.0400 || Cost Time: 0:01:28 || Estimated Time: 5:59:31
+2023-01-13 12:35:22,376 Segmentron INFO: Epoch: 1/150 || Iters: 560/900 || Lr: 0.000498 || Loss: 0.1283 || Cost Time: 0:01:29 || Estimated Time: 5:59:14
+2023-01-13 12:35:23,903 Segmentron INFO: Epoch: 1/150 || Iters: 570/900 || Lr: 0.000498 || Loss: 0.0445 || Cost Time: 0:01:31 || Estimated Time: 5:58:54
+2023-01-13 12:35:25,412 Segmentron INFO: Epoch: 1/150 || Iters: 580/900 || Lr: 0.000498 || Loss: 0.0762 || Cost Time: 0:01:32 || Estimated Time: 5:58:32
+2023-01-13 12:35:27,241 Segmentron INFO: Epoch: 1/150 || Iters: 590/900 || Lr: 0.000498 || Loss: 0.0904 || Cost Time: 0:01:34 || Estimated Time: 5:59:20
+2023-01-13 12:35:28,755 Segmentron INFO: Epoch: 1/150 || Iters: 600/900 || Lr: 0.000498 || Loss: 0.0442 || Cost Time: 0:01:36 || Estimated Time: 5:58:59
+2023-01-13 12:35:30,254 Segmentron INFO: Epoch: 1/150 || Iters: 610/900 || Lr: 0.000498 || Loss: 0.0498 || Cost Time: 0:01:37 || Estimated Time: 5:58:35
+2023-01-13 12:35:31,761 Segmentron INFO: Epoch: 1/150 || Iters: 620/900 || Lr: 0.000498 || Loss: 0.0423 || Cost Time: 0:01:39 || Estimated Time: 5:58:13
+2023-01-13 12:35:33,271 Segmentron INFO: Epoch: 1/150 || Iters: 630/900 || Lr: 0.000498 || Loss: 0.0817 || Cost Time: 0:01:40 || Estimated Time: 5:57:52
+2023-01-13 12:35:34,791 Segmentron INFO: Epoch: 1/150 || Iters: 640/900 || Lr: 0.000498 || Loss: 0.0392 || Cost Time: 0:01:42 || Estimated Time: 5:57:34
+2023-01-13 12:35:36,291 Segmentron INFO: Epoch: 1/150 || Iters: 650/900 || Lr: 0.000498 || Loss: 0.0374 || Cost Time: 0:01:43 || Estimated Time: 5:57:13
+2023-01-13 12:35:37,791 Segmentron INFO: Epoch: 1/150 || Iters: 660/900 || Lr: 0.000498 || Loss: 0.0956 || Cost Time: 0:01:45 || Estimated Time: 5:56:52
+2023-01-13 12:35:39,297 Segmentron INFO: Epoch: 1/150 || Iters: 670/900 || Lr: 0.000498 || Loss: 0.1101 || Cost Time: 0:01:46 || Estimated Time: 5:56:33
+2023-01-13 12:35:40,818 Segmentron INFO: Epoch: 1/150 || Iters: 680/900 || Lr: 0.000498 || Loss: 0.0310 || Cost Time: 0:01:48 || Estimated Time: 5:56:18
+2023-01-13 12:35:42,337 Segmentron INFO: Epoch: 1/150 || Iters: 690/900 || Lr: 0.000498 || Loss: 0.0269 || Cost Time: 0:01:49 || Estimated Time: 5:55:59
+2023-01-13 12:35:43,841 Segmentron INFO: Epoch: 1/150 || Iters: 700/900 || Lr: 0.000498 || Loss: 0.0683 || Cost Time: 0:01:51 || Estimated Time: 5:55:43
+2023-01-13 12:35:45,354 Segmentron INFO: Epoch: 1/150 || Iters: 710/900 || Lr: 0.000498 || Loss: 0.0449 || Cost Time: 0:01:52 || Estimated Time: 5:55:28
+2023-01-13 12:35:46,858 Segmentron INFO: Epoch: 1/150 || Iters: 720/900 || Lr: 0.000498 || Loss: 0.0708 || Cost Time: 0:01:54 || Estimated Time: 5:55:11
+2023-01-13 12:35:48,364 Segmentron INFO: Epoch: 1/150 || Iters: 730/900 || Lr: 0.000498 || Loss: 0.0356 || Cost Time: 0:01:55 || Estimated Time: 5:54:54
+2023-01-13 12:35:49,875 Segmentron INFO: Epoch: 1/150 || Iters: 740/900 || Lr: 0.000498 || Loss: 0.0489 || Cost Time: 0:01:57 || Estimated Time: 5:54:39
+2023-01-13 12:35:51,397 Segmentron INFO: Epoch: 1/150 || Iters: 750/900 || Lr: 0.000497 || Loss: 0.0592 || Cost Time: 0:01:58 || Estimated Time: 5:54:26
+2023-01-13 12:35:52,917 Segmentron INFO: Epoch: 1/150 || Iters: 760/900 || Lr: 0.000497 || Loss: 0.0581 || Cost Time: 0:02:00 || Estimated Time: 5:54:13
+2023-01-13 12:35:54,421 Segmentron INFO: Epoch: 1/150 || Iters: 770/900 || Lr: 0.000497 || Loss: 0.0315 || Cost Time: 0:02:01 || Estimated Time: 5:53:58
+2023-01-13 12:35:55,924 Segmentron INFO: Epoch: 1/150 || Iters: 780/900 || Lr: 0.000497 || Loss: 0.1024 || Cost Time: 0:02:03 || Estimated Time: 5:53:43
+2023-01-13 12:35:57,426 Segmentron INFO: Epoch: 1/150 || Iters: 790/900 || Lr: 0.000497 || Loss: 0.0633 || Cost Time: 0:02:04 || Estimated Time: 5:53:28
+2023-01-13 12:35:58,932 Segmentron INFO: Epoch: 1/150 || Iters: 800/900 || Lr: 0.000497 || Loss: 0.0300 || Cost Time: 0:02:06 || Estimated Time: 5:53:13
+2023-01-13 12:36:00,440 Segmentron INFO: Epoch: 1/150 || Iters: 810/900 || Lr: 0.000497 || Loss: 0.0988 || Cost Time: 0:02:07 || Estimated Time: 5:53:00
+2023-01-13 12:36:01,958 Segmentron INFO: Epoch: 1/150 || Iters: 820/900 || Lr: 0.000497 || Loss: 0.0390 || Cost Time: 0:02:09 || Estimated Time: 5:52:48
+2023-01-13 12:36:03,465 Segmentron INFO: Epoch: 1/150 || Iters: 830/900 || Lr: 0.000497 || Loss: 0.0828 || Cost Time: 0:02:10 || Estimated Time: 5:52:35
+2023-01-13 12:36:04,985 Segmentron INFO: Epoch: 1/150 || Iters: 840/900 || Lr: 0.000497 || Loss: 0.1561 || Cost Time: 0:02:12 || Estimated Time: 5:52:25
+2023-01-13 12:36:06,495 Segmentron INFO: Epoch: 1/150 || Iters: 850/900 || Lr: 0.000497 || Loss: 0.0397 || Cost Time: 0:02:13 || Estimated Time: 5:52:13
+2023-01-13 12:36:08,000 Segmentron INFO: Epoch: 1/150 || Iters: 860/900 || Lr: 0.000497 || Loss: 0.0372 || Cost Time: 0:02:15 || Estimated Time: 5:52:01
+2023-01-13 12:36:09,506 Segmentron INFO: Epoch: 1/150 || Iters: 870/900 || Lr: 0.000497 || Loss: 0.0239 || Cost Time: 0:02:16 || Estimated Time: 5:51:48
+2023-01-13 12:36:11,108 Segmentron INFO: Epoch: 1/150 || Iters: 880/900 || Lr: 0.000497 || Loss: 0.0231 || Cost Time: 0:02:18 || Estimated Time: 5:51:45
+2023-01-13 12:36:12,889 Segmentron INFO: Epoch: 1/150 || Iters: 890/900 || Lr: 0.000497 || Loss: 0.0325 || Cost Time: 0:02:20 || Estimated Time: 5:52:15
+2023-01-13 12:36:14,561 Segmentron INFO: Epoch: 1/150 || Iters: 0/900 || Lr: 0.000497 || Loss: 0.0243 || Cost Time: 0:02:22 || Estimated Time: 5:52:27

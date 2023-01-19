@@ -1,0 +1,217 @@
+2023-01-13 12:13:39,424 Segmentron INFO: Using 1 GPUs
+2023-01-13 12:13:39,424 Segmentron INFO: Namespace(config_file='configs/trans10kv2/trans2seg/trans2seg_medium.yaml', no_cuda=False, local_rank=0, resume=None, log_iter=10, val_epoch=1, skip_val=False, test=False, vis=False, input_img='tools/demo_vis.jpg', opts=[], num_gpus=1, distributed=False, device='cuda')
+2023-01-13 12:13:39,425 Segmentron INFO: {
+        "SEED": 1024,
+        "TIME_STAMP": "2023-01-13-12-13",
+        "ROOT_PATH": "C:\\Users\\19000\\Downloads\\Trans2Seg-master\\Trans2Seg-master",
+        "PHASE": "train",
+        "DATASET": {
+                "NAME": "transparent11",
+                "MEAN": [
+                        0.485,
+                        0.456,
+                        0.406
+                ],
+                "STD": [
+                        0.229,
+                        0.224,
+                        0.225
+                ],
+                "IGNORE_INDEX": -1,
+                "WORKERS": 0,
+                "MODE": "testval"
+        },
+        "AUG": {
+                "MIRROR": true,
+                "BLUR_PROB": 0.0,
+                "BLUR_RADIUS": 0.0,
+                "COLOR_JITTER": null,
+                "CROP": false
+        },
+        "TRAIN": {
+                "EPOCHS": 150,
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "BASE_SIZE": 512,
+                "MODEL_SAVE_DIR": "workdirs2/trans10kv2/trans2seg_small",
+                "LOG_SAVE_DIR": "workdirs/",
+                "PRETRAINED_MODEL_PATH": "workdirs/trans10kv2/trans2seg_small/150.pth",
+                "BACKBONE_PRETRAINED": true,
+                "BACKBONE_PRETRAINED_PATH": "",
+                "RESUME_MODEL_PATH": "",
+                "SYNC_BATCH_NORM": true,
+                "SNAPSHOT_EPOCH": 1,
+                "APEX": false
+        },
+        "SOLVER": {
+                "LR": 0.0001,
+                "OPTIMIZER": "adam",
+                "EPSILON": 1e-08,
+                "MOMENTUM": 0.9,
+                "WEIGHT_DECAY": 0.0001,
+                "DECODER_LR_FACTOR": 10.0,
+                "LR_SCHEDULER": "poly",
+                "POLY": {
+                        "POWER": 0.9
+                },
+                "STEP": {
+                        "GAMMA": 0.1,
+                        "DECAY_EPOCH": [
+                                10,
+                                20
+                        ]
+                },
+                "WARMUP": {
+                        "EPOCHS": 0.0,
+                        "FACTOR": 0.3333333333333333,
+                        "METHOD": "linear"
+                },
+                "OHEM": false,
+                "AUX": false,
+                "AUX_WEIGHT": 0.4,
+                "LOSS_NAME": ""
+        },
+        "TEST": {
+                "TEST_MODEL_PATH": "workdirs2/trans10kv2/trans2seg_small/100.pth",
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "SCALES": [
+                        1.0
+                ],
+                "FLIP": false
+        },
+        "VISUAL": {
+                "OUTPUT_DIR": "../runs/visual/"
+        },
+        "MODEL": {
+                "MODEL_NAME": "Trans2Seg",
+                "BACKBONE": "resnet50c",
+                "BACKBONE_SCALE": 1.0,
+                "MULTI_LOSS_WEIGHT": [
+                        1.0
+                ],
+                "DEFAULT_GROUP_NUMBER": 32,
+                "DEFAULT_EPSILON": 1e-05,
+                "BN_TYPE": "BN",
+                "BN_EPS_FOR_ENCODER": null,
+                "BN_EPS_FOR_DECODER": null,
+                "OUTPUT_STRIDE": 16,
+                "BN_MOMENTUM": null,
+                "DANET": {
+                        "MULTI_DILATION": null,
+                        "MULTI_GRID": false
+                },
+                "DEEPLABV3_PLUS": {
+                        "USE_ASPP": true,
+                        "ENABLE_DECODER": true,
+                        "ASPP_WITH_SEP_CONV": true,
+                        "DECODER_USE_SEP_CONV": true
+                },
+                "OCNet": {
+                        "OC_ARCH": "base"
+                },
+                "ENCNET": {
+                        "SE_LOSS": true,
+                        "SE_WEIGHT": 0.2,
+                        "LATERAL": true
+                },
+                "CCNET": {
+                        "RECURRENCE": 2
+                },
+                "CGNET": {
+                        "STAGE2_BLOCK_NUM": 3,
+                        "STAGE3_BLOCK_NUM": 21
+                },
+                "POINTREND": {
+                        "BASEMODEL": "DeepLabV3_Plus"
+                },
+                "HRNET": {
+                        "PRETRAINED_LAYERS": [
+                                "*"
+                        ],
+                        "STEM_INPLANES": 64,
+                        "FINAL_CONV_KERNEL": 1,
+                        "WITH_HEAD": true,
+                        "STAGE1": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 1,
+                                "NUM_BLOCKS": [
+                                        1
+                                ],
+                                "NUM_CHANNELS": [
+                                        32
+                                ],
+                                "BLOCK": "BOTTLENECK",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE2": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 2,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE3": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 3,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE4": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 4,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128,
+                                        256
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        }
+                },
+                "TRANS2Seg": {
+                        "embed_dim": 256,
+                        "depth": 4,
+                        "num_heads": 8,
+                        "mlp_ratio": 3.0,
+                        "hid_dim": 64
+                }
+        }
+}
+2023-01-13 12:13:40,360 Segmentron INFO: load pretrained model from workdirs/trans10kv2/trans2seg_small/150.pth
+2023-01-13 12:13:40,854 Segmentron INFO: Shape unmatched weights: []
+2023-01-13 12:13:40,856 Segmentron INFO: _IncompatibleKeys(missing_keys=['encoder.conv1.0.weight', 'encoder.conv1.1.weight', 'encoder.conv1.1.bias', 'encoder.conv1.1.running_mean', 'encoder.conv1.1.running_var', 'encoder.conv1.3.weight', 'encoder.conv1.4.weight', 'encoder.conv1.4.bias', 'encoder.conv1.4.running_mean', 'encoder.conv1.4.running_var', 'encoder.conv1.6.weight', 'encoder.bn1.weight', 'encoder.bn1.bias', 'encoder.bn1.running_mean', 'encoder.bn1.running_var', 'encoder.layer1.0.conv1.weight', 'encoder.layer1.0.bn1.weight', 'encoder.layer1.0.bn1.bias', 'encoder.layer1.0.bn1.running_mean', 'encoder.layer1.0.bn1.running_var', 'encoder.layer1.0.conv2.weight', 'encoder.layer1.0.bn2.weight', 'encoder.layer1.0.bn2.bias', 'encoder.layer1.0.bn2.running_mean', 'encoder.layer1.0.bn2.running_var', 'encoder.layer1.0.conv3.weight', 'encoder.layer1.0.bn3.weight', 'encoder.layer1.0.bn3.bias', 'encoder.layer1.0.bn3.running_mean', 'encoder.layer1.0.bn3.running_var', 'encoder.layer1.0.downsample.0.weight', 'encoder.layer1.0.downsample.1.weight', 'encoder.layer1.0.downsample.1.bias', 'encoder.layer1.0.downsample.1.running_mean', 'encoder.layer1.0.downsample.1.running_var', 'encoder.layer1.1.conv1.weight', 'encoder.layer1.1.bn1.weight', 'encoder.layer1.1.bn1.bias', 'encoder.layer1.1.bn1.running_mean', 'encoder.layer1.1.bn1.running_var', 'encoder.layer1.1.conv2.weight', 'encoder.layer1.1.bn2.weight', 'encoder.layer1.1.bn2.bias', 'encoder.layer1.1.bn2.running_mean', 'encoder.layer1.1.bn2.running_var', 'encoder.layer1.1.conv3.weight', 'encoder.layer1.1.bn3.weight', 'encoder.layer1.1.bn3.bias', 'encoder.layer1.1.bn3.running_mean', 'encoder.layer1.1.bn3.running_var', 'encoder.layer1.2.conv1.weight', 'encoder.layer1.2.bn1.weight', 'encoder.layer1.2.bn1.bias', 'encoder.layer1.2.bn1.running_mean', 'encoder.layer1.2.bn1.running_var', 'encoder.layer1.2.conv2.weight', 'encoder.layer1.2.bn2.weight', 'encoder.layer1.2.bn2.bias', 'encoder.layer1.2.bn2.running_mean', 'encoder.layer1.2.bn2.running_var', 'encoder.layer1.2.conv3.weight', 'encoder.layer1.2.bn3.weight', 'encoder.layer1.2.bn3.bias', 'encoder.layer1.2.bn3.running_mean', 'encoder.layer1.2.bn3.running_var', 'encoder.layer2.0.conv1.weight', 'encoder.layer2.0.bn1.weight', 'encoder.layer2.0.bn1.bias', 'encoder.layer2.0.bn1.running_mean', 'encoder.layer2.0.bn1.running_var', 'encoder.layer2.0.conv2.weight', 'encoder.layer2.0.bn2.weight', 'encoder.layer2.0.bn2.bias', 'encoder.layer2.0.bn2.running_mean', 'encoder.layer2.0.bn2.running_var', 'encoder.layer2.0.conv3.weight', 'encoder.layer2.0.bn3.weight', 'encoder.layer2.0.bn3.bias', 'encoder.layer2.0.bn3.running_mean', 'encoder.layer2.0.bn3.running_var', 'encoder.layer2.0.downsample.0.weight', 'encoder.layer2.0.downsample.1.weight', 'encoder.layer2.0.downsample.1.bias', 'encoder.layer2.0.downsample.1.running_mean', 'encoder.layer2.0.downsample.1.running_var', 'encoder.layer2.1.conv1.weight', 'encoder.layer2.1.bn1.weight', 'encoder.layer2.1.bn1.bias', 'encoder.layer2.1.bn1.running_mean', 'encoder.layer2.1.bn1.running_var', 'encoder.layer2.1.conv2.weight', 'encoder.layer2.1.bn2.weight', 'encoder.layer2.1.bn2.bias', 'encoder.layer2.1.bn2.running_mean', 'encoder.layer2.1.bn2.running_var', 'encoder.layer2.1.conv3.weight', 'encoder.layer2.1.bn3.weight', 'encoder.layer2.1.bn3.bias', 'encoder.layer2.1.bn3.running_mean', 'encoder.layer2.1.bn3.running_var', 'encoder.layer2.2.conv1.weight', 'encoder.layer2.2.bn1.weight', 'encoder.layer2.2.bn1.bias', 'encoder.layer2.2.bn1.running_mean', 'encoder.layer2.2.bn1.running_var', 'encoder.layer2.2.conv2.weight', 'encoder.layer2.2.bn2.weight', 'encoder.layer2.2.bn2.bias', 'encoder.layer2.2.bn2.running_mean', 'encoder.layer2.2.bn2.running_var', 'encoder.layer2.2.conv3.weight', 'encoder.layer2.2.bn3.weight', 'encoder.layer2.2.bn3.bias', 'encoder.layer2.2.bn3.running_mean', 'encoder.layer2.2.bn3.running_var', 'encoder.layer2.3.conv1.weight', 'encoder.layer2.3.bn1.weight', 'encoder.layer2.3.bn1.bias', 'encoder.layer2.3.bn1.running_mean', 'encoder.layer2.3.bn1.running_var', 'encoder.layer2.3.conv2.weight', 'encoder.layer2.3.bn2.weight', 'encoder.layer2.3.bn2.bias', 'encoder.layer2.3.bn2.running_mean', 'encoder.layer2.3.bn2.running_var', 'encoder.layer2.3.conv3.weight', 'encoder.layer2.3.bn3.weight', 'encoder.layer2.3.bn3.bias', 'encoder.layer2.3.bn3.running_mean', 'encoder.layer2.3.bn3.running_var', 'encoder.layer3.0.conv1.weight', 'encoder.layer3.0.bn1.weight', 'encoder.layer3.0.bn1.bias', 'encoder.layer3.0.bn1.running_mean', 'encoder.layer3.0.bn1.running_var', 'encoder.layer3.0.conv2.weight', 'encoder.layer3.0.bn2.weight', 'encoder.layer3.0.bn2.bias', 'encoder.layer3.0.bn2.running_mean', 'encoder.layer3.0.bn2.running_var', 'encoder.layer3.0.conv3.weight', 'encoder.layer3.0.bn3.weight', 'encoder.layer3.0.bn3.bias', 'encoder.layer3.0.bn3.running_mean', 'encoder.layer3.0.bn3.running_var', 'encoder.layer3.0.downsample.0.weight', 'encoder.layer3.0.downsample.1.weight', 'encoder.layer3.0.downsample.1.bias', 'encoder.layer3.0.downsample.1.running_mean', 'encoder.layer3.0.downsample.1.running_var', 'encoder.layer3.1.conv1.weight', 'encoder.layer3.1.bn1.weight', 'encoder.layer3.1.bn1.bias', 'encoder.layer3.1.bn1.running_mean', 'encoder.layer3.1.bn1.running_var', 'encoder.layer3.1.conv2.weight', 'encoder.layer3.1.bn2.weight', 'encoder.layer3.1.bn2.bias', 'encoder.layer3.1.bn2.running_mean', 'encoder.layer3.1.bn2.running_var', 'encoder.layer3.1.conv3.weight', 'encoder.layer3.1.bn3.weight', 'encoder.layer3.1.bn3.bias', 'encoder.layer3.1.bn3.running_mean', 'encoder.layer3.1.bn3.running_var', 'encoder.layer3.2.conv1.weight', 'encoder.layer3.2.bn1.weight', 'encoder.layer3.2.bn1.bias', 'encoder.layer3.2.bn1.running_mean', 'encoder.layer3.2.bn1.running_var', 'encoder.layer3.2.conv2.weight', 'encoder.layer3.2.bn2.weight', 'encoder.layer3.2.bn2.bias', 'encoder.layer3.2.bn2.running_mean', 'encoder.layer3.2.bn2.running_var', 'encoder.layer3.2.conv3.weight', 'encoder.layer3.2.bn3.weight', 'encoder.layer3.2.bn3.bias', 'encoder.layer3.2.bn3.running_mean', 'encoder.layer3.2.bn3.running_var', 'encoder.layer3.3.conv1.weight', 'encoder.layer3.3.bn1.weight', 'encoder.layer3.3.bn1.bias', 'encoder.layer3.3.bn1.running_mean', 'encoder.layer3.3.bn1.running_var', 'encoder.layer3.3.conv2.weight', 'encoder.layer3.3.bn2.weight', 'encoder.layer3.3.bn2.bias', 'encoder.layer3.3.bn2.running_mean', 'encoder.layer3.3.bn2.running_var', 'encoder.layer3.3.conv3.weight', 'encoder.layer3.3.bn3.weight', 'encoder.layer3.3.bn3.bias', 'encoder.layer3.3.bn3.running_mean', 'encoder.layer3.3.bn3.running_var', 'encoder.layer3.4.conv1.weight', 'encoder.layer3.4.bn1.weight', 'encoder.layer3.4.bn1.bias', 'encoder.layer3.4.bn1.running_mean', 'encoder.layer3.4.bn1.running_var', 'encoder.layer3.4.conv2.weight', 'encoder.layer3.4.bn2.weight', 'encoder.layer3.4.bn2.bias', 'encoder.layer3.4.bn2.running_mean', 'encoder.layer3.4.bn2.running_var', 'encoder.layer3.4.conv3.weight', 'encoder.layer3.4.bn3.weight', 'encoder.layer3.4.bn3.bias', 'encoder.layer3.4.bn3.running_mean', 'encoder.layer3.4.bn3.running_var', 'encoder.layer3.5.conv1.weight', 'encoder.layer3.5.bn1.weight', 'encoder.layer3.5.bn1.bias', 'encoder.layer3.5.bn1.running_mean', 'encoder.layer3.5.bn1.running_var', 'encoder.layer3.5.conv2.weight', 'encoder.layer3.5.bn2.weight', 'encoder.layer3.5.bn2.bias', 'encoder.layer3.5.bn2.running_mean', 'encoder.layer3.5.bn2.running_var', 'encoder.layer3.5.conv3.weight', 'encoder.layer3.5.bn3.weight', 'encoder.layer3.5.bn3.bias', 'encoder.layer3.5.bn3.running_mean', 'encoder.layer3.5.bn3.running_var', 'encoder.layer4.0.conv1.weight', 'encoder.layer4.0.bn1.weight', 'encoder.layer4.0.bn1.bias', 'encoder.layer4.0.bn1.running_mean', 'encoder.layer4.0.bn1.running_var', 'encoder.layer4.0.conv2.weight', 'encoder.layer4.0.bn2.weight', 'encoder.layer4.0.bn2.bias', 'encoder.layer4.0.bn2.running_mean', 'encoder.layer4.0.bn2.running_var', 'encoder.layer4.0.conv3.weight', 'encoder.layer4.0.bn3.weight', 'encoder.layer4.0.bn3.bias', 'encoder.layer4.0.bn3.running_mean', 'encoder.layer4.0.bn3.running_var', 'encoder.layer4.0.downsample.0.weight', 'encoder.layer4.0.downsample.1.weight', 'encoder.layer4.0.downsample.1.bias', 'encoder.layer4.0.downsample.1.running_mean', 'encoder.layer4.0.downsample.1.running_var', 'encoder.layer4.1.conv1.weight', 'encoder.layer4.1.bn1.weight', 'encoder.layer4.1.bn1.bias', 'encoder.layer4.1.bn1.running_mean', 'encoder.layer4.1.bn1.running_var', 'encoder.layer4.1.conv2.weight', 'encoder.layer4.1.bn2.weight', 'encoder.layer4.1.bn2.bias', 'encoder.layer4.1.bn2.running_mean', 'encoder.layer4.1.bn2.running_var', 'encoder.layer4.1.conv3.weight', 'encoder.layer4.1.bn3.weight', 'encoder.layer4.1.bn3.bias', 'encoder.layer4.1.bn3.running_mean', 'encoder.layer4.1.bn3.running_var', 'encoder.layer4.2.conv1.weight', 'encoder.layer4.2.bn1.weight', 'encoder.layer4.2.bn1.bias', 'encoder.layer4.2.bn1.running_mean', 'encoder.layer4.2.bn1.running_var', 'encoder.layer4.2.conv2.weight', 'encoder.layer4.2.bn2.weight', 'encoder.layer4.2.bn2.bias', 'encoder.layer4.2.bn2.running_mean', 'encoder.layer4.2.bn2.running_var', 'encoder.layer4.2.conv3.weight', 'encoder.layer4.2.bn3.weight', 'encoder.layer4.2.bn3.bias', 'encoder.layer4.2.bn3.running_mean', 'encoder.layer4.2.bn3.running_var', 'encoder.fc.weight', 'encoder.fc.bias', 'transformer_head.transformer.vit.cls_token', 'transformer_head.transformer.vit.pos_embed', 'transformer_head.transformer.vit.cls_embed', 'transformer_head.transformer.vit.blocks_encoder.0.norm1.weight', 'transformer_head.transformer.vit.blocks_encoder.0.norm1.bias', 'transformer_head.transformer.vit.blocks_encoder.0.attn.qkv.weight', 'transformer_head.transformer.vit.blocks_encoder.0.attn.proj.weight', 'transformer_head.transformer.vit.blocks_encoder.0.attn.proj.bias', 'transformer_head.transformer.vit.blocks_encoder.0.norm2.weight', 'transformer_head.transformer.vit.blocks_encoder.0.norm2.bias', 'transformer_head.transformer.vit.blocks_encoder.0.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_encoder.0.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_encoder.0.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_encoder.0.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_encoder.1.norm1.weight', 'transformer_head.transformer.vit.blocks_encoder.1.norm1.bias', 'transformer_head.transformer.vit.blocks_encoder.1.attn.qkv.weight', 'transformer_head.transformer.vit.blocks_encoder.1.attn.proj.weight', 'transformer_head.transformer.vit.blocks_encoder.1.attn.proj.bias', 'transformer_head.transformer.vit.blocks_encoder.1.norm2.weight', 'transformer_head.transformer.vit.blocks_encoder.1.norm2.bias', 'transformer_head.transformer.vit.blocks_encoder.1.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_encoder.1.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_encoder.1.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_encoder.1.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_encoder.2.norm1.weight', 'transformer_head.transformer.vit.blocks_encoder.2.norm1.bias', 'transformer_head.transformer.vit.blocks_encoder.2.attn.qkv.weight', 'transformer_head.transformer.vit.blocks_encoder.2.attn.proj.weight', 'transformer_head.transformer.vit.blocks_encoder.2.attn.proj.bias', 'transformer_head.transformer.vit.blocks_encoder.2.norm2.weight', 'transformer_head.transformer.vit.blocks_encoder.2.norm2.bias', 'transformer_head.transformer.vit.blocks_encoder.2.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_encoder.2.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_encoder.2.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_encoder.2.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_encoder.3.norm1.weight', 'transformer_head.transformer.vit.blocks_encoder.3.norm1.bias', 'transformer_head.transformer.vit.blocks_encoder.3.attn.qkv.weight', 'transformer_head.transformer.vit.blocks_encoder.3.attn.proj.weight', 'transformer_head.transformer.vit.blocks_encoder.3.attn.proj.bias', 'transformer_head.transformer.vit.blocks_encoder.3.norm2.weight', 'transformer_head.transformer.vit.blocks_encoder.3.norm2.bias', 'transformer_head.transformer.vit.blocks_encoder.3.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_encoder.3.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_encoder.3.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_encoder.3.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.0.norm1.weight', 'transformer_head.transformer.vit.blocks_decoder.0.norm1.bias', 'transformer_head.transformer.vit.blocks_decoder.0.norm1_clsembed.weight', 'transformer_head.transformer.vit.blocks_decoder.0.norm1_clsembed.bias', 'transformer_head.transformer.vit.blocks_decoder.0.attn.fc_q.weight', 'transformer_head.transformer.vit.blocks_decoder.0.attn.fc_kv.weight', 'transformer_head.transformer.vit.blocks_decoder.0.attn.proj.weight', 'transformer_head.transformer.vit.blocks_decoder.0.attn.proj.bias', 'transformer_head.transformer.vit.blocks_decoder.0.norm2.weight', 'transformer_head.transformer.vit.blocks_decoder.0.norm2.bias', 'transformer_head.transformer.vit.blocks_decoder.0.norm3.weight', 'transformer_head.transformer.vit.blocks_decoder.0.norm3.bias', 'transformer_head.transformer.vit.blocks_decoder.0.norm4.weight', 'transformer_head.transformer.vit.blocks_decoder.0.norm4.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp2.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp2.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp2.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp2.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp3.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp3.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.0.mlp3.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.0.mlp3.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.1.norm1.weight', 'transformer_head.transformer.vit.blocks_decoder.1.norm1.bias', 'transformer_head.transformer.vit.blocks_decoder.1.norm1_clsembed.weight', 'transformer_head.transformer.vit.blocks_decoder.1.norm1_clsembed.bias', 'transformer_head.transformer.vit.blocks_decoder.1.attn.fc_q.weight', 'transformer_head.transformer.vit.blocks_decoder.1.attn.fc_kv.weight', 'transformer_head.transformer.vit.blocks_decoder.1.attn.proj.weight', 'transformer_head.transformer.vit.blocks_decoder.1.attn.proj.bias', 'transformer_head.transformer.vit.blocks_decoder.1.norm2.weight', 'transformer_head.transformer.vit.blocks_decoder.1.norm2.bias', 'transformer_head.transformer.vit.blocks_decoder.1.norm3.weight', 'transformer_head.transformer.vit.blocks_decoder.1.norm3.bias', 'transformer_head.transformer.vit.blocks_decoder.1.norm4.weight', 'transformer_head.transformer.vit.blocks_decoder.1.norm4.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp2.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp2.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp2.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp2.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp3.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp3.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.1.mlp3.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.1.mlp3.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.2.norm1.weight', 'transformer_head.transformer.vit.blocks_decoder.2.norm1.bias', 'transformer_head.transformer.vit.blocks_decoder.2.norm1_clsembed.weight', 'transformer_head.transformer.vit.blocks_decoder.2.norm1_clsembed.bias', 'transformer_head.transformer.vit.blocks_decoder.2.attn.fc_q.weight', 'transformer_head.transformer.vit.blocks_decoder.2.attn.fc_kv.weight', 'transformer_head.transformer.vit.blocks_decoder.2.attn.proj.weight', 'transformer_head.transformer.vit.blocks_decoder.2.attn.proj.bias', 'transformer_head.transformer.vit.blocks_decoder.2.norm2.weight', 'transformer_head.transformer.vit.blocks_decoder.2.norm2.bias', 'transformer_head.transformer.vit.blocks_decoder.2.norm3.weight', 'transformer_head.transformer.vit.blocks_decoder.2.norm3.bias', 'transformer_head.transformer.vit.blocks_decoder.2.norm4.weight', 'transformer_head.transformer.vit.blocks_decoder.2.norm4.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp2.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp2.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp2.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp2.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp3.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp3.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.2.mlp3.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.2.mlp3.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.3.norm1.weight', 'transformer_head.transformer.vit.blocks_decoder.3.norm1.bias', 'transformer_head.transformer.vit.blocks_decoder.3.norm1_clsembed.weight', 'transformer_head.transformer.vit.blocks_decoder.3.norm1_clsembed.bias', 'transformer_head.transformer.vit.blocks_decoder.3.attn.fc_q.weight', 'transformer_head.transformer.vit.blocks_decoder.3.attn.fc_kv.weight', 'transformer_head.transformer.vit.blocks_decoder.3.attn.proj.weight', 'transformer_head.transformer.vit.blocks_decoder.3.attn.proj.bias', 'transformer_head.transformer.vit.blocks_decoder.3.norm2.weight', 'transformer_head.transformer.vit.blocks_decoder.3.norm2.bias', 'transformer_head.transformer.vit.blocks_decoder.3.norm3.weight', 'transformer_head.transformer.vit.blocks_decoder.3.norm3.bias', 'transformer_head.transformer.vit.blocks_decoder.3.norm4.weight', 'transformer_head.transformer.vit.blocks_decoder.3.norm4.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp2.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp2.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp2.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp2.fc2.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp3.fc1.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp3.fc1.bias', 'transformer_head.transformer.vit.blocks_decoder.3.mlp3.fc2.weight', 'transformer_head.transformer.vit.blocks_decoder.3.mlp3.fc2.bias', 'transformer_head.transformer.vit.norm.weight', 'transformer_head.transformer.vit.norm.bias', 'transformer_head.transformer.vit.hybrid_embed.proj.weight', 'transformer_head.transformer.vit.hybrid_embed.proj.bias', 'transformer_head.conv_c1.conv.weight', 'transformer_head.conv_c1.bn.weight', 'transformer_head.conv_c1.bn.bias', 'transformer_head.conv_c1.bn.running_mean', 'transformer_head.conv_c1.bn.running_var', 'transformer_head.lay1.block.depthwise.weight', 'transformer_head.lay1.block.bn_depth.weight', 'transformer_head.lay1.block.bn_depth.bias', 'transformer_head.lay1.block.bn_depth.running_mean', 'transformer_head.lay1.block.bn_depth.running_var', 'transformer_head.lay1.block.pointwise.weight', 'transformer_head.lay1.block.bn_point.weight', 'transformer_head.lay1.block.bn_point.bias', 'transformer_head.lay1.block.bn_point.running_mean', 'transformer_head.lay1.block.bn_point.running_var', 'transformer_head.lay2.block.depthwise.weight', 'transformer_head.lay2.block.bn_depth.weight', 'transformer_head.lay2.block.bn_depth.bias', 'transformer_head.lay2.block.bn_depth.running_mean', 'transformer_head.lay2.block.bn_depth.running_var', 'transformer_head.lay2.block.pointwise.weight', 'transformer_head.lay2.block.bn_point.weight', 'transformer_head.lay2.block.bn_point.bias', 'transformer_head.lay2.block.bn_point.running_mean', 'transformer_head.lay2.block.bn_point.running_var', 'transformer_head.lay3.block.depthwise.weight', 'transformer_head.lay3.block.bn_depth.weight', 'transformer_head.lay3.block.bn_depth.bias', 'transformer_head.lay3.block.bn_depth.running_mean', 'transformer_head.lay3.block.bn_depth.running_var', 'transformer_head.lay3.block.pointwise.weight', 'transformer_head.lay3.block.bn_point.weight', 'transformer_head.lay3.block.bn_point.bias', 'transformer_head.lay3.block.bn_point.running_mean', 'transformer_head.lay3.block.bn_point.running_var', 'transformer_head.pred.weight', 'transformer_head.pred.bias'], unexpected_keys=['state_dict', 'optimizer', 'lr_scheduler'])
+2023-01-13 12:13:43,307 Segmentron INFO: Trans2Seg flops: 52.118G input shape is [3, 512, 512], params: 56.236M
+2023-01-13 12:13:43,308 Segmentron INFO: Not use SyncBatchNorm!
+2023-01-13 12:13:43,309 Segmentron INFO: Start training, Total Epochs: 150 = Total Iterations 135000
+2023-01-13 12:13:45,527 Segmentron INFO: Epoch: 1/150 || Iters: 10/900 || Lr: 0.000100 || Loss: 1.0560 || Cost Time: 0:00:02 || Estimated Time: 7:59:46

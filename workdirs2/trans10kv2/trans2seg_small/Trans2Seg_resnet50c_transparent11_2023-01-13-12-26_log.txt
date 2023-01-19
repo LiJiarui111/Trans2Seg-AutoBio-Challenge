@@ -1,0 +1,2048 @@
+2023-01-13 12:26:41,128 Segmentron INFO: Using 1 GPUs
+2023-01-13 12:26:41,129 Segmentron INFO: Namespace(config_file='configs/trans10kv2/trans2seg/trans2seg_medium.yaml', no_cuda=False, local_rank=0, resume=None, log_iter=10, val_epoch=1, skip_val=False, test=False, vis=False, input_img='tools/demo_vis.jpg', opts=[], num_gpus=1, distributed=False, device='cuda')
+2023-01-13 12:26:41,129 Segmentron INFO: {
+        "SEED": 1024,
+        "TIME_STAMP": "2023-01-13-12-26",
+        "ROOT_PATH": "C:\\Users\\19000\\Downloads\\Trans2Seg-master\\Trans2Seg-master",
+        "PHASE": "train",
+        "DATASET": {
+                "NAME": "transparent11",
+                "MEAN": [
+                        0.485,
+                        0.456,
+                        0.406
+                ],
+                "STD": [
+                        0.229,
+                        0.224,
+                        0.225
+                ],
+                "IGNORE_INDEX": -1,
+                "WORKERS": 0,
+                "MODE": "testval"
+        },
+        "AUG": {
+                "MIRROR": true,
+                "BLUR_PROB": 0.0,
+                "BLUR_RADIUS": 0.0,
+                "COLOR_JITTER": null,
+                "CROP": false
+        },
+        "TRAIN": {
+                "EPOCHS": 150,
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "BASE_SIZE": 512,
+                "MODEL_SAVE_DIR": "workdirs2/trans10kv2/trans2seg_small",
+                "LOG_SAVE_DIR": "workdirs/",
+                "PRETRAINED_MODEL_PATH": "workdirs2/trans10kv2/trans2seg_small/100.pth",
+                "BACKBONE_PRETRAINED": true,
+                "BACKBONE_PRETRAINED_PATH": "",
+                "RESUME_MODEL_PATH": "",
+                "SYNC_BATCH_NORM": true,
+                "SNAPSHOT_EPOCH": 1,
+                "APEX": false
+        },
+        "SOLVER": {
+                "LR": 0.01,
+                "OPTIMIZER": "adam",
+                "EPSILON": 1e-08,
+                "MOMENTUM": 0.9,
+                "WEIGHT_DECAY": 0.0001,
+                "DECODER_LR_FACTOR": 10.0,
+                "LR_SCHEDULER": "poly",
+                "POLY": {
+                        "POWER": 0.9
+                },
+                "STEP": {
+                        "GAMMA": 0.1,
+                        "DECAY_EPOCH": [
+                                10,
+                                20
+                        ]
+                },
+                "WARMUP": {
+                        "EPOCHS": 0.0,
+                        "FACTOR": 0.3333333333333333,
+                        "METHOD": "linear"
+                },
+                "OHEM": false,
+                "AUX": false,
+                "AUX_WEIGHT": 0.4,
+                "LOSS_NAME": ""
+        },
+        "TEST": {
+                "TEST_MODEL_PATH": "workdirs3/trans10kv2/trans2seg_small/100.pth",
+                "BATCH_SIZE": 1,
+                "CROP_SIZE": [
+                        512,
+                        512
+                ],
+                "SCALES": [
+                        1.0
+                ],
+                "FLIP": false
+        },
+        "VISUAL": {
+                "OUTPUT_DIR": "../runs/visual/"
+        },
+        "MODEL": {
+                "MODEL_NAME": "Trans2Seg",
+                "BACKBONE": "resnet50c",
+                "BACKBONE_SCALE": 1.0,
+                "MULTI_LOSS_WEIGHT": [
+                        1.0
+                ],
+                "DEFAULT_GROUP_NUMBER": 32,
+                "DEFAULT_EPSILON": 1e-05,
+                "BN_TYPE": "BN",
+                "BN_EPS_FOR_ENCODER": null,
+                "BN_EPS_FOR_DECODER": null,
+                "OUTPUT_STRIDE": 16,
+                "BN_MOMENTUM": null,
+                "DANET": {
+                        "MULTI_DILATION": null,
+                        "MULTI_GRID": false
+                },
+                "DEEPLABV3_PLUS": {
+                        "USE_ASPP": true,
+                        "ENABLE_DECODER": true,
+                        "ASPP_WITH_SEP_CONV": true,
+                        "DECODER_USE_SEP_CONV": true
+                },
+                "OCNet": {
+                        "OC_ARCH": "base"
+                },
+                "ENCNET": {
+                        "SE_LOSS": true,
+                        "SE_WEIGHT": 0.2,
+                        "LATERAL": true
+                },
+                "CCNET": {
+                        "RECURRENCE": 2
+                },
+                "CGNET": {
+                        "STAGE2_BLOCK_NUM": 3,
+                        "STAGE3_BLOCK_NUM": 21
+                },
+                "POINTREND": {
+                        "BASEMODEL": "DeepLabV3_Plus"
+                },
+                "HRNET": {
+                        "PRETRAINED_LAYERS": [
+                                "*"
+                        ],
+                        "STEM_INPLANES": 64,
+                        "FINAL_CONV_KERNEL": 1,
+                        "WITH_HEAD": true,
+                        "STAGE1": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 1,
+                                "NUM_BLOCKS": [
+                                        1
+                                ],
+                                "NUM_CHANNELS": [
+                                        32
+                                ],
+                                "BLOCK": "BOTTLENECK",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE2": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 2,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE3": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 3,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        },
+                        "STAGE4": {
+                                "NUM_MODULES": 1,
+                                "NUM_BRANCHES": 4,
+                                "NUM_BLOCKS": [
+                                        4,
+                                        4,
+                                        4,
+                                        4
+                                ],
+                                "NUM_CHANNELS": [
+                                        32,
+                                        64,
+                                        128,
+                                        256
+                                ],
+                                "BLOCK": "BASIC",
+                                "FUSE_METHOD": "SUM"
+                        }
+                },
+                "TRANS2Seg": {
+                        "embed_dim": 256,
+                        "depth": 4,
+                        "num_heads": 8,
+                        "mlp_ratio": 3.0,
+                        "hid_dim": 64
+                }
+        }
+}
+2023-01-13 12:26:42,097 Segmentron INFO: load pretrained model from workdirs2/trans10kv2/trans2seg_small/100.pth
+2023-01-13 12:26:42,559 Segmentron INFO: Shape unmatched weights: []
+2023-01-13 12:26:42,641 Segmentron INFO: <All keys matched successfully>
+2023-01-13 12:26:45,051 Segmentron INFO: Trans2Seg flops: 52.118G input shape is [3, 512, 512], params: 56.236M
+2023-01-13 12:26:45,052 Segmentron INFO: Not use SyncBatchNorm!
+2023-01-13 12:26:45,053 Segmentron INFO: Start training, Total Epochs: 150 = Total Iterations 135000
+2023-01-13 12:26:47,109 Segmentron INFO: Epoch: 1/150 || Iters: 10/900 || Lr: 0.009999 || Loss: 1.2835 || Cost Time: 0:00:02 || Estimated Time: 7:23:45
+2023-01-13 12:26:48,576 Segmentron INFO: Epoch: 1/150 || Iters: 20/900 || Lr: 0.009999 || Loss: 7.2414 || Cost Time: 0:00:03 || Estimated Time: 6:27:22
+2023-01-13 12:26:50,052 Segmentron INFO: Epoch: 1/150 || Iters: 30/900 || Lr: 0.009998 || Loss: 3.2798 || Cost Time: 0:00:04 || Estimated Time: 6:08:33
+2023-01-13 12:26:51,531 Segmentron INFO: Epoch: 1/150 || Iters: 40/900 || Lr: 0.009997 || Loss: 2.6145 || Cost Time: 0:00:06 || Estimated Time: 5:59:38
+2023-01-13 12:26:53,009 Segmentron INFO: Epoch: 1/150 || Iters: 50/900 || Lr: 0.009997 || Loss: 1.2763 || Cost Time: 0:00:07 || Estimated Time: 5:54:00
+2023-01-13 12:26:54,493 Segmentron INFO: Epoch: 1/150 || Iters: 60/900 || Lr: 0.009996 || Loss: 1.2531 || Cost Time: 0:00:09 || Estimated Time: 5:50:59
+2023-01-13 12:26:55,970 Segmentron INFO: Epoch: 1/150 || Iters: 70/900 || Lr: 0.009995 || Loss: 1.5852 || Cost Time: 0:00:10 || Estimated Time: 5:48:00
+2023-01-13 12:26:57,445 Segmentron INFO: Epoch: 1/150 || Iters: 80/900 || Lr: 0.009995 || Loss: 1.1610 || Cost Time: 0:00:12 || Estimated Time: 5:46:00
+2023-01-13 12:26:58,918 Segmentron INFO: Epoch: 1/150 || Iters: 90/900 || Lr: 0.009994 || Loss: 1.1230 || Cost Time: 0:00:13 || Estimated Time: 5:44:22
+2023-01-13 12:27:00,396 Segmentron INFO: Epoch: 1/150 || Iters: 100/900 || Lr: 0.009993 || Loss: 1.2458 || Cost Time: 0:00:15 || Estimated Time: 5:43:11
+2023-01-13 12:27:01,886 Segmentron INFO: Epoch: 1/150 || Iters: 110/900 || Lr: 0.009993 || Loss: 1.1121 || Cost Time: 0:00:16 || Estimated Time: 5:42:23
+2023-01-13 12:27:03,374 Segmentron INFO: Epoch: 1/150 || Iters: 120/900 || Lr: 0.009992 || Loss: 1.2308 || Cost Time: 0:00:18 || Estimated Time: 5:41:41
+2023-01-13 12:27:04,846 Segmentron INFO: Epoch: 1/150 || Iters: 130/900 || Lr: 0.009991 || Loss: 1.2578 || Cost Time: 0:00:19 || Estimated Time: 5:40:52
+2023-01-13 12:27:06,331 Segmentron INFO: Epoch: 1/150 || Iters: 140/900 || Lr: 0.009991 || Loss: 1.1126 || Cost Time: 0:00:21 || Estimated Time: 5:40:17
+2023-01-13 12:27:07,802 Segmentron INFO: Epoch: 1/150 || Iters: 150/900 || Lr: 0.009990 || Loss: 1.0605 || Cost Time: 0:00:22 || Estimated Time: 5:39:38
+2023-01-13 12:27:09,277 Segmentron INFO: Epoch: 1/150 || Iters: 160/900 || Lr: 0.009989 || Loss: 1.4491 || Cost Time: 0:00:24 || Estimated Time: 5:39:09
+2023-01-13 12:27:10,755 Segmentron INFO: Epoch: 1/150 || Iters: 170/900 || Lr: 0.009989 || Loss: 1.1658 || Cost Time: 0:00:25 || Estimated Time: 5:38:38
+2023-01-13 12:27:12,229 Segmentron INFO: Epoch: 1/150 || Iters: 180/900 || Lr: 0.009988 || Loss: 1.1531 || Cost Time: 0:00:27 || Estimated Time: 5:38:11
+2023-01-13 12:27:13,704 Segmentron INFO: Epoch: 1/150 || Iters: 190/900 || Lr: 0.009987 || Loss: 1.2361 || Cost Time: 0:00:28 || Estimated Time: 5:37:51
+2023-01-13 12:27:15,181 Segmentron INFO: Epoch: 1/150 || Iters: 200/900 || Lr: 0.009987 || Loss: 1.2346 || Cost Time: 0:00:30 || Estimated Time: 5:37:29
+2023-01-13 12:27:16,654 Segmentron INFO: Epoch: 1/150 || Iters: 210/900 || Lr: 0.009986 || Loss: 1.1903 || Cost Time: 0:00:31 || Estimated Time: 5:37:13
+2023-01-13 12:27:18,133 Segmentron INFO: Epoch: 1/150 || Iters: 220/900 || Lr: 0.009985 || Loss: 1.1344 || Cost Time: 0:00:33 || Estimated Time: 5:37:00
+2023-01-13 12:27:19,613 Segmentron INFO: Epoch: 1/150 || Iters: 230/900 || Lr: 0.009985 || Loss: 1.2429 || Cost Time: 0:00:34 || Estimated Time: 5:36:42
+2023-01-13 12:27:21,095 Segmentron INFO: Epoch: 1/150 || Iters: 240/900 || Lr: 0.009984 || Loss: 1.1817 || Cost Time: 0:00:36 || Estimated Time: 5:36:31
+2023-01-13 12:27:22,570 Segmentron INFO: Epoch: 1/150 || Iters: 250/900 || Lr: 0.009983 || Loss: 1.0927 || Cost Time: 0:00:37 || Estimated Time: 5:36:19
+2023-01-13 12:27:24,047 Segmentron INFO: Epoch: 1/150 || Iters: 260/900 || Lr: 0.009983 || Loss: 1.0968 || Cost Time: 0:00:38 || Estimated Time: 5:36:05
+2023-01-13 12:27:25,524 Segmentron INFO: Epoch: 1/150 || Iters: 270/900 || Lr: 0.009982 || Loss: 1.0732 || Cost Time: 0:00:40 || Estimated Time: 5:35:53
+2023-01-13 12:27:27,012 Segmentron INFO: Epoch: 1/150 || Iters: 280/900 || Lr: 0.009981 || Loss: 0.5002 || Cost Time: 0:00:41 || Estimated Time: 5:35:48
+2023-01-13 12:27:28,488 Segmentron INFO: Epoch: 1/150 || Iters: 290/900 || Lr: 0.009981 || Loss: 0.5976 || Cost Time: 0:00:43 || Estimated Time: 5:35:38
+2023-01-13 12:27:29,974 Segmentron INFO: Epoch: 1/150 || Iters: 300/900 || Lr: 0.009980 || Loss: 2.1164 || Cost Time: 0:00:44 || Estimated Time: 5:35:34
+2023-01-13 12:27:31,446 Segmentron INFO: Epoch: 1/150 || Iters: 310/900 || Lr: 0.009979 || Loss: 0.7311 || Cost Time: 0:00:46 || Estimated Time: 5:35:22
+2023-01-13 12:27:32,923 Segmentron INFO: Epoch: 1/150 || Iters: 320/900 || Lr: 0.009979 || Loss: 0.8632 || Cost Time: 0:00:47 || Estimated Time: 5:35:13
+2023-01-13 12:27:34,399 Segmentron INFO: Epoch: 1/150 || Iters: 330/900 || Lr: 0.009978 || Loss: 0.8584 || Cost Time: 0:00:49 || Estimated Time: 5:35:04
+2023-01-13 12:27:35,883 Segmentron INFO: Epoch: 1/150 || Iters: 340/900 || Lr: 0.009977 || Loss: 0.6320 || Cost Time: 0:00:50 || Estimated Time: 5:34:58
+2023-01-13 12:27:37,354 Segmentron INFO: Epoch: 1/150 || Iters: 350/900 || Lr: 0.009977 || Loss: 0.2209 || Cost Time: 0:00:52 || Estimated Time: 5:34:49
+2023-01-13 12:27:38,829 Segmentron INFO: Epoch: 1/150 || Iters: 360/900 || Lr: 0.009976 || Loss: 0.2555 || Cost Time: 0:00:53 || Estimated Time: 5:34:41
+2023-01-13 12:27:40,302 Segmentron INFO: Epoch: 1/150 || Iters: 370/900 || Lr: 0.009975 || Loss: 0.2236 || Cost Time: 0:00:55 || Estimated Time: 5:34:32
+2023-01-13 12:27:41,776 Segmentron INFO: Epoch: 1/150 || Iters: 380/900 || Lr: 0.009975 || Loss: 0.2162 || Cost Time: 0:00:56 || Estimated Time: 5:34:26
+2023-01-13 12:27:43,254 Segmentron INFO: Epoch: 1/150 || Iters: 390/900 || Lr: 0.009974 || Loss: 0.2055 || Cost Time: 0:00:58 || Estimated Time: 5:34:20
+2023-01-13 12:27:44,735 Segmentron INFO: Epoch: 1/150 || Iters: 400/900 || Lr: 0.009973 || Loss: 0.0768 || Cost Time: 0:00:59 || Estimated Time: 5:34:15
+2023-01-13 12:27:46,220 Segmentron INFO: Epoch: 1/150 || Iters: 410/900 || Lr: 0.009973 || Loss: 0.2209 || Cost Time: 0:01:01 || Estimated Time: 5:34:12
+2023-01-13 12:27:47,702 Segmentron INFO: Epoch: 1/150 || Iters: 420/900 || Lr: 0.009972 || Loss: 0.5301 || Cost Time: 0:01:02 || Estimated Time: 5:34:08
+2023-01-13 12:27:49,188 Segmentron INFO: Epoch: 1/150 || Iters: 430/900 || Lr: 0.009971 || Loss: 0.3250 || Cost Time: 0:01:04 || Estimated Time: 5:34:06
+2023-01-13 12:27:50,666 Segmentron INFO: Epoch: 1/150 || Iters: 440/900 || Lr: 0.009971 || Loss: 0.3750 || Cost Time: 0:01:05 || Estimated Time: 5:34:00
+2023-01-13 12:27:52,150 Segmentron INFO: Epoch: 1/150 || Iters: 450/900 || Lr: 0.009970 || Loss: 0.0837 || Cost Time: 0:01:07 || Estimated Time: 5:33:58
+2023-01-13 12:27:53,627 Segmentron INFO: Epoch: 1/150 || Iters: 460/900 || Lr: 0.009969 || Loss: 0.2945 || Cost Time: 0:01:08 || Estimated Time: 5:33:54
+2023-01-13 12:27:55,105 Segmentron INFO: Epoch: 1/150 || Iters: 470/900 || Lr: 0.009969 || Loss: 0.1966 || Cost Time: 0:01:10 || Estimated Time: 5:33:48
+2023-01-13 12:27:56,578 Segmentron INFO: Epoch: 1/150 || Iters: 480/900 || Lr: 0.009968 || Loss: 0.0977 || Cost Time: 0:01:11 || Estimated Time: 5:33:41
+2023-01-13 12:27:58,052 Segmentron INFO: Epoch: 1/150 || Iters: 490/900 || Lr: 0.009967 || Loss: 0.2245 || Cost Time: 0:01:12 || Estimated Time: 5:33:37
+2023-01-13 12:27:59,528 Segmentron INFO: Epoch: 1/150 || Iters: 500/900 || Lr: 0.009967 || Loss: 0.4705 || Cost Time: 0:01:14 || Estimated Time: 5:33:32
+2023-01-13 12:28:01,013 Segmentron INFO: Epoch: 1/150 || Iters: 510/900 || Lr: 0.009966 || Loss: 0.2757 || Cost Time: 0:01:15 || Estimated Time: 5:33:29
+2023-01-13 12:28:02,484 Segmentron INFO: Epoch: 1/150 || Iters: 520/900 || Lr: 0.009965 || Loss: 0.0544 || Cost Time: 0:01:17 || Estimated Time: 5:33:24
+2023-01-13 12:28:03,963 Segmentron INFO: Epoch: 1/150 || Iters: 530/900 || Lr: 0.009965 || Loss: 0.0775 || Cost Time: 0:01:18 || Estimated Time: 5:33:20
+2023-01-13 12:28:05,451 Segmentron INFO: Epoch: 1/150 || Iters: 540/900 || Lr: 0.009964 || Loss: 0.2594 || Cost Time: 0:01:20 || Estimated Time: 5:33:19
+2023-01-13 12:28:06,933 Segmentron INFO: Epoch: 1/150 || Iters: 550/900 || Lr: 0.009963 || Loss: 0.1056 || Cost Time: 0:01:21 || Estimated Time: 5:33:16
+2023-01-13 12:28:08,430 Segmentron INFO: Epoch: 1/150 || Iters: 560/900 || Lr: 0.009963 || Loss: 0.2579 || Cost Time: 0:01:23 || Estimated Time: 5:33:17
+2023-01-13 12:28:09,917 Segmentron INFO: Epoch: 1/150 || Iters: 570/900 || Lr: 0.009962 || Loss: 0.1089 || Cost Time: 0:01:24 || Estimated Time: 5:33:15
+2023-01-13 12:28:11,394 Segmentron INFO: Epoch: 1/150 || Iters: 580/900 || Lr: 0.009961 || Loss: 0.1762 || Cost Time: 0:01:26 || Estimated Time: 5:33:12
+2023-01-13 12:28:12,876 Segmentron INFO: Epoch: 1/150 || Iters: 590/900 || Lr: 0.009961 || Loss: 0.3256 || Cost Time: 0:01:27 || Estimated Time: 5:33:08
+2023-01-13 12:28:14,372 Segmentron INFO: Epoch: 1/150 || Iters: 600/900 || Lr: 0.009960 || Loss: 0.2417 || Cost Time: 0:01:29 || Estimated Time: 5:33:09
+2023-01-13 12:28:15,851 Segmentron INFO: Epoch: 1/150 || Iters: 610/900 || Lr: 0.009959 || Loss: 0.0514 || Cost Time: 0:01:30 || Estimated Time: 5:33:05
+2023-01-13 12:28:17,339 Segmentron INFO: Epoch: 1/150 || Iters: 620/900 || Lr: 0.009959 || Loss: 0.1884 || Cost Time: 0:01:32 || Estimated Time: 5:33:03
+2023-01-13 12:28:18,827 Segmentron INFO: Epoch: 1/150 || Iters: 630/900 || Lr: 0.009958 || Loss: 0.1727 || Cost Time: 0:01:33 || Estimated Time: 5:33:03
+2023-01-13 12:28:20,321 Segmentron INFO: Epoch: 1/150 || Iters: 640/900 || Lr: 0.009957 || Loss: 0.0521 || Cost Time: 0:01:35 || Estimated Time: 5:33:03
+2023-01-13 12:28:21,804 Segmentron INFO: Epoch: 1/150 || Iters: 650/900 || Lr: 0.009957 || Loss: 0.1219 || Cost Time: 0:01:36 || Estimated Time: 5:33:01
+2023-01-13 12:28:23,286 Segmentron INFO: Epoch: 1/150 || Iters: 660/900 || Lr: 0.009956 || Loss: 0.1635 || Cost Time: 0:01:38 || Estimated Time: 5:32:58
+2023-01-13 12:28:24,764 Segmentron INFO: Epoch: 1/150 || Iters: 670/900 || Lr: 0.009955 || Loss: 0.1604 || Cost Time: 0:01:39 || Estimated Time: 5:32:53
+2023-01-13 12:28:26,253 Segmentron INFO: Epoch: 1/150 || Iters: 680/900 || Lr: 0.009955 || Loss: 0.1159 || Cost Time: 0:01:41 || Estimated Time: 5:32:53
+2023-01-13 12:28:27,738 Segmentron INFO: Epoch: 1/150 || Iters: 690/900 || Lr: 0.009954 || Loss: 0.1549 || Cost Time: 0:01:42 || Estimated Time: 5:32:51
+2023-01-13 12:28:29,219 Segmentron INFO: Epoch: 1/150 || Iters: 700/900 || Lr: 0.009953 || Loss: 0.1589 || Cost Time: 0:01:44 || Estimated Time: 5:32:49
+2023-01-13 12:28:30,699 Segmentron INFO: Epoch: 1/150 || Iters: 710/900 || Lr: 0.009953 || Loss: 0.1266 || Cost Time: 0:01:45 || Estimated Time: 5:32:46
+2023-01-13 12:28:32,181 Segmentron INFO: Epoch: 1/150 || Iters: 720/900 || Lr: 0.009952 || Loss: 0.1847 || Cost Time: 0:01:47 || Estimated Time: 5:32:44
+2023-01-13 12:28:33,658 Segmentron INFO: Epoch: 1/150 || Iters: 730/900 || Lr: 0.009951 || Loss: 0.0701 || Cost Time: 0:01:48 || Estimated Time: 5:32:40
+2023-01-13 12:28:35,143 Segmentron INFO: Epoch: 1/150 || Iters: 740/900 || Lr: 0.009951 || Loss: 0.2240 || Cost Time: 0:01:50 || Estimated Time: 5:32:39
+2023-01-13 12:28:36,623 Segmentron INFO: Epoch: 1/150 || Iters: 750/900 || Lr: 0.009950 || Loss: 0.1924 || Cost Time: 0:01:51 || Estimated Time: 5:32:36
+2023-01-13 12:28:38,109 Segmentron INFO: Epoch: 1/150 || Iters: 760/900 || Lr: 0.009949 || Loss: 0.1192 || Cost Time: 0:01:53 || Estimated Time: 5:32:35
+2023-01-13 12:28:39,588 Segmentron INFO: Epoch: 1/150 || Iters: 770/900 || Lr: 0.009949 || Loss: 0.0873 || Cost Time: 0:01:54 || Estimated Time: 5:32:32
+2023-01-13 12:28:41,071 Segmentron INFO: Epoch: 1/150 || Iters: 780/900 || Lr: 0.009948 || Loss: 0.1066 || Cost Time: 0:01:56 || Estimated Time: 5:32:30
+2023-01-13 12:28:42,558 Segmentron INFO: Epoch: 1/150 || Iters: 790/900 || Lr: 0.009947 || Loss: 0.1585 || Cost Time: 0:01:57 || Estimated Time: 5:32:29
+2023-01-13 12:28:44,037 Segmentron INFO: Epoch: 1/150 || Iters: 800/900 || Lr: 0.009947 || Loss: 0.1611 || Cost Time: 0:01:58 || Estimated Time: 5:32:27
+2023-01-13 12:28:45,519 Segmentron INFO: Epoch: 1/150 || Iters: 810/900 || Lr: 0.009946 || Loss: 0.1882 || Cost Time: 0:02:00 || Estimated Time: 5:32:23
+2023-01-13 12:28:46,998 Segmentron INFO: Epoch: 1/150 || Iters: 820/900 || Lr: 0.009945 || Loss: 0.1413 || Cost Time: 0:02:01 || Estimated Time: 5:32:21
+2023-01-13 12:28:48,486 Segmentron INFO: Epoch: 1/150 || Iters: 830/900 || Lr: 0.009945 || Loss: 0.1834 || Cost Time: 0:02:03 || Estimated Time: 5:32:19
+2023-01-13 12:28:49,970 Segmentron INFO: Epoch: 1/150 || Iters: 840/900 || Lr: 0.009944 || Loss: 0.4010 || Cost Time: 0:02:04 || Estimated Time: 5:32:17
+2023-01-13 12:28:51,457 Segmentron INFO: Epoch: 1/150 || Iters: 850/900 || Lr: 0.009943 || Loss: 0.1743 || Cost Time: 0:02:06 || Estimated Time: 5:32:16
+2023-01-13 12:28:52,933 Segmentron INFO: Epoch: 1/150 || Iters: 860/900 || Lr: 0.009943 || Loss: 0.0827 || Cost Time: 0:02:07 || Estimated Time: 5:32:13
+2023-01-13 12:28:54,411 Segmentron INFO: Epoch: 1/150 || Iters: 870/900 || Lr: 0.009942 || Loss: 0.1127 || Cost Time: 0:02:09 || Estimated Time: 5:32:11
+2023-01-13 12:28:55,893 Segmentron INFO: Epoch: 1/150 || Iters: 880/900 || Lr: 0.009941 || Loss: 0.1679 || Cost Time: 0:02:10 || Estimated Time: 5:32:09
+2023-01-13 12:28:57,381 Segmentron INFO: Epoch: 1/150 || Iters: 890/900 || Lr: 0.009941 || Loss: 0.0880 || Cost Time: 0:02:12 || Estimated Time: 5:32:08
+2023-01-13 12:28:58,862 Segmentron INFO: Epoch: 1/150 || Iters: 0/900 || Lr: 0.009940 || Loss: 0.1070 || Cost Time: 0:02:13 || Estimated Time: 5:32:05
+2023-01-13 12:28:59,381 Segmentron INFO: Epoch 1 model saved in: workdirs2/trans10kv2/trans2seg_small\1.pth
+2023-01-13 12:28:59,448 Segmentron INFO: [EVAL] Sample: 1, pixAcc: 99.099, mIoU: 4.719
+2023-01-13 12:28:59,513 Segmentron INFO: [EVAL] Sample: 2, pixAcc: 99.104, mIoU: 4.719
+2023-01-13 12:28:59,579 Segmentron INFO: [EVAL] Sample: 3, pixAcc: 99.104, mIoU: 4.719
+2023-01-13 12:28:59,652 Segmentron INFO: [EVAL] Sample: 4, pixAcc: 99.099, mIoU: 4.719
+2023-01-13 12:28:59,719 Segmentron INFO: [EVAL] Sample: 5, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:28:59,785 Segmentron INFO: [EVAL] Sample: 6, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:28:59,851 Segmentron INFO: [EVAL] Sample: 7, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:28:59,915 Segmentron INFO: [EVAL] Sample: 8, pixAcc: 99.093, mIoU: 4.719
+2023-01-13 12:28:59,982 Segmentron INFO: [EVAL] Sample: 9, pixAcc: 99.090, mIoU: 4.719
+2023-01-13 12:29:00,049 Segmentron INFO: [EVAL] Sample: 10, pixAcc: 99.109, mIoU: 4.719
+2023-01-13 12:29:00,117 Segmentron INFO: [EVAL] Sample: 11, pixAcc: 99.147, mIoU: 4.721
+2023-01-13 12:29:00,187 Segmentron INFO: [EVAL] Sample: 12, pixAcc: 99.147, mIoU: 4.721
+2023-01-13 12:29:00,258 Segmentron INFO: [EVAL] Sample: 13, pixAcc: 99.146, mIoU: 4.721
+2023-01-13 12:29:00,327 Segmentron INFO: [EVAL] Sample: 14, pixAcc: 99.129, mIoU: 4.720
+2023-01-13 12:29:00,397 Segmentron INFO: [EVAL] Sample: 15, pixAcc: 99.120, mIoU: 4.720
+2023-01-13 12:29:00,466 Segmentron INFO: [EVAL] Sample: 16, pixAcc: 99.116, mIoU: 4.720
+2023-01-13 12:29:00,534 Segmentron INFO: [EVAL] Sample: 17, pixAcc: 99.113, mIoU: 4.720
+2023-01-13 12:29:00,610 Segmentron INFO: [EVAL] Sample: 18, pixAcc: 99.093, mIoU: 4.719
+2023-01-13 12:29:00,681 Segmentron INFO: [EVAL] Sample: 19, pixAcc: 99.082, mIoU: 4.718
+2023-01-13 12:29:00,750 Segmentron INFO: [EVAL] Sample: 20, pixAcc: 99.071, mIoU: 4.718
+2023-01-13 12:29:00,824 Segmentron INFO: [EVAL] Sample: 21, pixAcc: 99.061, mIoU: 4.717
+2023-01-13 12:29:00,892 Segmentron INFO: [EVAL] Sample: 22, pixAcc: 99.051, mIoU: 4.717
+2023-01-13 12:29:00,958 Segmentron INFO: [EVAL] Sample: 23, pixAcc: 99.038, mIoU: 4.716
+2023-01-13 12:29:01,024 Segmentron INFO: [EVAL] Sample: 24, pixAcc: 99.042, mIoU: 4.716
+2023-01-13 12:29:01,088 Segmentron INFO: [EVAL] Sample: 25, pixAcc: 99.030, mIoU: 4.716
+2023-01-13 12:29:01,155 Segmentron INFO: [EVAL] Sample: 26, pixAcc: 99.021, mIoU: 4.715
+2023-01-13 12:29:01,221 Segmentron INFO: [EVAL] Sample: 27, pixAcc: 99.015, mIoU: 4.715
+2023-01-13 12:29:01,289 Segmentron INFO: [EVAL] Sample: 28, pixAcc: 99.007, mIoU: 4.715
+2023-01-13 12:29:01,360 Segmentron INFO: [EVAL] Sample: 29, pixAcc: 98.987, mIoU: 4.714
+2023-01-13 12:29:01,431 Segmentron INFO: [EVAL] Sample: 30, pixAcc: 98.968, mIoU: 4.713
+2023-01-13 12:29:01,506 Segmentron INFO: [EVAL] Sample: 31, pixAcc: 98.953, mIoU: 4.712
+2023-01-13 12:29:01,579 Segmentron INFO: [EVAL] Sample: 32, pixAcc: 98.938, mIoU: 4.711
+2023-01-13 12:29:01,655 Segmentron INFO: [EVAL] Sample: 33, pixAcc: 98.921, mIoU: 4.711
+2023-01-13 12:29:01,727 Segmentron INFO: [EVAL] Sample: 34, pixAcc: 98.913, mIoU: 4.710
+2023-01-13 12:29:01,806 Segmentron INFO: [EVAL] Sample: 35, pixAcc: 98.896, mIoU: 4.709
+2023-01-13 12:29:01,882 Segmentron INFO: [EVAL] Sample: 36, pixAcc: 98.880, mIoU: 4.709
+2023-01-13 12:29:01,959 Segmentron INFO: [EVAL] Sample: 37, pixAcc: 98.864, mIoU: 4.708
+2023-01-13 12:29:02,027 Segmentron INFO: [EVAL] Sample: 38, pixAcc: 98.851, mIoU: 4.707
+2023-01-13 12:29:02,102 Segmentron INFO: [EVAL] Sample: 39, pixAcc: 98.837, mIoU: 4.707
+2023-01-13 12:29:02,175 Segmentron INFO: [EVAL] Sample: 40, pixAcc: 98.825, mIoU: 4.706
+2023-01-13 12:29:02,248 Segmentron INFO: [EVAL] Sample: 41, pixAcc: 98.812, mIoU: 4.705
+2023-01-13 12:29:02,324 Segmentron INFO: [EVAL] Sample: 42, pixAcc: 98.801, mIoU: 4.705
+2023-01-13 12:29:02,391 Segmentron INFO: [EVAL] Sample: 43, pixAcc: 98.794, mIoU: 4.704
+2023-01-13 12:29:02,463 Segmentron INFO: [EVAL] Sample: 44, pixAcc: 98.784, mIoU: 4.704
+2023-01-13 12:29:02,540 Segmentron INFO: [EVAL] Sample: 45, pixAcc: 98.774, mIoU: 4.704
+2023-01-13 12:29:02,614 Segmentron INFO: [EVAL] Sample: 46, pixAcc: 98.763, mIoU: 4.703
+2023-01-13 12:29:02,691 Segmentron INFO: [EVAL] Sample: 47, pixAcc: 98.752, mIoU: 4.702
+2023-01-13 12:29:02,761 Segmentron INFO: [EVAL] Sample: 48, pixAcc: 98.742, mIoU: 4.702
+2023-01-13 12:29:02,840 Segmentron INFO: [EVAL] Sample: 49, pixAcc: 98.733, mIoU: 4.702
+2023-01-13 12:29:02,915 Segmentron INFO: [EVAL] Sample: 50, pixAcc: 98.722, mIoU: 4.701
+2023-01-13 12:29:02,992 Segmentron INFO: [EVAL] Sample: 51, pixAcc: 98.711, mIoU: 4.701
+2023-01-13 12:29:03,065 Segmentron INFO: [EVAL] Sample: 52, pixAcc: 98.699, mIoU: 4.700
+2023-01-13 12:29:03,141 Segmentron INFO: [EVAL] Sample: 53, pixAcc: 98.688, mIoU: 4.699
+2023-01-13 12:29:03,217 Segmentron INFO: [EVAL] Sample: 54, pixAcc: 98.677, mIoU: 4.699
+2023-01-13 12:29:03,292 Segmentron INFO: [EVAL] Sample: 55, pixAcc: 98.669, mIoU: 4.699
+2023-01-13 12:29:03,368 Segmentron INFO: [EVAL] Sample: 56, pixAcc: 98.659, mIoU: 4.698
+2023-01-13 12:29:03,444 Segmentron INFO: [EVAL] Sample: 57, pixAcc: 98.649, mIoU: 4.698
+2023-01-13 12:29:03,520 Segmentron INFO: [EVAL] Sample: 58, pixAcc: 98.639, mIoU: 4.697
+2023-01-13 12:29:03,592 Segmentron INFO: [EVAL] Sample: 59, pixAcc: 98.629, mIoU: 4.697
+2023-01-13 12:29:03,664 Segmentron INFO: [EVAL] Sample: 60, pixAcc: 98.620, mIoU: 4.696
+2023-01-13 12:29:03,742 Segmentron INFO: [EVAL] Sample: 61, pixAcc: 98.612, mIoU: 4.696
+2023-01-13 12:29:03,818 Segmentron INFO: [EVAL] Sample: 62, pixAcc: 98.604, mIoU: 4.695
+2023-01-13 12:29:03,892 Segmentron INFO: [EVAL] Sample: 63, pixAcc: 98.596, mIoU: 4.695
+2023-01-13 12:29:03,963 Segmentron INFO: [EVAL] Sample: 64, pixAcc: 98.589, mIoU: 4.695
+2023-01-13 12:29:04,043 Segmentron INFO: [EVAL] Sample: 65, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:04,118 Segmentron INFO: [EVAL] Sample: 66, pixAcc: 98.588, mIoU: 4.695
+2023-01-13 12:29:04,191 Segmentron INFO: [EVAL] Sample: 67, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:04,263 Segmentron INFO: [EVAL] Sample: 68, pixAcc: 98.581, mIoU: 4.694
+2023-01-13 12:29:04,339 Segmentron INFO: [EVAL] Sample: 69, pixAcc: 98.580, mIoU: 4.694
+2023-01-13 12:29:04,413 Segmentron INFO: [EVAL] Sample: 70, pixAcc: 98.577, mIoU: 4.694
+2023-01-13 12:29:04,488 Segmentron INFO: [EVAL] Sample: 71, pixAcc: 98.575, mIoU: 4.694
+2023-01-13 12:29:04,558 Segmentron INFO: [EVAL] Sample: 72, pixAcc: 98.573, mIoU: 4.694
+2023-01-13 12:29:04,633 Segmentron INFO: [EVAL] Sample: 73, pixAcc: 98.571, mIoU: 4.694
+2023-01-13 12:29:04,707 Segmentron INFO: [EVAL] Sample: 74, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:04,784 Segmentron INFO: [EVAL] Sample: 75, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:04,858 Segmentron INFO: [EVAL] Sample: 76, pixAcc: 98.570, mIoU: 4.694
+2023-01-13 12:29:04,938 Segmentron INFO: [EVAL] Sample: 77, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:05,011 Segmentron INFO: [EVAL] Sample: 78, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:05,087 Segmentron INFO: [EVAL] Sample: 79, pixAcc: 98.565, mIoU: 4.694
+2023-01-13 12:29:05,158 Segmentron INFO: [EVAL] Sample: 80, pixAcc: 98.560, mIoU: 4.693
+2023-01-13 12:29:05,232 Segmentron INFO: [EVAL] Sample: 81, pixAcc: 98.559, mIoU: 4.693
+2023-01-13 12:29:05,309 Segmentron INFO: [EVAL] Sample: 82, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,384 Segmentron INFO: [EVAL] Sample: 83, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:05,458 Segmentron INFO: [EVAL] Sample: 84, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:05,527 Segmentron INFO: [EVAL] Sample: 85, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,602 Segmentron INFO: [EVAL] Sample: 86, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:05,677 Segmentron INFO: [EVAL] Sample: 87, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,753 Segmentron INFO: [EVAL] Sample: 88, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,826 Segmentron INFO: [EVAL] Sample: 89, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,898 Segmentron INFO: [EVAL] Sample: 90, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:05,974 Segmentron INFO: [EVAL] Sample: 91, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,052 Segmentron INFO: [EVAL] Sample: 92, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,125 Segmentron INFO: [EVAL] Sample: 93, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,194 Segmentron INFO: [EVAL] Sample: 94, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,272 Segmentron INFO: [EVAL] Sample: 95, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,344 Segmentron INFO: [EVAL] Sample: 96, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:06,420 Segmentron INFO: [EVAL] Sample: 97, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:06,494 Segmentron INFO: [EVAL] Sample: 98, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:06,572 Segmentron INFO: [EVAL] Sample: 99, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:06,650 Segmentron INFO: [EVAL] Sample: 100, pixAcc: 98.554, mIoU: 4.693
+2023-01-13 12:29:06,725 Segmentron INFO: [EVAL] Sample: 101, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:06,798 Segmentron INFO: [EVAL] Sample: 102, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:06,876 Segmentron INFO: [EVAL] Sample: 103, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:06,953 Segmentron INFO: [EVAL] Sample: 104, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:07,026 Segmentron INFO: [EVAL] Sample: 105, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:07,109 Segmentron INFO: [EVAL] Sample: 106, pixAcc: 98.554, mIoU: 4.693
+2023-01-13 12:29:07,185 Segmentron INFO: [EVAL] Sample: 107, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:07,259 Segmentron INFO: [EVAL] Sample: 108, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:07,323 Segmentron INFO: [EVAL] Sample: 109, pixAcc: 98.565, mIoU: 4.694
+2023-01-13 12:29:07,387 Segmentron INFO: [EVAL] Sample: 110, pixAcc: 98.575, mIoU: 4.694
+2023-01-13 12:29:07,454 Segmentron INFO: [EVAL] Sample: 111, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:07,521 Segmentron INFO: [EVAL] Sample: 112, pixAcc: 98.595, mIoU: 4.695
+2023-01-13 12:29:07,592 Segmentron INFO: [EVAL] Sample: 113, pixAcc: 98.604, mIoU: 4.695
+2023-01-13 12:29:07,659 Segmentron INFO: [EVAL] Sample: 114, pixAcc: 98.614, mIoU: 4.696
+2023-01-13 12:29:07,723 Segmentron INFO: [EVAL] Sample: 115, pixAcc: 98.622, mIoU: 4.696
+2023-01-13 12:29:07,789 Segmentron INFO: [EVAL] Sample: 116, pixAcc: 98.629, mIoU: 4.697
+2023-01-13 12:29:07,855 Segmentron INFO: [EVAL] Sample: 117, pixAcc: 98.636, mIoU: 4.697
+2023-01-13 12:29:07,922 Segmentron INFO: [EVAL] Sample: 118, pixAcc: 98.643, mIoU: 4.697
+2023-01-13 12:29:07,989 Segmentron INFO: [EVAL] Sample: 119, pixAcc: 98.650, mIoU: 4.698
+2023-01-13 12:29:08,055 Segmentron INFO: [EVAL] Sample: 120, pixAcc: 98.658, mIoU: 4.698
+2023-01-13 12:29:08,121 Segmentron INFO: [EVAL] Sample: 121, pixAcc: 98.666, mIoU: 4.698
+2023-01-13 12:29:08,189 Segmentron INFO: [EVAL] Sample: 122, pixAcc: 98.675, mIoU: 4.699
+2023-01-13 12:29:08,255 Segmentron INFO: [EVAL] Sample: 123, pixAcc: 98.682, mIoU: 4.699
+2023-01-13 12:29:08,320 Segmentron INFO: [EVAL] Sample: 124, pixAcc: 98.689, mIoU: 4.699
+2023-01-13 12:29:08,388 Segmentron INFO: [EVAL] Sample: 125, pixAcc: 98.695, mIoU: 4.700
+2023-01-13 12:29:08,454 Segmentron INFO: [EVAL] Sample: 126, pixAcc: 98.701, mIoU: 4.700
+2023-01-13 12:29:08,522 Segmentron INFO: [EVAL] Sample: 127, pixAcc: 98.707, mIoU: 4.700
+2023-01-13 12:29:08,588 Segmentron INFO: [EVAL] Sample: 128, pixAcc: 98.713, mIoU: 4.701
+2023-01-13 12:29:08,655 Segmentron INFO: [EVAL] Sample: 129, pixAcc: 98.718, mIoU: 4.701
+2023-01-13 12:29:08,722 Segmentron INFO: [EVAL] Sample: 130, pixAcc: 98.725, mIoU: 4.701
+2023-01-13 12:29:08,788 Segmentron INFO: [EVAL] Sample: 131, pixAcc: 98.731, mIoU: 4.701
+2023-01-13 12:29:08,856 Segmentron INFO: [EVAL] Sample: 132, pixAcc: 98.738, mIoU: 4.702
+2023-01-13 12:29:08,921 Segmentron INFO: [EVAL] Sample: 133, pixAcc: 98.744, mIoU: 4.702
+2023-01-13 12:29:08,988 Segmentron INFO: [EVAL] Sample: 134, pixAcc: 98.751, mIoU: 4.702
+2023-01-13 12:29:09,052 Segmentron INFO: [EVAL] Sample: 135, pixAcc: 98.757, mIoU: 4.703
+2023-01-13 12:29:09,117 Segmentron INFO: [EVAL] Sample: 136, pixAcc: 98.762, mIoU: 4.703
+2023-01-13 12:29:09,184 Segmentron INFO: [EVAL] Sample: 137, pixAcc: 98.768, mIoU: 4.703
+2023-01-13 12:29:09,250 Segmentron INFO: [EVAL] Sample: 138, pixAcc: 98.774, mIoU: 4.704
+2023-01-13 12:29:09,318 Segmentron INFO: [EVAL] Sample: 139, pixAcc: 98.779, mIoU: 4.704
+2023-01-13 12:29:09,385 Segmentron INFO: [EVAL] Sample: 140, pixAcc: 98.785, mIoU: 4.704
+2023-01-13 12:29:09,452 Segmentron INFO: [EVAL] Sample: 141, pixAcc: 98.791, mIoU: 4.704
+2023-01-13 12:29:09,521 Segmentron INFO: [EVAL] Sample: 142, pixAcc: 98.798, mIoU: 4.705
+2023-01-13 12:29:09,588 Segmentron INFO: [EVAL] Sample: 143, pixAcc: 98.804, mIoU: 4.705
+2023-01-13 12:29:09,654 Segmentron INFO: [EVAL] Sample: 144, pixAcc: 98.811, mIoU: 4.705
+2023-01-13 12:29:09,722 Segmentron INFO: [EVAL] Sample: 145, pixAcc: 98.817, mIoU: 4.706
+2023-01-13 12:29:09,789 Segmentron INFO: [EVAL] Sample: 146, pixAcc: 98.822, mIoU: 4.706
+2023-01-13 12:29:09,855 Segmentron INFO: [EVAL] Sample: 147, pixAcc: 98.826, mIoU: 4.706
+2023-01-13 12:29:09,923 Segmentron INFO: [EVAL] Sample: 148, pixAcc: 98.830, mIoU: 4.706
+2023-01-13 12:29:09,989 Segmentron INFO: [EVAL] Sample: 149, pixAcc: 98.834, mIoU: 4.706
+2023-01-13 12:29:10,056 Segmentron INFO: [EVAL] Sample: 150, pixAcc: 98.838, mIoU: 4.707
+2023-01-13 12:29:10,123 Segmentron INFO: [EVAL] Sample: 151, pixAcc: 98.842, mIoU: 4.707
+2023-01-13 12:29:10,188 Segmentron INFO: [EVAL] Sample: 152, pixAcc: 98.847, mIoU: 4.707
+2023-01-13 12:29:10,255 Segmentron INFO: [EVAL] Sample: 153, pixAcc: 98.851, mIoU: 4.707
+2023-01-13 12:29:10,322 Segmentron INFO: [EVAL] Sample: 154, pixAcc: 98.855, mIoU: 4.707
+2023-01-13 12:29:10,390 Segmentron INFO: [EVAL] Sample: 155, pixAcc: 98.859, mIoU: 4.708
+2023-01-13 12:29:10,457 Segmentron INFO: [EVAL] Sample: 156, pixAcc: 98.862, mIoU: 4.708
+2023-01-13 12:29:10,523 Segmentron INFO: [EVAL] Sample: 157, pixAcc: 98.866, mIoU: 4.708
+2023-01-13 12:29:10,589 Segmentron INFO: [EVAL] Sample: 158, pixAcc: 98.870, mIoU: 4.708
+2023-01-13 12:29:10,655 Segmentron INFO: [EVAL] Sample: 159, pixAcc: 98.873, mIoU: 4.708
+2023-01-13 12:29:10,722 Segmentron INFO: [EVAL] Sample: 160, pixAcc: 98.877, mIoU: 4.708
+2023-01-13 12:29:10,789 Segmentron INFO: [EVAL] Sample: 161, pixAcc: 98.881, mIoU: 4.709
+2023-01-13 12:29:10,856 Segmentron INFO: [EVAL] Sample: 162, pixAcc: 98.884, mIoU: 4.709
+2023-01-13 12:29:10,924 Segmentron INFO: [EVAL] Sample: 163, pixAcc: 98.867, mIoU: 4.708
+2023-01-13 12:29:10,992 Segmentron INFO: [EVAL] Sample: 164, pixAcc: 98.849, mIoU: 4.707
+2023-01-13 12:29:11,059 Segmentron INFO: [EVAL] Sample: 165, pixAcc: 98.828, mIoU: 4.706
+2023-01-13 12:29:11,129 Segmentron INFO: [EVAL] Sample: 166, pixAcc: 98.811, mIoU: 4.705
+2023-01-13 12:29:11,198 Segmentron INFO: [EVAL] Sample: 167, pixAcc: 98.794, mIoU: 4.704
+2023-01-13 12:29:11,264 Segmentron INFO: [EVAL] Sample: 168, pixAcc: 98.780, mIoU: 4.704
+2023-01-13 12:29:11,333 Segmentron INFO: [EVAL] Sample: 169, pixAcc: 98.765, mIoU: 4.703
+2023-01-13 12:29:11,399 Segmentron INFO: [EVAL] Sample: 170, pixAcc: 98.751, mIoU: 4.702
+2023-01-13 12:29:11,468 Segmentron INFO: [EVAL] Sample: 171, pixAcc: 98.737, mIoU: 4.702
+2023-01-13 12:29:11,534 Segmentron INFO: [EVAL] Sample: 172, pixAcc: 98.723, mIoU: 4.701
+2023-01-13 12:29:11,602 Segmentron INFO: [EVAL] Sample: 173, pixAcc: 98.709, mIoU: 4.700
+2023-01-13 12:29:11,673 Segmentron INFO: [EVAL] Sample: 174, pixAcc: 98.696, mIoU: 4.700
+2023-01-13 12:29:11,741 Segmentron INFO: [EVAL] Sample: 175, pixAcc: 98.683, mIoU: 4.699
+2023-01-13 12:29:11,808 Segmentron INFO: [EVAL] Sample: 176, pixAcc: 98.666, mIoU: 4.698
+2023-01-13 12:29:11,877 Segmentron INFO: [EVAL] Sample: 177, pixAcc: 98.651, mIoU: 4.698
+2023-01-13 12:29:11,943 Segmentron INFO: [EVAL] Sample: 178, pixAcc: 98.637, mIoU: 4.697
+2023-01-13 12:29:12,011 Segmentron INFO: [EVAL] Sample: 179, pixAcc: 98.622, mIoU: 4.696
+2023-01-13 12:29:12,079 Segmentron INFO: [EVAL] Sample: 180, pixAcc: 98.605, mIoU: 4.695
+2023-01-13 12:29:12,147 Segmentron INFO: [EVAL] Sample: 181, pixAcc: 98.589, mIoU: 4.695
+2023-01-13 12:29:12,213 Segmentron INFO: [EVAL] Sample: 182, pixAcc: 98.574, mIoU: 4.694
+2023-01-13 12:29:12,280 Segmentron INFO: [EVAL] Sample: 183, pixAcc: 98.560, mIoU: 4.693
+2023-01-13 12:29:12,349 Segmentron INFO: [EVAL] Sample: 184, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:12,415 Segmentron INFO: [EVAL] Sample: 185, pixAcc: 98.552, mIoU: 4.693
+2023-01-13 12:29:12,479 Segmentron INFO: [EVAL] Sample: 186, pixAcc: 98.550, mIoU: 4.693
+2023-01-13 12:29:12,543 Segmentron INFO: [EVAL] Sample: 187, pixAcc: 98.548, mIoU: 4.693
+2023-01-13 12:29:12,608 Segmentron INFO: [EVAL] Sample: 188, pixAcc: 98.544, mIoU: 4.693
+2023-01-13 12:29:12,676 Segmentron INFO: [EVAL] Sample: 189, pixAcc: 98.538, mIoU: 4.692
+2023-01-13 12:29:12,742 Segmentron INFO: [EVAL] Sample: 190, pixAcc: 98.534, mIoU: 4.692
+2023-01-13 12:29:12,810 Segmentron INFO: [EVAL] Sample: 191, pixAcc: 98.530, mIoU: 4.692
+2023-01-13 12:29:12,879 Segmentron INFO: [EVAL] Sample: 192, pixAcc: 98.522, mIoU: 4.692
+2023-01-13 12:29:12,949 Segmentron INFO: [EVAL] Sample: 193, pixAcc: 98.514, mIoU: 4.691
+2023-01-13 12:29:13,021 Segmentron INFO: [EVAL] Sample: 194, pixAcc: 98.508, mIoU: 4.691
+2023-01-13 12:29:13,090 Segmentron INFO: [EVAL] Sample: 195, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:13,155 Segmentron INFO: [EVAL] Sample: 196, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:13,222 Segmentron INFO: [EVAL] Sample: 197, pixAcc: 98.494, mIoU: 4.690
+2023-01-13 12:29:13,287 Segmentron INFO: [EVAL] Sample: 198, pixAcc: 98.492, mIoU: 4.690
+2023-01-13 12:29:13,355 Segmentron INFO: [EVAL] Sample: 199, pixAcc: 98.488, mIoU: 4.690
+2023-01-13 12:29:13,426 Segmentron INFO: [EVAL] Sample: 200, pixAcc: 98.480, mIoU: 4.690
+2023-01-13 12:29:13,496 Segmentron INFO: [EVAL] Sample: 201, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:13,565 Segmentron INFO: [EVAL] Sample: 202, pixAcc: 98.471, mIoU: 4.689
+2023-01-13 12:29:13,636 Segmentron INFO: [EVAL] Sample: 203, pixAcc: 98.466, mIoU: 4.689
+2023-01-13 12:29:13,706 Segmentron INFO: [EVAL] Sample: 204, pixAcc: 98.461, mIoU: 4.689
+2023-01-13 12:29:13,774 Segmentron INFO: [EVAL] Sample: 205, pixAcc: 98.456, mIoU: 4.688
+2023-01-13 12:29:13,843 Segmentron INFO: [EVAL] Sample: 206, pixAcc: 98.451, mIoU: 4.688
+2023-01-13 12:29:13,918 Segmentron INFO: [EVAL] Sample: 207, pixAcc: 98.425, mIoU: 4.687
+2023-01-13 12:29:13,991 Segmentron INFO: [EVAL] Sample: 208, pixAcc: 98.398, mIoU: 4.686
+2023-01-13 12:29:14,061 Segmentron INFO: [EVAL] Sample: 209, pixAcc: 98.368, mIoU: 4.684
+2023-01-13 12:29:14,139 Segmentron INFO: [EVAL] Sample: 210, pixAcc: 98.339, mIoU: 4.683
+2023-01-13 12:29:14,216 Segmentron INFO: [EVAL] Sample: 211, pixAcc: 98.311, mIoU: 4.681
+2023-01-13 12:29:14,291 Segmentron INFO: [EVAL] Sample: 212, pixAcc: 98.282, mIoU: 4.680
+2023-01-13 12:29:14,363 Segmentron INFO: [EVAL] Sample: 213, pixAcc: 98.254, mIoU: 4.679
+2023-01-13 12:29:14,423 Segmentron INFO: [EVAL] Sample: 214, pixAcc: 98.260, mIoU: 4.679
+2023-01-13 12:29:14,487 Segmentron INFO: [EVAL] Sample: 215, pixAcc: 98.266, mIoU: 4.679
+2023-01-13 12:29:14,553 Segmentron INFO: [EVAL] Sample: 216, pixAcc: 98.272, mIoU: 4.680
+2023-01-13 12:29:14,617 Segmentron INFO: [EVAL] Sample: 217, pixAcc: 98.277, mIoU: 4.680
+2023-01-13 12:29:14,682 Segmentron INFO: [EVAL] Sample: 218, pixAcc: 98.282, mIoU: 4.680
+2023-01-13 12:29:14,746 Segmentron INFO: [EVAL] Sample: 219, pixAcc: 98.288, mIoU: 4.680
+2023-01-13 12:29:14,810 Segmentron INFO: [EVAL] Sample: 220, pixAcc: 98.293, mIoU: 4.681
+2023-01-13 12:29:14,874 Segmentron INFO: [EVAL] Sample: 221, pixAcc: 98.299, mIoU: 4.681
+2023-01-13 12:29:14,940 Segmentron INFO: [EVAL] Sample: 222, pixAcc: 98.305, mIoU: 4.681
+2023-01-13 12:29:15,007 Segmentron INFO: [EVAL] Sample: 223, pixAcc: 98.309, mIoU: 4.681
+2023-01-13 12:29:15,074 Segmentron INFO: [EVAL] Sample: 224, pixAcc: 98.315, mIoU: 4.682
+2023-01-13 12:29:15,140 Segmentron INFO: [EVAL] Sample: 225, pixAcc: 98.320, mIoU: 4.682
+2023-01-13 12:29:15,207 Segmentron INFO: [EVAL] Sample: 226, pixAcc: 98.325, mIoU: 4.682
+2023-01-13 12:29:15,273 Segmentron INFO: [EVAL] Sample: 227, pixAcc: 98.330, mIoU: 4.682
+2023-01-13 12:29:15,340 Segmentron INFO: [EVAL] Sample: 228, pixAcc: 98.335, mIoU: 4.683
+2023-01-13 12:29:15,407 Segmentron INFO: [EVAL] Sample: 229, pixAcc: 98.339, mIoU: 4.683
+2023-01-13 12:29:15,473 Segmentron INFO: [EVAL] Sample: 230, pixAcc: 98.345, mIoU: 4.683
+2023-01-13 12:29:15,539 Segmentron INFO: [EVAL] Sample: 231, pixAcc: 98.351, mIoU: 4.683
+2023-01-13 12:29:15,601 Segmentron INFO: [EVAL] Sample: 232, pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:15,664 Segmentron INFO: [EVAL] Sample: 233, pixAcc: 98.360, mIoU: 4.684
+2023-01-13 12:29:15,730 Segmentron INFO: [EVAL] Sample: 234, pixAcc: 98.366, mIoU: 4.684
+2023-01-13 12:29:15,797 Segmentron INFO: [EVAL] Sample: 235, pixAcc: 98.371, mIoU: 4.684
+2023-01-13 12:29:15,862 Segmentron INFO: [EVAL] Sample: 236, pixAcc: 98.376, mIoU: 4.685
+2023-01-13 12:29:15,925 Segmentron INFO: [EVAL] Sample: 237, pixAcc: 98.382, mIoU: 4.685
+2023-01-13 12:29:15,990 Segmentron INFO: [EVAL] Sample: 238, pixAcc: 98.385, mIoU: 4.685
+2023-01-13 12:29:16,054 Segmentron INFO: [EVAL] Sample: 239, pixAcc: 98.388, mIoU: 4.685
+2023-01-13 12:29:16,120 Segmentron INFO: [EVAL] Sample: 240, pixAcc: 98.392, mIoU: 4.685
+2023-01-13 12:29:16,189 Segmentron INFO: [EVAL] Sample: 241, pixAcc: 98.396, mIoU: 4.686
+2023-01-13 12:29:16,255 Segmentron INFO: [EVAL] Sample: 242, pixAcc: 98.400, mIoU: 4.686
+2023-01-13 12:29:16,322 Segmentron INFO: [EVAL] Sample: 243, pixAcc: 98.404, mIoU: 4.686
+2023-01-13 12:29:16,388 Segmentron INFO: [EVAL] Sample: 244, pixAcc: 98.408, mIoU: 4.686
+2023-01-13 12:29:16,456 Segmentron INFO: [EVAL] Sample: 245, pixAcc: 98.413, mIoU: 4.686
+2023-01-13 12:29:16,522 Segmentron INFO: [EVAL] Sample: 246, pixAcc: 98.418, mIoU: 4.687
+2023-01-13 12:29:16,589 Segmentron INFO: [EVAL] Sample: 247, pixAcc: 98.422, mIoU: 4.687
+2023-01-13 12:29:16,655 Segmentron INFO: [EVAL] Sample: 248, pixAcc: 98.427, mIoU: 4.687
+2023-01-13 12:29:16,722 Segmentron INFO: [EVAL] Sample: 249, pixAcc: 98.431, mIoU: 4.687
+2023-01-13 12:29:16,787 Segmentron INFO: [EVAL] Sample: 250, pixAcc: 98.436, mIoU: 4.687
+2023-01-13 12:29:16,855 Segmentron INFO: [EVAL] Sample: 251, pixAcc: 98.438, mIoU: 4.688
+2023-01-13 12:29:16,921 Segmentron INFO: [EVAL] Sample: 252, pixAcc: 98.441, mIoU: 4.688
+2023-01-13 12:29:16,988 Segmentron INFO: [EVAL] Sample: 253, pixAcc: 98.443, mIoU: 4.688
+2023-01-13 12:29:17,054 Segmentron INFO: [EVAL] Sample: 254, pixAcc: 98.446, mIoU: 4.688
+2023-01-13 12:29:17,120 Segmentron INFO: [EVAL] Sample: 255, pixAcc: 98.449, mIoU: 4.688
+2023-01-13 12:29:17,187 Segmentron INFO: [EVAL] Sample: 256, pixAcc: 98.452, mIoU: 4.688
+2023-01-13 12:29:17,254 Segmentron INFO: [EVAL] Sample: 257, pixAcc: 98.454, mIoU: 4.688
+2023-01-13 12:29:17,321 Segmentron INFO: [EVAL] Sample: 258, pixAcc: 98.457, mIoU: 4.688
+2023-01-13 12:29:17,389 Segmentron INFO: [EVAL] Sample: 259, pixAcc: 98.460, mIoU: 4.689
+2023-01-13 12:29:17,454 Segmentron INFO: [EVAL] Sample: 260, pixAcc: 98.462, mIoU: 4.689
+2023-01-13 12:29:17,520 Segmentron INFO: [EVAL] Sample: 261, pixAcc: 98.465, mIoU: 4.689
+2023-01-13 12:29:17,588 Segmentron INFO: [EVAL] Sample: 262, pixAcc: 98.468, mIoU: 4.689
+2023-01-13 12:29:17,654 Segmentron INFO: [EVAL] Sample: 263, pixAcc: 98.470, mIoU: 4.689
+2023-01-13 12:29:17,721 Segmentron INFO: [EVAL] Sample: 264, pixAcc: 98.473, mIoU: 4.689
+2023-01-13 12:29:17,788 Segmentron INFO: [EVAL] Sample: 265, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:17,855 Segmentron INFO: [EVAL] Sample: 266, pixAcc: 98.478, mIoU: 4.689
+2023-01-13 12:29:17,922 Segmentron INFO: [EVAL] Sample: 267, pixAcc: 98.480, mIoU: 4.690
+2023-01-13 12:29:17,988 Segmentron INFO: [EVAL] Sample: 268, pixAcc: 98.482, mIoU: 4.690
+2023-01-13 12:29:18,055 Segmentron INFO: [EVAL] Sample: 269, pixAcc: 98.484, mIoU: 4.690
+2023-01-13 12:29:18,121 Segmentron INFO: [EVAL] Sample: 270, pixAcc: 98.486, mIoU: 4.690
+2023-01-13 12:29:18,189 Segmentron INFO: [EVAL] Sample: 271, pixAcc: 98.489, mIoU: 4.690
+2023-01-13 12:29:18,255 Segmentron INFO: [EVAL] Sample: 272, pixAcc: 98.491, mIoU: 4.690
+2023-01-13 12:29:18,321 Segmentron INFO: [EVAL] Sample: 273, pixAcc: 98.494, mIoU: 4.690
+2023-01-13 12:29:18,387 Segmentron INFO: [EVAL] Sample: 274, pixAcc: 98.496, mIoU: 4.690
+2023-01-13 12:29:18,454 Segmentron INFO: [EVAL] Sample: 275, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:18,521 Segmentron INFO: [EVAL] Sample: 276, pixAcc: 98.500, mIoU: 4.690
+2023-01-13 12:29:18,589 Segmentron INFO: [EVAL] Sample: 277, pixAcc: 98.502, mIoU: 4.691
+2023-01-13 12:29:18,655 Segmentron INFO: [EVAL] Sample: 278, pixAcc: 98.504, mIoU: 4.691
+2023-01-13 12:29:18,720 Segmentron INFO: [EVAL] Sample: 279, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:18,788 Segmentron INFO: [EVAL] Sample: 280, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:18,855 Segmentron INFO: [EVAL] Sample: 281, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:18,922 Segmentron INFO: [EVAL] Sample: 282, pixAcc: 98.513, mIoU: 4.691
+2023-01-13 12:29:18,989 Segmentron INFO: [EVAL] Sample: 283, pixAcc: 98.512, mIoU: 4.691
+2023-01-13 12:29:19,056 Segmentron INFO: [EVAL] Sample: 284, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:19,122 Segmentron INFO: [EVAL] Sample: 285, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:19,189 Segmentron INFO: [EVAL] Sample: 286, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:19,258 Segmentron INFO: [EVAL] Sample: 287, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:19,323 Segmentron INFO: [EVAL] Sample: 288, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:19,389 Segmentron INFO: [EVAL] Sample: 289, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:19,456 Segmentron INFO: [EVAL] Sample: 290, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:19,522 Segmentron INFO: [EVAL] Sample: 291, pixAcc: 98.508, mIoU: 4.691
+2023-01-13 12:29:19,588 Segmentron INFO: [EVAL] Sample: 292, pixAcc: 98.507, mIoU: 4.691
+2023-01-13 12:29:19,655 Segmentron INFO: [EVAL] Sample: 293, pixAcc: 98.507, mIoU: 4.691
+2023-01-13 12:29:19,722 Segmentron INFO: [EVAL] Sample: 294, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:19,789 Segmentron INFO: [EVAL] Sample: 295, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:19,855 Segmentron INFO: [EVAL] Sample: 296, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:19,922 Segmentron INFO: [EVAL] Sample: 297, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:19,989 Segmentron INFO: [EVAL] Sample: 298, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:20,056 Segmentron INFO: [EVAL] Sample: 299, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:20,121 Segmentron INFO: [EVAL] Sample: 300, pixAcc: 98.504, mIoU: 4.691
+2023-01-13 12:29:20,190 Segmentron INFO: [EVAL] Sample: 301, pixAcc: 98.503, mIoU: 4.691
+2023-01-13 12:29:20,256 Segmentron INFO: [EVAL] Sample: 302, pixAcc: 98.502, mIoU: 4.691
+2023-01-13 12:29:20,323 Segmentron INFO: [EVAL] Sample: 303, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:20,388 Segmentron INFO: [EVAL] Sample: 304, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:20,455 Segmentron INFO: [EVAL] Sample: 305, pixAcc: 98.500, mIoU: 4.690
+2023-01-13 12:29:20,522 Segmentron INFO: [EVAL] Sample: 306, pixAcc: 98.499, mIoU: 4.690
+2023-01-13 12:29:20,589 Segmentron INFO: [EVAL] Sample: 307, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:20,656 Segmentron INFO: [EVAL] Sample: 308, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:20,723 Segmentron INFO: [EVAL] Sample: 309, pixAcc: 98.497, mIoU: 4.690
+2023-01-13 12:29:20,789 Segmentron INFO: [EVAL] Sample: 310, pixAcc: 98.497, mIoU: 4.690
+2023-01-13 12:29:20,855 Segmentron INFO: [EVAL] Sample: 311, pixAcc: 98.495, mIoU: 4.690
+2023-01-13 12:29:20,919 Segmentron INFO: [EVAL] Sample: 312, pixAcc: 98.492, mIoU: 4.690
+2023-01-13 12:29:20,986 Segmentron INFO: [EVAL] Sample: 313, pixAcc: 98.489, mIoU: 4.690
+2023-01-13 12:29:21,051 Segmentron INFO: [EVAL] Sample: 314, pixAcc: 98.487, mIoU: 4.690
+2023-01-13 12:29:21,115 Segmentron INFO: [EVAL] Sample: 315, pixAcc: 98.485, mIoU: 4.690
+2023-01-13 12:29:21,179 Segmentron INFO: [EVAL] Sample: 316, pixAcc: 98.482, mIoU: 4.690
+2023-01-13 12:29:21,243 Segmentron INFO: [EVAL] Sample: 317, pixAcc: 98.479, mIoU: 4.689
+2023-01-13 12:29:21,306 Segmentron INFO: [EVAL] Sample: 318, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:21,371 Segmentron INFO: [EVAL] Sample: 319, pixAcc: 98.473, mIoU: 4.689
+2023-01-13 12:29:21,435 Segmentron INFO: [EVAL] Sample: 320, pixAcc: 98.470, mIoU: 4.689
+2023-01-13 12:29:21,499 Segmentron INFO: [EVAL] Sample: 321, pixAcc: 98.467, mIoU: 4.689
+2023-01-13 12:29:21,561 Segmentron INFO: [EVAL] Sample: 322, pixAcc: 98.464, mIoU: 4.689
+2023-01-13 12:29:21,623 Segmentron INFO: [EVAL] Sample: 323, pixAcc: 98.461, mIoU: 4.689
+2023-01-13 12:29:21,687 Segmentron INFO: [EVAL] Sample: 324, pixAcc: 98.458, mIoU: 4.688
+2023-01-13 12:29:21,752 Segmentron INFO: [EVAL] Sample: 325, pixAcc: 98.455, mIoU: 4.688
+2023-01-13 12:29:21,817 Segmentron INFO: [EVAL] Sample: 326, pixAcc: 98.453, mIoU: 4.688
+2023-01-13 12:29:21,880 Segmentron INFO: [EVAL] Sample: 327, pixAcc: 98.450, mIoU: 4.688
+2023-01-13 12:29:21,942 Segmentron INFO: [EVAL] Sample: 328, pixAcc: 98.447, mIoU: 4.688
+2023-01-13 12:29:22,005 Segmentron INFO: [EVAL] Sample: 329, pixAcc: 98.445, mIoU: 4.688
+2023-01-13 12:29:22,066 Segmentron INFO: [EVAL] Sample: 330, pixAcc: 98.442, mIoU: 4.688
+2023-01-13 12:29:22,126 Segmentron INFO: [EVAL] Sample: 331, pixAcc: 98.440, mIoU: 4.688
+2023-01-13 12:29:22,187 Segmentron INFO: [EVAL] Sample: 332, pixAcc: 98.437, mIoU: 4.687
+2023-01-13 12:29:22,251 Segmentron INFO: [EVAL] Sample: 333, pixAcc: 98.435, mIoU: 4.687
+2023-01-13 12:29:22,314 Segmentron INFO: [EVAL] Sample: 334, pixAcc: 98.432, mIoU: 4.687
+2023-01-13 12:29:22,376 Segmentron INFO: [EVAL] Sample: 335, pixAcc: 98.430, mIoU: 4.687
+2023-01-13 12:29:22,438 Segmentron INFO: [EVAL] Sample: 336, pixAcc: 98.427, mIoU: 4.687
+2023-01-13 12:29:22,500 Segmentron INFO: [EVAL] Sample: 337, pixAcc: 98.424, mIoU: 4.687
+2023-01-13 12:29:22,558 Segmentron INFO: [EVAL] Sample: 338, pixAcc: 98.420, mIoU: 4.687
+2023-01-13 12:29:22,620 Segmentron INFO: [EVAL] Sample: 339, pixAcc: 98.418, mIoU: 4.687
+2023-01-13 12:29:22,684 Segmentron INFO: [EVAL] Sample: 340, pixAcc: 98.415, mIoU: 4.686
+2023-01-13 12:29:22,746 Segmentron INFO: [EVAL] Sample: 341, pixAcc: 98.412, mIoU: 4.686
+2023-01-13 12:29:22,809 Segmentron INFO: [EVAL] Sample: 342, pixAcc: 98.409, mIoU: 4.686
+2023-01-13 12:29:22,873 Segmentron INFO: [EVAL] Sample: 343, pixAcc: 98.407, mIoU: 4.686
+2023-01-13 12:29:22,938 Segmentron INFO: [EVAL] Sample: 344, pixAcc: 98.405, mIoU: 4.686
+2023-01-13 12:29:23,005 Segmentron INFO: [EVAL] Sample: 345, pixAcc: 98.403, mIoU: 4.686
+2023-01-13 12:29:23,070 Segmentron INFO: [EVAL] Sample: 346, pixAcc: 98.400, mIoU: 4.686
+2023-01-13 12:29:23,133 Segmentron INFO: [EVAL] Sample: 347, pixAcc: 98.398, mIoU: 4.686
+2023-01-13 12:29:23,198 Segmentron INFO: [EVAL] Sample: 348, pixAcc: 98.395, mIoU: 4.685
+2023-01-13 12:29:23,261 Segmentron INFO: [EVAL] Sample: 349, pixAcc: 98.393, mIoU: 4.685
+2023-01-13 12:29:23,322 Segmentron INFO: [EVAL] Sample: 350, pixAcc: 98.391, mIoU: 4.685
+2023-01-13 12:29:23,387 Segmentron INFO: [EVAL] Sample: 351, pixAcc: 98.390, mIoU: 4.685
+2023-01-13 12:29:23,457 Segmentron INFO: [EVAL] Sample: 352, pixAcc: 98.389, mIoU: 4.685
+2023-01-13 12:29:23,522 Segmentron INFO: [EVAL] Sample: 353, pixAcc: 98.387, mIoU: 4.685
+2023-01-13 12:29:23,589 Segmentron INFO: [EVAL] Sample: 354, pixAcc: 98.386, mIoU: 4.685
+2023-01-13 12:29:23,656 Segmentron INFO: [EVAL] Sample: 355, pixAcc: 98.385, mIoU: 4.685
+2023-01-13 12:29:23,721 Segmentron INFO: [EVAL] Sample: 356, pixAcc: 98.384, mIoU: 4.685
+2023-01-13 12:29:23,789 Segmentron INFO: [EVAL] Sample: 357, pixAcc: 98.383, mIoU: 4.685
+2023-01-13 12:29:23,855 Segmentron INFO: [EVAL] Sample: 358, pixAcc: 98.382, mIoU: 4.685
+2023-01-13 12:29:23,923 Segmentron INFO: [EVAL] Sample: 359, pixAcc: 98.381, mIoU: 4.685
+2023-01-13 12:29:23,989 Segmentron INFO: [EVAL] Sample: 360, pixAcc: 98.380, mIoU: 4.685
+2023-01-13 12:29:24,056 Segmentron INFO: [EVAL] Sample: 361, pixAcc: 98.379, mIoU: 4.685
+2023-01-13 12:29:24,121 Segmentron INFO: [EVAL] Sample: 362, pixAcc: 98.377, mIoU: 4.685
+2023-01-13 12:29:24,189 Segmentron INFO: [EVAL] Sample: 363, pixAcc: 98.376, mIoU: 4.685
+2023-01-13 12:29:24,256 Segmentron INFO: [EVAL] Sample: 364, pixAcc: 98.375, mIoU: 4.685
+2023-01-13 12:29:24,323 Segmentron INFO: [EVAL] Sample: 365, pixAcc: 98.374, mIoU: 4.684
+2023-01-13 12:29:24,389 Segmentron INFO: [EVAL] Sample: 366, pixAcc: 98.373, mIoU: 4.684
+2023-01-13 12:29:24,456 Segmentron INFO: [EVAL] Sample: 367, pixAcc: 98.372, mIoU: 4.684
+2023-01-13 12:29:24,523 Segmentron INFO: [EVAL] Sample: 368, pixAcc: 98.371, mIoU: 4.684
+2023-01-13 12:29:24,589 Segmentron INFO: [EVAL] Sample: 369, pixAcc: 98.369, mIoU: 4.684
+2023-01-13 12:29:24,655 Segmentron INFO: [EVAL] Sample: 370, pixAcc: 98.368, mIoU: 4.684
+2023-01-13 12:29:24,722 Segmentron INFO: [EVAL] Sample: 371, pixAcc: 98.367, mIoU: 4.684
+2023-01-13 12:29:24,790 Segmentron INFO: [EVAL] Sample: 372, pixAcc: 98.366, mIoU: 4.684
+2023-01-13 12:29:24,856 Segmentron INFO: [EVAL] Sample: 373, pixAcc: 98.365, mIoU: 4.684
+2023-01-13 12:29:24,923 Segmentron INFO: [EVAL] Sample: 374, pixAcc: 98.364, mIoU: 4.684
+2023-01-13 12:29:24,989 Segmentron INFO: [EVAL] Sample: 375, pixAcc: 98.363, mIoU: 4.684
+2023-01-13 12:29:25,054 Segmentron INFO: [EVAL] Sample: 376, pixAcc: 98.362, mIoU: 4.684
+2023-01-13 12:29:25,121 Segmentron INFO: [EVAL] Sample: 377, pixAcc: 98.361, mIoU: 4.684
+2023-01-13 12:29:25,187 Segmentron INFO: [EVAL] Sample: 378, pixAcc: 98.361, mIoU: 4.684
+2023-01-13 12:29:25,255 Segmentron INFO: [EVAL] Sample: 379, pixAcc: 98.360, mIoU: 4.684
+2023-01-13 12:29:25,323 Segmentron INFO: [EVAL] Sample: 380, pixAcc: 98.359, mIoU: 4.684
+2023-01-13 12:29:25,388 Segmentron INFO: [EVAL] Sample: 381, pixAcc: 98.358, mIoU: 4.684
+2023-01-13 12:29:25,455 Segmentron INFO: [EVAL] Sample: 382, pixAcc: 98.357, mIoU: 4.684
+2023-01-13 12:29:25,522 Segmentron INFO: [EVAL] Sample: 383, pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:25,523 Segmentron INFO: [EVAL END] Epoch: 1, pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:25,591 Segmentron INFO: [TEST] Sample: 1, pixAcc: 99.099, mIoU: 4.719
+2023-01-13 12:29:25,654 Segmentron INFO: [TEST] Sample: 2, pixAcc: 99.104, mIoU: 4.719
+2023-01-13 12:29:25,718 Segmentron INFO: [TEST] Sample: 3, pixAcc: 99.104, mIoU: 4.719
+2023-01-13 12:29:25,784 Segmentron INFO: [TEST] Sample: 4, pixAcc: 99.099, mIoU: 4.719
+2023-01-13 12:29:25,848 Segmentron INFO: [TEST] Sample: 5, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:29:25,912 Segmentron INFO: [TEST] Sample: 6, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:29:25,976 Segmentron INFO: [TEST] Sample: 7, pixAcc: 99.097, mIoU: 4.719
+2023-01-13 12:29:26,039 Segmentron INFO: [TEST] Sample: 8, pixAcc: 99.093, mIoU: 4.719
+2023-01-13 12:29:26,101 Segmentron INFO: [TEST] Sample: 9, pixAcc: 99.090, mIoU: 4.719
+2023-01-13 12:29:26,163 Segmentron INFO: [TEST] Sample: 10, pixAcc: 99.109, mIoU: 4.719
+2023-01-13 12:29:26,224 Segmentron INFO: [TEST] Sample: 11, pixAcc: 99.147, mIoU: 4.721
+2023-01-13 12:29:26,289 Segmentron INFO: [TEST] Sample: 12, pixAcc: 99.147, mIoU: 4.721
+2023-01-13 12:29:26,355 Segmentron INFO: [TEST] Sample: 13, pixAcc: 99.146, mIoU: 4.721
+2023-01-13 12:29:26,422 Segmentron INFO: [TEST] Sample: 14, pixAcc: 99.129, mIoU: 4.720
+2023-01-13 12:29:26,488 Segmentron INFO: [TEST] Sample: 15, pixAcc: 99.120, mIoU: 4.720
+2023-01-13 12:29:26,555 Segmentron INFO: [TEST] Sample: 16, pixAcc: 99.116, mIoU: 4.720
+2023-01-13 12:29:26,621 Segmentron INFO: [TEST] Sample: 17, pixAcc: 99.113, mIoU: 4.720
+2023-01-13 12:29:26,689 Segmentron INFO: [TEST] Sample: 18, pixAcc: 99.093, mIoU: 4.719
+2023-01-13 12:29:26,756 Segmentron INFO: [TEST] Sample: 19, pixAcc: 99.082, mIoU: 4.718
+2023-01-13 12:29:26,822 Segmentron INFO: [TEST] Sample: 20, pixAcc: 99.071, mIoU: 4.718
+2023-01-13 12:29:26,888 Segmentron INFO: [TEST] Sample: 21, pixAcc: 99.061, mIoU: 4.717
+2023-01-13 12:29:26,956 Segmentron INFO: [TEST] Sample: 22, pixAcc: 99.051, mIoU: 4.717
+2023-01-13 12:29:27,022 Segmentron INFO: [TEST] Sample: 23, pixAcc: 99.038, mIoU: 4.716
+2023-01-13 12:29:27,087 Segmentron INFO: [TEST] Sample: 24, pixAcc: 99.042, mIoU: 4.716
+2023-01-13 12:29:27,154 Segmentron INFO: [TEST] Sample: 25, pixAcc: 99.030, mIoU: 4.716
+2023-01-13 12:29:27,221 Segmentron INFO: [TEST] Sample: 26, pixAcc: 99.021, mIoU: 4.715
+2023-01-13 12:29:27,288 Segmentron INFO: [TEST] Sample: 27, pixAcc: 99.015, mIoU: 4.715
+2023-01-13 12:29:27,355 Segmentron INFO: [TEST] Sample: 28, pixAcc: 99.007, mIoU: 4.715
+2023-01-13 12:29:27,431 Segmentron INFO: [TEST] Sample: 29, pixAcc: 98.987, mIoU: 4.714
+2023-01-13 12:29:27,507 Segmentron INFO: [TEST] Sample: 30, pixAcc: 98.968, mIoU: 4.713
+2023-01-13 12:29:27,579 Segmentron INFO: [TEST] Sample: 31, pixAcc: 98.953, mIoU: 4.712
+2023-01-13 12:29:27,652 Segmentron INFO: [TEST] Sample: 32, pixAcc: 98.938, mIoU: 4.711
+2023-01-13 12:29:27,724 Segmentron INFO: [TEST] Sample: 33, pixAcc: 98.921, mIoU: 4.711
+2023-01-13 12:29:27,794 Segmentron INFO: [TEST] Sample: 34, pixAcc: 98.913, mIoU: 4.710
+2023-01-13 12:29:27,866 Segmentron INFO: [TEST] Sample: 35, pixAcc: 98.896, mIoU: 4.709
+2023-01-13 12:29:27,943 Segmentron INFO: [TEST] Sample: 36, pixAcc: 98.880, mIoU: 4.709
+2023-01-13 12:29:28,021 Segmentron INFO: [TEST] Sample: 37, pixAcc: 98.864, mIoU: 4.708
+2023-01-13 12:29:28,096 Segmentron INFO: [TEST] Sample: 38, pixAcc: 98.851, mIoU: 4.707
+2023-01-13 12:29:28,173 Segmentron INFO: [TEST] Sample: 39, pixAcc: 98.837, mIoU: 4.707
+2023-01-13 12:29:28,247 Segmentron INFO: [TEST] Sample: 40, pixAcc: 98.825, mIoU: 4.706
+2023-01-13 12:29:28,322 Segmentron INFO: [TEST] Sample: 41, pixAcc: 98.812, mIoU: 4.705
+2023-01-13 12:29:28,392 Segmentron INFO: [TEST] Sample: 42, pixAcc: 98.801, mIoU: 4.705
+2023-01-13 12:29:28,459 Segmentron INFO: [TEST] Sample: 43, pixAcc: 98.794, mIoU: 4.704
+2023-01-13 12:29:28,532 Segmentron INFO: [TEST] Sample: 44, pixAcc: 98.784, mIoU: 4.704
+2023-01-13 12:29:28,609 Segmentron INFO: [TEST] Sample: 45, pixAcc: 98.774, mIoU: 4.704
+2023-01-13 12:29:28,686 Segmentron INFO: [TEST] Sample: 46, pixAcc: 98.763, mIoU: 4.703
+2023-01-13 12:29:28,760 Segmentron INFO: [TEST] Sample: 47, pixAcc: 98.752, mIoU: 4.702
+2023-01-13 12:29:28,832 Segmentron INFO: [TEST] Sample: 48, pixAcc: 98.742, mIoU: 4.702
+2023-01-13 12:29:28,909 Segmentron INFO: [TEST] Sample: 49, pixAcc: 98.733, mIoU: 4.702
+2023-01-13 12:29:28,986 Segmentron INFO: [TEST] Sample: 50, pixAcc: 98.722, mIoU: 4.701
+2023-01-13 12:29:29,060 Segmentron INFO: [TEST] Sample: 51, pixAcc: 98.711, mIoU: 4.701
+2023-01-13 12:29:29,132 Segmentron INFO: [TEST] Sample: 52, pixAcc: 98.699, mIoU: 4.700
+2023-01-13 12:29:29,210 Segmentron INFO: [TEST] Sample: 53, pixAcc: 98.688, mIoU: 4.699
+2023-01-13 12:29:29,288 Segmentron INFO: [TEST] Sample: 54, pixAcc: 98.677, mIoU: 4.699
+2023-01-13 12:29:29,360 Segmentron INFO: [TEST] Sample: 55, pixAcc: 98.669, mIoU: 4.699
+2023-01-13 12:29:29,433 Segmentron INFO: [TEST] Sample: 56, pixAcc: 98.659, mIoU: 4.698
+2023-01-13 12:29:29,510 Segmentron INFO: [TEST] Sample: 57, pixAcc: 98.649, mIoU: 4.698
+2023-01-13 12:29:29,585 Segmentron INFO: [TEST] Sample: 58, pixAcc: 98.639, mIoU: 4.697
+2023-01-13 12:29:29,658 Segmentron INFO: [TEST] Sample: 59, pixAcc: 98.629, mIoU: 4.697
+2023-01-13 12:29:29,732 Segmentron INFO: [TEST] Sample: 60, pixAcc: 98.620, mIoU: 4.696
+2023-01-13 12:29:29,810 Segmentron INFO: [TEST] Sample: 61, pixAcc: 98.612, mIoU: 4.696
+2023-01-13 12:29:29,886 Segmentron INFO: [TEST] Sample: 62, pixAcc: 98.604, mIoU: 4.695
+2023-01-13 12:29:29,958 Segmentron INFO: [TEST] Sample: 63, pixAcc: 98.596, mIoU: 4.695
+2023-01-13 12:29:30,030 Segmentron INFO: [TEST] Sample: 64, pixAcc: 98.589, mIoU: 4.695
+2023-01-13 12:29:30,110 Segmentron INFO: [TEST] Sample: 65, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:30,187 Segmentron INFO: [TEST] Sample: 66, pixAcc: 98.588, mIoU: 4.695
+2023-01-13 12:29:30,259 Segmentron INFO: [TEST] Sample: 67, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:30,332 Segmentron INFO: [TEST] Sample: 68, pixAcc: 98.581, mIoU: 4.694
+2023-01-13 12:29:30,407 Segmentron INFO: [TEST] Sample: 69, pixAcc: 98.580, mIoU: 4.694
+2023-01-13 12:29:30,480 Segmentron INFO: [TEST] Sample: 70, pixAcc: 98.577, mIoU: 4.694
+2023-01-13 12:29:30,553 Segmentron INFO: [TEST] Sample: 71, pixAcc: 98.575, mIoU: 4.694
+2023-01-13 12:29:30,623 Segmentron INFO: [TEST] Sample: 72, pixAcc: 98.573, mIoU: 4.694
+2023-01-13 12:29:30,694 Segmentron INFO: [TEST] Sample: 73, pixAcc: 98.571, mIoU: 4.694
+2023-01-13 12:29:30,767 Segmentron INFO: [TEST] Sample: 74, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:30,844 Segmentron INFO: [TEST] Sample: 75, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:30,920 Segmentron INFO: [TEST] Sample: 76, pixAcc: 98.570, mIoU: 4.694
+2023-01-13 12:29:30,992 Segmentron INFO: [TEST] Sample: 77, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:31,063 Segmentron INFO: [TEST] Sample: 78, pixAcc: 98.569, mIoU: 4.694
+2023-01-13 12:29:31,140 Segmentron INFO: [TEST] Sample: 79, pixAcc: 98.565, mIoU: 4.694
+2023-01-13 12:29:31,216 Segmentron INFO: [TEST] Sample: 80, pixAcc: 98.560, mIoU: 4.693
+2023-01-13 12:29:31,291 Segmentron INFO: [TEST] Sample: 81, pixAcc: 98.559, mIoU: 4.693
+2023-01-13 12:29:31,362 Segmentron INFO: [TEST] Sample: 82, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:31,441 Segmentron INFO: [TEST] Sample: 83, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:31,513 Segmentron INFO: [TEST] Sample: 84, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:31,587 Segmentron INFO: [TEST] Sample: 85, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:31,659 Segmentron INFO: [TEST] Sample: 86, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:31,728 Segmentron INFO: [TEST] Sample: 87, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:31,807 Segmentron INFO: [TEST] Sample: 88, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:31,883 Segmentron INFO: [TEST] Sample: 89, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:31,959 Segmentron INFO: [TEST] Sample: 90, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,031 Segmentron INFO: [TEST] Sample: 91, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,117 Segmentron INFO: [TEST] Sample: 92, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,197 Segmentron INFO: [TEST] Sample: 93, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,275 Segmentron INFO: [TEST] Sample: 94, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,351 Segmentron INFO: [TEST] Sample: 95, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,424 Segmentron INFO: [TEST] Sample: 96, pixAcc: 98.557, mIoU: 4.693
+2023-01-13 12:29:32,500 Segmentron INFO: [TEST] Sample: 97, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:32,577 Segmentron INFO: [TEST] Sample: 98, pixAcc: 98.556, mIoU: 4.693
+2023-01-13 12:29:32,654 Segmentron INFO: [TEST] Sample: 99, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:32,726 Segmentron INFO: [TEST] Sample: 100, pixAcc: 98.554, mIoU: 4.693
+2023-01-13 12:29:32,796 Segmentron INFO: [TEST] Sample: 101, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:32,876 Segmentron INFO: [TEST] Sample: 102, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:32,953 Segmentron INFO: [TEST] Sample: 103, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:33,026 Segmentron INFO: [TEST] Sample: 104, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:33,103 Segmentron INFO: [TEST] Sample: 105, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:33,180 Segmentron INFO: [TEST] Sample: 106, pixAcc: 98.554, mIoU: 4.693
+2023-01-13 12:29:33,255 Segmentron INFO: [TEST] Sample: 107, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:33,326 Segmentron INFO: [TEST] Sample: 108, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:33,389 Segmentron INFO: [TEST] Sample: 109, pixAcc: 98.565, mIoU: 4.694
+2023-01-13 12:29:33,453 Segmentron INFO: [TEST] Sample: 110, pixAcc: 98.575, mIoU: 4.694
+2023-01-13 12:29:33,521 Segmentron INFO: [TEST] Sample: 111, pixAcc: 98.585, mIoU: 4.695
+2023-01-13 12:29:33,589 Segmentron INFO: [TEST] Sample: 112, pixAcc: 98.595, mIoU: 4.695
+2023-01-13 12:29:33,655 Segmentron INFO: [TEST] Sample: 113, pixAcc: 98.604, mIoU: 4.695
+2023-01-13 12:29:33,722 Segmentron INFO: [TEST] Sample: 114, pixAcc: 98.614, mIoU: 4.696
+2023-01-13 12:29:33,790 Segmentron INFO: [TEST] Sample: 115, pixAcc: 98.622, mIoU: 4.696
+2023-01-13 12:29:33,856 Segmentron INFO: [TEST] Sample: 116, pixAcc: 98.629, mIoU: 4.697
+2023-01-13 12:29:33,924 Segmentron INFO: [TEST] Sample: 117, pixAcc: 98.636, mIoU: 4.697
+2023-01-13 12:29:33,990 Segmentron INFO: [TEST] Sample: 118, pixAcc: 98.643, mIoU: 4.697
+2023-01-13 12:29:34,057 Segmentron INFO: [TEST] Sample: 119, pixAcc: 98.650, mIoU: 4.698
+2023-01-13 12:29:34,120 Segmentron INFO: [TEST] Sample: 120, pixAcc: 98.658, mIoU: 4.698
+2023-01-13 12:29:34,189 Segmentron INFO: [TEST] Sample: 121, pixAcc: 98.666, mIoU: 4.698
+2023-01-13 12:29:34,256 Segmentron INFO: [TEST] Sample: 122, pixAcc: 98.675, mIoU: 4.699
+2023-01-13 12:29:34,322 Segmentron INFO: [TEST] Sample: 123, pixAcc: 98.682, mIoU: 4.699
+2023-01-13 12:29:34,389 Segmentron INFO: [TEST] Sample: 124, pixAcc: 98.689, mIoU: 4.699
+2023-01-13 12:29:34,455 Segmentron INFO: [TEST] Sample: 125, pixAcc: 98.695, mIoU: 4.700
+2023-01-13 12:29:34,522 Segmentron INFO: [TEST] Sample: 126, pixAcc: 98.701, mIoU: 4.700
+2023-01-13 12:29:34,588 Segmentron INFO: [TEST] Sample: 127, pixAcc: 98.707, mIoU: 4.700
+2023-01-13 12:29:34,655 Segmentron INFO: [TEST] Sample: 128, pixAcc: 98.713, mIoU: 4.701
+2023-01-13 12:29:34,723 Segmentron INFO: [TEST] Sample: 129, pixAcc: 98.718, mIoU: 4.701
+2023-01-13 12:29:34,788 Segmentron INFO: [TEST] Sample: 130, pixAcc: 98.725, mIoU: 4.701
+2023-01-13 12:29:34,854 Segmentron INFO: [TEST] Sample: 131, pixAcc: 98.731, mIoU: 4.701
+2023-01-13 12:29:34,922 Segmentron INFO: [TEST] Sample: 132, pixAcc: 98.738, mIoU: 4.702
+2023-01-13 12:29:34,989 Segmentron INFO: [TEST] Sample: 133, pixAcc: 98.744, mIoU: 4.702
+2023-01-13 12:29:35,056 Segmentron INFO: [TEST] Sample: 134, pixAcc: 98.751, mIoU: 4.702
+2023-01-13 12:29:35,121 Segmentron INFO: [TEST] Sample: 135, pixAcc: 98.757, mIoU: 4.703
+2023-01-13 12:29:35,185 Segmentron INFO: [TEST] Sample: 136, pixAcc: 98.762, mIoU: 4.703
+2023-01-13 12:29:35,250 Segmentron INFO: [TEST] Sample: 137, pixAcc: 98.768, mIoU: 4.703
+2023-01-13 12:29:35,314 Segmentron INFO: [TEST] Sample: 138, pixAcc: 98.774, mIoU: 4.704
+2023-01-13 12:29:35,380 Segmentron INFO: [TEST] Sample: 139, pixAcc: 98.779, mIoU: 4.704
+2023-01-13 12:29:35,445 Segmentron INFO: [TEST] Sample: 140, pixAcc: 98.785, mIoU: 4.704
+2023-01-13 12:29:35,511 Segmentron INFO: [TEST] Sample: 141, pixAcc: 98.791, mIoU: 4.704
+2023-01-13 12:29:35,575 Segmentron INFO: [TEST] Sample: 142, pixAcc: 98.798, mIoU: 4.705
+2023-01-13 12:29:35,641 Segmentron INFO: [TEST] Sample: 143, pixAcc: 98.804, mIoU: 4.705
+2023-01-13 12:29:35,705 Segmentron INFO: [TEST] Sample: 144, pixAcc: 98.811, mIoU: 4.705
+2023-01-13 12:29:35,769 Segmentron INFO: [TEST] Sample: 145, pixAcc: 98.817, mIoU: 4.706
+2023-01-13 12:29:35,834 Segmentron INFO: [TEST] Sample: 146, pixAcc: 98.822, mIoU: 4.706
+2023-01-13 12:29:35,898 Segmentron INFO: [TEST] Sample: 147, pixAcc: 98.826, mIoU: 4.706
+2023-01-13 12:29:35,965 Segmentron INFO: [TEST] Sample: 148, pixAcc: 98.830, mIoU: 4.706
+2023-01-13 12:29:36,032 Segmentron INFO: [TEST] Sample: 149, pixAcc: 98.834, mIoU: 4.706
+2023-01-13 12:29:36,099 Segmentron INFO: [TEST] Sample: 150, pixAcc: 98.838, mIoU: 4.707
+2023-01-13 12:29:36,164 Segmentron INFO: [TEST] Sample: 151, pixAcc: 98.842, mIoU: 4.707
+2023-01-13 12:29:36,229 Segmentron INFO: [TEST] Sample: 152, pixAcc: 98.847, mIoU: 4.707
+2023-01-13 12:29:36,295 Segmentron INFO: [TEST] Sample: 153, pixAcc: 98.851, mIoU: 4.707
+2023-01-13 12:29:36,362 Segmentron INFO: [TEST] Sample: 154, pixAcc: 98.855, mIoU: 4.707
+2023-01-13 12:29:36,428 Segmentron INFO: [TEST] Sample: 155, pixAcc: 98.859, mIoU: 4.708
+2023-01-13 12:29:36,491 Segmentron INFO: [TEST] Sample: 156, pixAcc: 98.862, mIoU: 4.708
+2023-01-13 12:29:36,556 Segmentron INFO: [TEST] Sample: 157, pixAcc: 98.866, mIoU: 4.708
+2023-01-13 12:29:36,623 Segmentron INFO: [TEST] Sample: 158, pixAcc: 98.870, mIoU: 4.708
+2023-01-13 12:29:36,689 Segmentron INFO: [TEST] Sample: 159, pixAcc: 98.873, mIoU: 4.708
+2023-01-13 12:29:36,756 Segmentron INFO: [TEST] Sample: 160, pixAcc: 98.877, mIoU: 4.708
+2023-01-13 12:29:36,823 Segmentron INFO: [TEST] Sample: 161, pixAcc: 98.881, mIoU: 4.709
+2023-01-13 12:29:36,889 Segmentron INFO: [TEST] Sample: 162, pixAcc: 98.884, mIoU: 4.709
+2023-01-13 12:29:36,956 Segmentron INFO: [TEST] Sample: 163, pixAcc: 98.867, mIoU: 4.708
+2023-01-13 12:29:37,023 Segmentron INFO: [TEST] Sample: 164, pixAcc: 98.849, mIoU: 4.707
+2023-01-13 12:29:37,090 Segmentron INFO: [TEST] Sample: 165, pixAcc: 98.828, mIoU: 4.706
+2023-01-13 12:29:37,156 Segmentron INFO: [TEST] Sample: 166, pixAcc: 98.811, mIoU: 4.705
+2023-01-13 12:29:37,224 Segmentron INFO: [TEST] Sample: 167, pixAcc: 98.794, mIoU: 4.704
+2023-01-13 12:29:37,290 Segmentron INFO: [TEST] Sample: 168, pixAcc: 98.780, mIoU: 4.704
+2023-01-13 12:29:37,357 Segmentron INFO: [TEST] Sample: 169, pixAcc: 98.765, mIoU: 4.703
+2023-01-13 12:29:37,423 Segmentron INFO: [TEST] Sample: 170, pixAcc: 98.751, mIoU: 4.702
+2023-01-13 12:29:37,489 Segmentron INFO: [TEST] Sample: 171, pixAcc: 98.737, mIoU: 4.702
+2023-01-13 12:29:37,557 Segmentron INFO: [TEST] Sample: 172, pixAcc: 98.723, mIoU: 4.701
+2023-01-13 12:29:37,624 Segmentron INFO: [TEST] Sample: 173, pixAcc: 98.709, mIoU: 4.700
+2023-01-13 12:29:37,690 Segmentron INFO: [TEST] Sample: 174, pixAcc: 98.696, mIoU: 4.700
+2023-01-13 12:29:37,757 Segmentron INFO: [TEST] Sample: 175, pixAcc: 98.683, mIoU: 4.699
+2023-01-13 12:29:37,823 Segmentron INFO: [TEST] Sample: 176, pixAcc: 98.666, mIoU: 4.698
+2023-01-13 12:29:37,890 Segmentron INFO: [TEST] Sample: 177, pixAcc: 98.651, mIoU: 4.698
+2023-01-13 12:29:37,957 Segmentron INFO: [TEST] Sample: 178, pixAcc: 98.637, mIoU: 4.697
+2023-01-13 12:29:38,023 Segmentron INFO: [TEST] Sample: 179, pixAcc: 98.622, mIoU: 4.696
+2023-01-13 12:29:38,089 Segmentron INFO: [TEST] Sample: 180, pixAcc: 98.605, mIoU: 4.695
+2023-01-13 12:29:38,156 Segmentron INFO: [TEST] Sample: 181, pixAcc: 98.589, mIoU: 4.695
+2023-01-13 12:29:38,223 Segmentron INFO: [TEST] Sample: 182, pixAcc: 98.574, mIoU: 4.694
+2023-01-13 12:29:38,291 Segmentron INFO: [TEST] Sample: 183, pixAcc: 98.560, mIoU: 4.693
+2023-01-13 12:29:38,356 Segmentron INFO: [TEST] Sample: 184, pixAcc: 98.555, mIoU: 4.693
+2023-01-13 12:29:38,422 Segmentron INFO: [TEST] Sample: 185, pixAcc: 98.552, mIoU: 4.693
+2023-01-13 12:29:38,487 Segmentron INFO: [TEST] Sample: 186, pixAcc: 98.550, mIoU: 4.693
+2023-01-13 12:29:38,553 Segmentron INFO: [TEST] Sample: 187, pixAcc: 98.548, mIoU: 4.693
+2023-01-13 12:29:38,622 Segmentron INFO: [TEST] Sample: 188, pixAcc: 98.544, mIoU: 4.693
+2023-01-13 12:29:38,689 Segmentron INFO: [TEST] Sample: 189, pixAcc: 98.538, mIoU: 4.692
+2023-01-13 12:29:38,755 Segmentron INFO: [TEST] Sample: 190, pixAcc: 98.534, mIoU: 4.692
+2023-01-13 12:29:38,823 Segmentron INFO: [TEST] Sample: 191, pixAcc: 98.530, mIoU: 4.692
+2023-01-13 12:29:38,892 Segmentron INFO: [TEST] Sample: 192, pixAcc: 98.522, mIoU: 4.692
+2023-01-13 12:29:38,962 Segmentron INFO: [TEST] Sample: 193, pixAcc: 98.514, mIoU: 4.691
+2023-01-13 12:29:39,032 Segmentron INFO: [TEST] Sample: 194, pixAcc: 98.508, mIoU: 4.691
+2023-01-13 12:29:39,106 Segmentron INFO: [TEST] Sample: 195, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:39,175 Segmentron INFO: [TEST] Sample: 196, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:39,243 Segmentron INFO: [TEST] Sample: 197, pixAcc: 98.494, mIoU: 4.690
+2023-01-13 12:29:39,309 Segmentron INFO: [TEST] Sample: 198, pixAcc: 98.492, mIoU: 4.690
+2023-01-13 12:29:39,376 Segmentron INFO: [TEST] Sample: 199, pixAcc: 98.488, mIoU: 4.690
+2023-01-13 12:29:39,445 Segmentron INFO: [TEST] Sample: 200, pixAcc: 98.480, mIoU: 4.690
+2023-01-13 12:29:39,513 Segmentron INFO: [TEST] Sample: 201, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:39,582 Segmentron INFO: [TEST] Sample: 202, pixAcc: 98.471, mIoU: 4.689
+2023-01-13 12:29:39,653 Segmentron INFO: [TEST] Sample: 203, pixAcc: 98.466, mIoU: 4.689
+2023-01-13 12:29:39,722 Segmentron INFO: [TEST] Sample: 204, pixAcc: 98.461, mIoU: 4.689
+2023-01-13 12:29:39,788 Segmentron INFO: [TEST] Sample: 205, pixAcc: 98.456, mIoU: 4.688
+2023-01-13 12:29:39,856 Segmentron INFO: [TEST] Sample: 206, pixAcc: 98.451, mIoU: 4.688
+2023-01-13 12:29:39,931 Segmentron INFO: [TEST] Sample: 207, pixAcc: 98.425, mIoU: 4.687
+2023-01-13 12:29:40,008 Segmentron INFO: [TEST] Sample: 208, pixAcc: 98.398, mIoU: 4.686
+2023-01-13 12:29:40,084 Segmentron INFO: [TEST] Sample: 209, pixAcc: 98.368, mIoU: 4.684
+2023-01-13 12:29:40,162 Segmentron INFO: [TEST] Sample: 210, pixAcc: 98.339, mIoU: 4.683
+2023-01-13 12:29:40,240 Segmentron INFO: [TEST] Sample: 211, pixAcc: 98.311, mIoU: 4.681
+2023-01-13 12:29:40,315 Segmentron INFO: [TEST] Sample: 212, pixAcc: 98.282, mIoU: 4.680
+2023-01-13 12:29:40,391 Segmentron INFO: [TEST] Sample: 213, pixAcc: 98.254, mIoU: 4.679
+2023-01-13 12:29:40,455 Segmentron INFO: [TEST] Sample: 214, pixAcc: 98.260, mIoU: 4.679
+2023-01-13 12:29:40,521 Segmentron INFO: [TEST] Sample: 215, pixAcc: 98.266, mIoU: 4.679
+2023-01-13 12:29:40,586 Segmentron INFO: [TEST] Sample: 216, pixAcc: 98.272, mIoU: 4.680
+2023-01-13 12:29:40,652 Segmentron INFO: [TEST] Sample: 217, pixAcc: 98.277, mIoU: 4.680
+2023-01-13 12:29:40,718 Segmentron INFO: [TEST] Sample: 218, pixAcc: 98.282, mIoU: 4.680
+2023-01-13 12:29:40,784 Segmentron INFO: [TEST] Sample: 219, pixAcc: 98.288, mIoU: 4.680
+2023-01-13 12:29:40,848 Segmentron INFO: [TEST] Sample: 220, pixAcc: 98.293, mIoU: 4.681
+2023-01-13 12:29:40,913 Segmentron INFO: [TEST] Sample: 221, pixAcc: 98.299, mIoU: 4.681
+2023-01-13 12:29:40,978 Segmentron INFO: [TEST] Sample: 222, pixAcc: 98.305, mIoU: 4.681
+2023-01-13 12:29:41,045 Segmentron INFO: [TEST] Sample: 223, pixAcc: 98.309, mIoU: 4.681
+2023-01-13 12:29:41,111 Segmentron INFO: [TEST] Sample: 224, pixAcc: 98.315, mIoU: 4.682
+2023-01-13 12:29:41,176 Segmentron INFO: [TEST] Sample: 225, pixAcc: 98.320, mIoU: 4.682
+2023-01-13 12:29:41,243 Segmentron INFO: [TEST] Sample: 226, pixAcc: 98.325, mIoU: 4.682
+2023-01-13 12:29:41,309 Segmentron INFO: [TEST] Sample: 227, pixAcc: 98.330, mIoU: 4.682
+2023-01-13 12:29:41,377 Segmentron INFO: [TEST] Sample: 228, pixAcc: 98.335, mIoU: 4.683
+2023-01-13 12:29:41,443 Segmentron INFO: [TEST] Sample: 229, pixAcc: 98.339, mIoU: 4.683
+2023-01-13 12:29:41,506 Segmentron INFO: [TEST] Sample: 230, pixAcc: 98.345, mIoU: 4.683
+2023-01-13 12:29:41,572 Segmentron INFO: [TEST] Sample: 231, pixAcc: 98.351, mIoU: 4.683
+2023-01-13 12:29:41,634 Segmentron INFO: [TEST] Sample: 232, pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:41,698 Segmentron INFO: [TEST] Sample: 233, pixAcc: 98.360, mIoU: 4.684
+2023-01-13 12:29:41,764 Segmentron INFO: [TEST] Sample: 234, pixAcc: 98.366, mIoU: 4.684
+2023-01-13 12:29:41,829 Segmentron INFO: [TEST] Sample: 235, pixAcc: 98.371, mIoU: 4.684
+2023-01-13 12:29:41,894 Segmentron INFO: [TEST] Sample: 236, pixAcc: 98.376, mIoU: 4.685
+2023-01-13 12:29:41,959 Segmentron INFO: [TEST] Sample: 237, pixAcc: 98.382, mIoU: 4.685
+2023-01-13 12:29:42,022 Segmentron INFO: [TEST] Sample: 238, pixAcc: 98.385, mIoU: 4.685
+2023-01-13 12:29:42,089 Segmentron INFO: [TEST] Sample: 239, pixAcc: 98.388, mIoU: 4.685
+2023-01-13 12:29:42,156 Segmentron INFO: [TEST] Sample: 240, pixAcc: 98.392, mIoU: 4.685
+2023-01-13 12:29:42,222 Segmentron INFO: [TEST] Sample: 241, pixAcc: 98.396, mIoU: 4.686
+2023-01-13 12:29:42,290 Segmentron INFO: [TEST] Sample: 242, pixAcc: 98.400, mIoU: 4.686
+2023-01-13 12:29:42,356 Segmentron INFO: [TEST] Sample: 243, pixAcc: 98.404, mIoU: 4.686
+2023-01-13 12:29:42,423 Segmentron INFO: [TEST] Sample: 244, pixAcc: 98.408, mIoU: 4.686
+2023-01-13 12:29:42,490 Segmentron INFO: [TEST] Sample: 245, pixAcc: 98.413, mIoU: 4.686
+2023-01-13 12:29:42,557 Segmentron INFO: [TEST] Sample: 246, pixAcc: 98.418, mIoU: 4.687
+2023-01-13 12:29:42,622 Segmentron INFO: [TEST] Sample: 247, pixAcc: 98.422, mIoU: 4.687
+2023-01-13 12:29:42,689 Segmentron INFO: [TEST] Sample: 248, pixAcc: 98.427, mIoU: 4.687
+2023-01-13 12:29:42,755 Segmentron INFO: [TEST] Sample: 249, pixAcc: 98.431, mIoU: 4.687
+2023-01-13 12:29:42,822 Segmentron INFO: [TEST] Sample: 250, pixAcc: 98.436, mIoU: 4.687
+2023-01-13 12:29:42,888 Segmentron INFO: [TEST] Sample: 251, pixAcc: 98.438, mIoU: 4.688
+2023-01-13 12:29:42,955 Segmentron INFO: [TEST] Sample: 252, pixAcc: 98.441, mIoU: 4.688
+2023-01-13 12:29:43,022 Segmentron INFO: [TEST] Sample: 253, pixAcc: 98.443, mIoU: 4.688
+2023-01-13 12:29:43,087 Segmentron INFO: [TEST] Sample: 254, pixAcc: 98.446, mIoU: 4.688
+2023-01-13 12:29:43,153 Segmentron INFO: [TEST] Sample: 255, pixAcc: 98.449, mIoU: 4.688
+2023-01-13 12:29:43,220 Segmentron INFO: [TEST] Sample: 256, pixAcc: 98.452, mIoU: 4.688
+2023-01-13 12:29:43,287 Segmentron INFO: [TEST] Sample: 257, pixAcc: 98.454, mIoU: 4.688
+2023-01-13 12:29:43,355 Segmentron INFO: [TEST] Sample: 258, pixAcc: 98.457, mIoU: 4.688
+2023-01-13 12:29:43,422 Segmentron INFO: [TEST] Sample: 259, pixAcc: 98.460, mIoU: 4.689
+2023-01-13 12:29:43,488 Segmentron INFO: [TEST] Sample: 260, pixAcc: 98.462, mIoU: 4.689
+2023-01-13 12:29:43,555 Segmentron INFO: [TEST] Sample: 261, pixAcc: 98.465, mIoU: 4.689
+2023-01-13 12:29:43,622 Segmentron INFO: [TEST] Sample: 262, pixAcc: 98.468, mIoU: 4.689
+2023-01-13 12:29:43,688 Segmentron INFO: [TEST] Sample: 263, pixAcc: 98.470, mIoU: 4.689
+2023-01-13 12:29:43,753 Segmentron INFO: [TEST] Sample: 264, pixAcc: 98.473, mIoU: 4.689
+2023-01-13 12:29:43,821 Segmentron INFO: [TEST] Sample: 265, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:43,889 Segmentron INFO: [TEST] Sample: 266, pixAcc: 98.478, mIoU: 4.689
+2023-01-13 12:29:43,954 Segmentron INFO: [TEST] Sample: 267, pixAcc: 98.480, mIoU: 4.690
+2023-01-13 12:29:44,021 Segmentron INFO: [TEST] Sample: 268, pixAcc: 98.482, mIoU: 4.690
+2023-01-13 12:29:44,088 Segmentron INFO: [TEST] Sample: 269, pixAcc: 98.484, mIoU: 4.690
+2023-01-13 12:29:44,154 Segmentron INFO: [TEST] Sample: 270, pixAcc: 98.486, mIoU: 4.690
+2023-01-13 12:29:44,221 Segmentron INFO: [TEST] Sample: 271, pixAcc: 98.489, mIoU: 4.690
+2023-01-13 12:29:44,288 Segmentron INFO: [TEST] Sample: 272, pixAcc: 98.491, mIoU: 4.690
+2023-01-13 12:29:44,355 Segmentron INFO: [TEST] Sample: 273, pixAcc: 98.494, mIoU: 4.690
+2023-01-13 12:29:44,422 Segmentron INFO: [TEST] Sample: 274, pixAcc: 98.496, mIoU: 4.690
+2023-01-13 12:29:44,488 Segmentron INFO: [TEST] Sample: 275, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:44,555 Segmentron INFO: [TEST] Sample: 276, pixAcc: 98.500, mIoU: 4.690
+2023-01-13 12:29:44,623 Segmentron INFO: [TEST] Sample: 277, pixAcc: 98.502, mIoU: 4.691
+2023-01-13 12:29:44,691 Segmentron INFO: [TEST] Sample: 278, pixAcc: 98.504, mIoU: 4.691
+2023-01-13 12:29:44,755 Segmentron INFO: [TEST] Sample: 279, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:44,821 Segmentron INFO: [TEST] Sample: 280, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:44,888 Segmentron INFO: [TEST] Sample: 281, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:44,955 Segmentron INFO: [TEST] Sample: 282, pixAcc: 98.513, mIoU: 4.691
+2023-01-13 12:29:45,022 Segmentron INFO: [TEST] Sample: 283, pixAcc: 98.512, mIoU: 4.691
+2023-01-13 12:29:45,087 Segmentron INFO: [TEST] Sample: 284, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:45,153 Segmentron INFO: [TEST] Sample: 285, pixAcc: 98.511, mIoU: 4.691
+2023-01-13 12:29:45,221 Segmentron INFO: [TEST] Sample: 286, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:45,289 Segmentron INFO: [TEST] Sample: 287, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:45,356 Segmentron INFO: [TEST] Sample: 288, pixAcc: 98.510, mIoU: 4.691
+2023-01-13 12:29:45,422 Segmentron INFO: [TEST] Sample: 289, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:45,490 Segmentron INFO: [TEST] Sample: 290, pixAcc: 98.509, mIoU: 4.691
+2023-01-13 12:29:45,558 Segmentron INFO: [TEST] Sample: 291, pixAcc: 98.508, mIoU: 4.691
+2023-01-13 12:29:45,623 Segmentron INFO: [TEST] Sample: 292, pixAcc: 98.507, mIoU: 4.691
+2023-01-13 12:29:45,689 Segmentron INFO: [TEST] Sample: 293, pixAcc: 98.507, mIoU: 4.691
+2023-01-13 12:29:45,759 Segmentron INFO: [TEST] Sample: 294, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:45,826 Segmentron INFO: [TEST] Sample: 295, pixAcc: 98.506, mIoU: 4.691
+2023-01-13 12:29:45,891 Segmentron INFO: [TEST] Sample: 296, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:45,957 Segmentron INFO: [TEST] Sample: 297, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:46,025 Segmentron INFO: [TEST] Sample: 298, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:46,089 Segmentron INFO: [TEST] Sample: 299, pixAcc: 98.505, mIoU: 4.691
+2023-01-13 12:29:46,155 Segmentron INFO: [TEST] Sample: 300, pixAcc: 98.504, mIoU: 4.691
+2023-01-13 12:29:46,221 Segmentron INFO: [TEST] Sample: 301, pixAcc: 98.503, mIoU: 4.691
+2023-01-13 12:29:46,288 Segmentron INFO: [TEST] Sample: 302, pixAcc: 98.502, mIoU: 4.691
+2023-01-13 12:29:46,354 Segmentron INFO: [TEST] Sample: 303, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:46,422 Segmentron INFO: [TEST] Sample: 304, pixAcc: 98.501, mIoU: 4.691
+2023-01-13 12:29:46,490 Segmentron INFO: [TEST] Sample: 305, pixAcc: 98.500, mIoU: 4.690
+2023-01-13 12:29:46,555 Segmentron INFO: [TEST] Sample: 306, pixAcc: 98.499, mIoU: 4.690
+2023-01-13 12:29:46,623 Segmentron INFO: [TEST] Sample: 307, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:46,689 Segmentron INFO: [TEST] Sample: 308, pixAcc: 98.498, mIoU: 4.690
+2023-01-13 12:29:46,756 Segmentron INFO: [TEST] Sample: 309, pixAcc: 98.497, mIoU: 4.690
+2023-01-13 12:29:46,823 Segmentron INFO: [TEST] Sample: 310, pixAcc: 98.497, mIoU: 4.690
+2023-01-13 12:29:46,888 Segmentron INFO: [TEST] Sample: 311, pixAcc: 98.495, mIoU: 4.690
+2023-01-13 12:29:46,954 Segmentron INFO: [TEST] Sample: 312, pixAcc: 98.492, mIoU: 4.690
+2023-01-13 12:29:47,020 Segmentron INFO: [TEST] Sample: 313, pixAcc: 98.489, mIoU: 4.690
+2023-01-13 12:29:47,087 Segmentron INFO: [TEST] Sample: 314, pixAcc: 98.487, mIoU: 4.690
+2023-01-13 12:29:47,151 Segmentron INFO: [TEST] Sample: 315, pixAcc: 98.485, mIoU: 4.690
+2023-01-13 12:29:47,216 Segmentron INFO: [TEST] Sample: 316, pixAcc: 98.482, mIoU: 4.690
+2023-01-13 12:29:47,279 Segmentron INFO: [TEST] Sample: 317, pixAcc: 98.479, mIoU: 4.689
+2023-01-13 12:29:47,344 Segmentron INFO: [TEST] Sample: 318, pixAcc: 98.476, mIoU: 4.689
+2023-01-13 12:29:47,409 Segmentron INFO: [TEST] Sample: 319, pixAcc: 98.473, mIoU: 4.689
+2023-01-13 12:29:47,474 Segmentron INFO: [TEST] Sample: 320, pixAcc: 98.470, mIoU: 4.689
+2023-01-13 12:29:47,540 Segmentron INFO: [TEST] Sample: 321, pixAcc: 98.467, mIoU: 4.689
+2023-01-13 12:29:47,606 Segmentron INFO: [TEST] Sample: 322, pixAcc: 98.464, mIoU: 4.689
+2023-01-13 12:29:47,668 Segmentron INFO: [TEST] Sample: 323, pixAcc: 98.461, mIoU: 4.689
+2023-01-13 12:29:47,731 Segmentron INFO: [TEST] Sample: 324, pixAcc: 98.458, mIoU: 4.688
+2023-01-13 12:29:47,797 Segmentron INFO: [TEST] Sample: 325, pixAcc: 98.455, mIoU: 4.688
+2023-01-13 12:29:47,855 Segmentron INFO: [TEST] Sample: 326, pixAcc: 98.453, mIoU: 4.688
+2023-01-13 12:29:47,919 Segmentron INFO: [TEST] Sample: 327, pixAcc: 98.450, mIoU: 4.688
+2023-01-13 12:29:47,981 Segmentron INFO: [TEST] Sample: 328, pixAcc: 98.447, mIoU: 4.688
+2023-01-13 12:29:48,044 Segmentron INFO: [TEST] Sample: 329, pixAcc: 98.445, mIoU: 4.688
+2023-01-13 12:29:48,108 Segmentron INFO: [TEST] Sample: 330, pixAcc: 98.442, mIoU: 4.688
+2023-01-13 12:29:48,170 Segmentron INFO: [TEST] Sample: 331, pixAcc: 98.440, mIoU: 4.688
+2023-01-13 12:29:48,232 Segmentron INFO: [TEST] Sample: 332, pixAcc: 98.437, mIoU: 4.687
+2023-01-13 12:29:48,296 Segmentron INFO: [TEST] Sample: 333, pixAcc: 98.435, mIoU: 4.687
+2023-01-13 12:29:48,356 Segmentron INFO: [TEST] Sample: 334, pixAcc: 98.432, mIoU: 4.687
+2023-01-13 12:29:48,420 Segmentron INFO: [TEST] Sample: 335, pixAcc: 98.430, mIoU: 4.687
+2023-01-13 12:29:48,485 Segmentron INFO: [TEST] Sample: 336, pixAcc: 98.427, mIoU: 4.687
+2023-01-13 12:29:48,550 Segmentron INFO: [TEST] Sample: 337, pixAcc: 98.424, mIoU: 4.687
+2023-01-13 12:29:48,614 Segmentron INFO: [TEST] Sample: 338, pixAcc: 98.420, mIoU: 4.687
+2023-01-13 12:29:48,677 Segmentron INFO: [TEST] Sample: 339, pixAcc: 98.418, mIoU: 4.687
+2023-01-13 12:29:48,741 Segmentron INFO: [TEST] Sample: 340, pixAcc: 98.415, mIoU: 4.686
+2023-01-13 12:29:48,801 Segmentron INFO: [TEST] Sample: 341, pixAcc: 98.412, mIoU: 4.686
+2023-01-13 12:29:48,862 Segmentron INFO: [TEST] Sample: 342, pixAcc: 98.409, mIoU: 4.686
+2023-01-13 12:29:48,922 Segmentron INFO: [TEST] Sample: 343, pixAcc: 98.407, mIoU: 4.686
+2023-01-13 12:29:48,985 Segmentron INFO: [TEST] Sample: 344, pixAcc: 98.405, mIoU: 4.686
+2023-01-13 12:29:49,050 Segmentron INFO: [TEST] Sample: 345, pixAcc: 98.403, mIoU: 4.686
+2023-01-13 12:29:49,113 Segmentron INFO: [TEST] Sample: 346, pixAcc: 98.400, mIoU: 4.686
+2023-01-13 12:29:49,176 Segmentron INFO: [TEST] Sample: 347, pixAcc: 98.398, mIoU: 4.686
+2023-01-13 12:29:49,238 Segmentron INFO: [TEST] Sample: 348, pixAcc: 98.395, mIoU: 4.685
+2023-01-13 12:29:49,299 Segmentron INFO: [TEST] Sample: 349, pixAcc: 98.393, mIoU: 4.685
+2023-01-13 12:29:49,364 Segmentron INFO: [TEST] Sample: 350, pixAcc: 98.391, mIoU: 4.685
+2023-01-13 12:29:49,425 Segmentron INFO: [TEST] Sample: 351, pixAcc: 98.390, mIoU: 4.685
+2023-01-13 12:29:49,490 Segmentron INFO: [TEST] Sample: 352, pixAcc: 98.389, mIoU: 4.685
+2023-01-13 12:29:49,554 Segmentron INFO: [TEST] Sample: 353, pixAcc: 98.387, mIoU: 4.685
+2023-01-13 12:29:49,621 Segmentron INFO: [TEST] Sample: 354, pixAcc: 98.386, mIoU: 4.685
+2023-01-13 12:29:49,687 Segmentron INFO: [TEST] Sample: 355, pixAcc: 98.385, mIoU: 4.685
+2023-01-13 12:29:49,754 Segmentron INFO: [TEST] Sample: 356, pixAcc: 98.384, mIoU: 4.685
+2023-01-13 12:29:49,821 Segmentron INFO: [TEST] Sample: 357, pixAcc: 98.383, mIoU: 4.685
+2023-01-13 12:29:49,889 Segmentron INFO: [TEST] Sample: 358, pixAcc: 98.382, mIoU: 4.685
+2023-01-13 12:29:49,955 Segmentron INFO: [TEST] Sample: 359, pixAcc: 98.381, mIoU: 4.685
+2023-01-13 12:29:50,022 Segmentron INFO: [TEST] Sample: 360, pixAcc: 98.380, mIoU: 4.685
+2023-01-13 12:29:50,088 Segmentron INFO: [TEST] Sample: 361, pixAcc: 98.379, mIoU: 4.685
+2023-01-13 12:29:50,155 Segmentron INFO: [TEST] Sample: 362, pixAcc: 98.377, mIoU: 4.685
+2023-01-13 12:29:50,221 Segmentron INFO: [TEST] Sample: 363, pixAcc: 98.376, mIoU: 4.685
+2023-01-13 12:29:50,288 Segmentron INFO: [TEST] Sample: 364, pixAcc: 98.375, mIoU: 4.685
+2023-01-13 12:29:50,355 Segmentron INFO: [TEST] Sample: 365, pixAcc: 98.374, mIoU: 4.684
+2023-01-13 12:29:50,422 Segmentron INFO: [TEST] Sample: 366, pixAcc: 98.373, mIoU: 4.684
+2023-01-13 12:29:50,488 Segmentron INFO: [TEST] Sample: 367, pixAcc: 98.372, mIoU: 4.684
+2023-01-13 12:29:50,554 Segmentron INFO: [TEST] Sample: 368, pixAcc: 98.371, mIoU: 4.684
+2023-01-13 12:29:50,621 Segmentron INFO: [TEST] Sample: 369, pixAcc: 98.369, mIoU: 4.684
+2023-01-13 12:29:50,688 Segmentron INFO: [TEST] Sample: 370, pixAcc: 98.368, mIoU: 4.684
+2023-01-13 12:29:50,755 Segmentron INFO: [TEST] Sample: 371, pixAcc: 98.367, mIoU: 4.684
+2023-01-13 12:29:50,822 Segmentron INFO: [TEST] Sample: 372, pixAcc: 98.366, mIoU: 4.684
+2023-01-13 12:29:50,888 Segmentron INFO: [TEST] Sample: 373, pixAcc: 98.365, mIoU: 4.684
+2023-01-13 12:29:50,955 Segmentron INFO: [TEST] Sample: 374, pixAcc: 98.364, mIoU: 4.684
+2023-01-13 12:29:51,020 Segmentron INFO: [TEST] Sample: 375, pixAcc: 98.363, mIoU: 4.684
+2023-01-13 12:29:51,087 Segmentron INFO: [TEST] Sample: 376, pixAcc: 98.362, mIoU: 4.684
+2023-01-13 12:29:51,155 Segmentron INFO: [TEST] Sample: 377, pixAcc: 98.361, mIoU: 4.684
+2023-01-13 12:29:51,222 Segmentron INFO: [TEST] Sample: 378, pixAcc: 98.361, mIoU: 4.684
+2023-01-13 12:29:51,289 Segmentron INFO: [TEST] Sample: 379, pixAcc: 98.360, mIoU: 4.684
+2023-01-13 12:29:51,355 Segmentron INFO: [TEST] Sample: 380, pixAcc: 98.359, mIoU: 4.684
+2023-01-13 12:29:51,421 Segmentron INFO: [TEST] Sample: 381, pixAcc: 98.358, mIoU: 4.684
+2023-01-13 12:29:51,489 Segmentron INFO: [TEST] Sample: 382, pixAcc: 98.357, mIoU: 4.684
+2023-01-13 12:29:51,557 Segmentron INFO: [TEST] Sample: 383, pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:51,557 Segmentron INFO: [TEST END]  pixAcc: 98.356, mIoU: 4.684
+2023-01-13 12:29:51,559 Segmentron INFO: Category iou: 
+ +------------+------------------+----------+
+|  class id  |    class name    |   iou    |
++============+==================+==========+
+|     0      |    Background    | 0.983561 |
++------------+------------------+----------+
+|     1      |     pipette      |    0     |
++------------+------------------+----------+
+|     2      |     PCR_tube     |    0     |
++------------+------------------+----------+
+|     3      |       tube       |    0     |
++------------+------------------+----------+
+|     4      |    waste_box     |    0     |
++------------+------------------+----------+
+|     5      |       vial       |    0     |
++------------+------------------+----------+
+|     6      | measuring_flask  |    0     |
++------------+------------------+----------+
+|     7      |      beaker      |    0     |
++------------+------------------+----------+
+|     8      |   wash_bottle    |    0     |
++------------+------------------+----------+
+|     9      |   water_bottle   |    0     |
++------------+------------------+----------+
+|     10     | erlenmeyer_flask |    0     |
++------------+------------------+----------+
+|     11     |  culture_plate   |    0     |
++------------+------------------+----------+
+|     12     |      spoon       |    0     |
++------------+------------------+----------+
+|     13     | electronic_scale |    0     |
++------------+------------------+----------+
+|     14     |   LB_solution    |    0     |
++------------+------------------+----------+
+|     15     |    stopwatch     |    0     |
++------------+------------------+----------+
+|     16     |    D_sorbitol    |    0     |
++------------+------------------+----------+
+|     17     |   solution_P1    |    0     |
++------------+------------------+----------+
+|     18     |  plastic_bottle  |    0     |
++------------+------------------+----------+
+|     19     |     agarose      |    0     |
++------------+------------------+----------+
+|     20     |  cell_spreader   |    0     |
++------------+------------------+----------+
+2023-01-13 12:29:53,048 Segmentron INFO: Epoch: 2/150 || Iters: 10/900 || Lr: 0.009939 || Loss: 0.1139 || Cost Time: 0:03:07 || Estimated Time: 7:41:28
+2023-01-13 12:29:54,529 Segmentron INFO: Epoch: 2/150 || Iters: 20/900 || Lr: 0.009939 || Loss: 0.0439 || Cost Time: 0:03:09 || Estimated Time: 7:40:02
+2023-01-13 12:29:56,014 Segmentron INFO: Epoch: 2/150 || Iters: 30/900 || Lr: 0.009938 || Loss: 0.0740 || Cost Time: 0:03:10 || Estimated Time: 7:38:37
+2023-01-13 12:29:57,497 Segmentron INFO: Epoch: 2/150 || Iters: 40/900 || Lr: 0.009937 || Loss: 0.0600 || Cost Time: 0:03:12 || Estimated Time: 7:37:13
+2023-01-13 12:29:58,976 Segmentron INFO: Epoch: 2/150 || Iters: 50/900 || Lr: 0.009937 || Loss: 0.0557 || Cost Time: 0:03:13 || Estimated Time: 7:35:52
+2023-01-13 12:30:00,474 Segmentron INFO: Epoch: 2/150 || Iters: 60/900 || Lr: 0.009936 || Loss: 0.1626 || Cost Time: 0:03:15 || Estimated Time: 7:34:34
+2023-01-13 12:30:01,953 Segmentron INFO: Epoch: 2/150 || Iters: 70/900 || Lr: 0.009935 || Loss: 0.1833 || Cost Time: 0:03:16 || Estimated Time: 7:33:15
+2023-01-13 12:30:03,432 Segmentron INFO: Epoch: 2/150 || Iters: 80/900 || Lr: 0.009935 || Loss: 0.0545 || Cost Time: 0:03:18 || Estimated Time: 7:31:58
+2023-01-13 12:30:04,910 Segmentron INFO: Epoch: 2/150 || Iters: 90/900 || Lr: 0.009934 || Loss: 0.1822 || Cost Time: 0:03:19 || Estimated Time: 7:30:41
+2023-01-13 12:30:06,393 Segmentron INFO: Epoch: 2/150 || Iters: 100/900 || Lr: 0.009933 || Loss: 0.1442 || Cost Time: 0:03:21 || Estimated Time: 7:29:28
+2023-01-13 12:30:07,876 Segmentron INFO: Epoch: 2/150 || Iters: 110/900 || Lr: 0.009933 || Loss: 0.1020 || Cost Time: 0:03:22 || Estimated Time: 7:28:16
+2023-01-13 12:30:09,360 Segmentron INFO: Epoch: 2/150 || Iters: 120/900 || Lr: 0.009932 || Loss: 0.1278 || Cost Time: 0:03:24 || Estimated Time: 7:27:04
+2023-01-13 12:30:10,841 Segmentron INFO: Epoch: 2/150 || Iters: 130/900 || Lr: 0.009931 || Loss: 0.0328 || Cost Time: 0:03:25 || Estimated Time: 7:25:55
+2023-01-13 12:30:12,323 Segmentron INFO: Epoch: 2/150 || Iters: 140/900 || Lr: 0.009931 || Loss: 0.1604 || Cost Time: 0:03:27 || Estimated Time: 7:24:47
+2023-01-13 12:30:13,808 Segmentron INFO: Epoch: 2/150 || Iters: 150/900 || Lr: 0.009930 || Loss: 0.1158 || Cost Time: 0:03:28 || Estimated Time: 7:23:41
+2023-01-13 12:30:15,294 Segmentron INFO: Epoch: 2/150 || Iters: 160/900 || Lr: 0.009929 || Loss: 0.3819 || Cost Time: 0:03:30 || Estimated Time: 7:22:36
+2023-01-13 12:30:16,784 Segmentron INFO: Epoch: 2/150 || Iters: 170/900 || Lr: 0.009929 || Loss: 0.0446 || Cost Time: 0:03:31 || Estimated Time: 7:21:31
+2023-01-13 12:30:18,270 Segmentron INFO: Epoch: 2/150 || Iters: 180/900 || Lr: 0.009928 || Loss: 5.4192 || Cost Time: 0:03:33 || Estimated Time: 7:20:28
+2023-01-13 12:30:19,751 Segmentron INFO: Epoch: 2/150 || Iters: 190/900 || Lr: 0.009927 || Loss: 0.7195 || Cost Time: 0:03:34 || Estimated Time: 7:19:26
+2023-01-13 12:30:21,241 Segmentron INFO: Epoch: 2/150 || Iters: 200/900 || Lr: 0.009927 || Loss: 0.0769 || Cost Time: 0:03:36 || Estimated Time: 7:18:26
+2023-01-13 12:30:22,729 Segmentron INFO: Epoch: 2/150 || Iters: 210/900 || Lr: 0.009926 || Loss: 0.2179 || Cost Time: 0:03:37 || Estimated Time: 7:17:27
+2023-01-13 12:30:24,210 Segmentron INFO: Epoch: 2/150 || Iters: 220/900 || Lr: 0.009925 || Loss: 0.6034 || Cost Time: 0:03:39 || Estimated Time: 7:16:27
+2023-01-13 12:30:25,697 Segmentron INFO: Epoch: 2/150 || Iters: 230/900 || Lr: 0.009925 || Loss: 0.5484 || Cost Time: 0:03:40 || Estimated Time: 7:15:30
+2023-01-13 12:30:27,186 Segmentron INFO: Epoch: 2/150 || Iters: 240/900 || Lr: 0.009924 || Loss: 0.1346 || Cost Time: 0:03:42 || Estimated Time: 7:14:33
+2023-01-13 12:30:28,669 Segmentron INFO: Epoch: 2/150 || Iters: 250/900 || Lr: 0.009923 || Loss: 0.5303 || Cost Time: 0:03:43 || Estimated Time: 7:13:37
+2023-01-13 12:30:30,155 Segmentron INFO: Epoch: 2/150 || Iters: 260/900 || Lr: 0.009923 || Loss: 0.1404 || Cost Time: 0:03:45 || Estimated Time: 7:12:43
+2023-01-13 12:30:31,638 Segmentron INFO: Epoch: 2/150 || Iters: 270/900 || Lr: 0.009922 || Loss: 0.0854 || Cost Time: 0:03:46 || Estimated Time: 7:11:48
+2023-01-13 12:30:33,118 Segmentron INFO: Epoch: 2/150 || Iters: 280/900 || Lr: 0.009921 || Loss: 0.0808 || Cost Time: 0:03:48 || Estimated Time: 7:10:55
+2023-01-13 12:30:34,606 Segmentron INFO: Epoch: 2/150 || Iters: 290/900 || Lr: 0.009921 || Loss: 0.1096 || Cost Time: 0:03:49 || Estimated Time: 7:10:03
+2023-01-13 12:30:36,091 Segmentron INFO: Epoch: 2/150 || Iters: 300/900 || Lr: 0.009920 || Loss: 0.0603 || Cost Time: 0:03:51 || Estimated Time: 7:09:11
+2023-01-13 12:30:37,576 Segmentron INFO: Epoch: 2/150 || Iters: 310/900 || Lr: 0.009919 || Loss: 0.1605 || Cost Time: 0:03:52 || Estimated Time: 7:08:21
+2023-01-13 12:30:39,056 Segmentron INFO: Epoch: 2/150 || Iters: 320/900 || Lr: 0.009919 || Loss: 0.6596 || Cost Time: 0:03:54 || Estimated Time: 7:07:30
+2023-01-13 12:30:40,555 Segmentron INFO: Epoch: 2/150 || Iters: 330/900 || Lr: 0.009918 || Loss: 0.1945 || Cost Time: 0:03:55 || Estimated Time: 7:06:43
+2023-01-13 12:30:42,046 Segmentron INFO: Epoch: 2/150 || Iters: 340/900 || Lr: 0.009917 || Loss: 0.0557 || Cost Time: 0:03:56 || Estimated Time: 7:05:55
+2023-01-13 12:30:43,528 Segmentron INFO: Epoch: 2/150 || Iters: 350/900 || Lr: 0.009917 || Loss: 0.1482 || Cost Time: 0:03:58 || Estimated Time: 7:05:07
+2023-01-13 12:30:45,014 Segmentron INFO: Epoch: 2/150 || Iters: 360/900 || Lr: 0.009916 || Loss: 0.1580 || Cost Time: 0:03:59 || Estimated Time: 7:04:21
+2023-01-13 12:30:46,498 Segmentron INFO: Epoch: 2/150 || Iters: 370/900 || Lr: 0.009915 || Loss: 0.4104 || Cost Time: 0:04:01 || Estimated Time: 7:03:35
+2023-01-13 12:30:47,979 Segmentron INFO: Epoch: 2/150 || Iters: 380/900 || Lr: 0.009915 || Loss: 0.1463 || Cost Time: 0:04:02 || Estimated Time: 7:02:49
+2023-01-13 12:30:49,460 Segmentron INFO: Epoch: 2/150 || Iters: 390/900 || Lr: 0.009914 || Loss: 0.5170 || Cost Time: 0:04:04 || Estimated Time: 7:02:05
+2023-01-13 12:30:50,943 Segmentron INFO: Epoch: 2/150 || Iters: 400/900 || Lr: 0.009913 || Loss: 0.1617 || Cost Time: 0:04:05 || Estimated Time: 7:01:19
+2023-01-13 12:30:52,431 Segmentron INFO: Epoch: 2/150 || Iters: 410/900 || Lr: 0.009913 || Loss: 0.1238 || Cost Time: 0:04:07 || Estimated Time: 7:00:36
+2023-01-13 12:30:53,929 Segmentron INFO: Epoch: 2/150 || Iters: 420/900 || Lr: 0.009912 || Loss: 0.0917 || Cost Time: 0:04:08 || Estimated Time: 6:59:55
+2023-01-13 12:30:55,416 Segmentron INFO: Epoch: 2/150 || Iters: 430/900 || Lr: 0.009911 || Loss: 0.1099 || Cost Time: 0:04:10 || Estimated Time: 6:59:14
+2023-01-13 12:30:56,900 Segmentron INFO: Epoch: 2/150 || Iters: 440/900 || Lr: 0.009911 || Loss: 0.1764 || Cost Time: 0:04:11 || Estimated Time: 6:58:32
+2023-01-13 12:30:58,389 Segmentron INFO: Epoch: 2/150 || Iters: 450/900 || Lr: 0.009910 || Loss: 0.1248 || Cost Time: 0:04:13 || Estimated Time: 6:57:52
+2023-01-13 12:30:59,875 Segmentron INFO: Epoch: 2/150 || Iters: 460/900 || Lr: 0.009909 || Loss: 0.1511 || Cost Time: 0:04:14 || Estimated Time: 6:57:11
+2023-01-13 12:31:01,371 Segmentron INFO: Epoch: 2/150 || Iters: 470/900 || Lr: 0.009909 || Loss: 0.0383 || Cost Time: 0:04:16 || Estimated Time: 6:56:33
+2023-01-13 12:31:02,855 Segmentron INFO: Epoch: 2/150 || Iters: 480/900 || Lr: 0.009908 || Loss: 0.0539 || Cost Time: 0:04:17 || Estimated Time: 6:55:54
+2023-01-13 12:31:04,336 Segmentron INFO: Epoch: 2/150 || Iters: 490/900 || Lr: 0.009907 || Loss: 0.0583 || Cost Time: 0:04:19 || Estimated Time: 6:55:15
+2023-01-13 12:31:05,816 Segmentron INFO: Epoch: 2/150 || Iters: 500/900 || Lr: 0.009907 || Loss: 0.0700 || Cost Time: 0:04:20 || Estimated Time: 6:54:36
+2023-01-13 12:31:07,299 Segmentron INFO: Epoch: 2/150 || Iters: 510/900 || Lr: 0.009906 || Loss: 0.1651 || Cost Time: 0:04:22 || Estimated Time: 6:53:58
+2023-01-13 12:31:08,781 Segmentron INFO: Epoch: 2/150 || Iters: 520/900 || Lr: 0.009905 || Loss: 0.2596 || Cost Time: 0:04:23 || Estimated Time: 6:53:21
+2023-01-13 12:31:10,259 Segmentron INFO: Epoch: 2/150 || Iters: 530/900 || Lr: 0.009905 || Loss: 0.4761 || Cost Time: 0:04:25 || Estimated Time: 6:52:44
+2023-01-13 12:31:11,753 Segmentron INFO: Epoch: 2/150 || Iters: 540/900 || Lr: 0.009904 || Loss: 2.9481 || Cost Time: 0:04:26 || Estimated Time: 6:52:08
+2023-01-13 12:31:13,234 Segmentron INFO: Epoch: 2/150 || Iters: 550/900 || Lr: 0.009903 || Loss: 1.9675 || Cost Time: 0:04:28 || Estimated Time: 6:51:32
+2023-01-13 12:31:14,721 Segmentron INFO: Epoch: 2/150 || Iters: 560/900 || Lr: 0.009903 || Loss: 1.2307 || Cost Time: 0:04:29 || Estimated Time: 6:50:57
+2023-01-13 12:31:16,202 Segmentron INFO: Epoch: 2/150 || Iters: 570/900 || Lr: 0.009902 || Loss: 0.4108 || Cost Time: 0:04:31 || Estimated Time: 6:50:23
+2023-01-13 12:31:17,681 Segmentron INFO: Epoch: 2/150 || Iters: 580/900 || Lr: 0.009901 || Loss: 0.2155 || Cost Time: 0:04:32 || Estimated Time: 6:49:48
+2023-01-13 12:31:19,169 Segmentron INFO: Epoch: 2/150 || Iters: 590/900 || Lr: 0.009901 || Loss: 0.1702 || Cost Time: 0:04:34 || Estimated Time: 6:49:15
+2023-01-13 12:31:20,659 Segmentron INFO: Epoch: 2/150 || Iters: 600/900 || Lr: 0.009900 || Loss: 0.1406 || Cost Time: 0:04:35 || Estimated Time: 6:48:41
+2023-01-13 12:31:22,156 Segmentron INFO: Epoch: 2/150 || Iters: 610/900 || Lr: 0.009899 || Loss: 0.0899 || Cost Time: 0:04:37 || Estimated Time: 6:48:10
+2023-01-13 12:31:23,641 Segmentron INFO: Epoch: 2/150 || Iters: 620/900 || Lr: 0.009899 || Loss: 0.2350 || Cost Time: 0:04:38 || Estimated Time: 6:47:36
+2023-01-13 12:31:25,123 Segmentron INFO: Epoch: 2/150 || Iters: 630/900 || Lr: 0.009898 || Loss: 0.6073 || Cost Time: 0:04:40 || Estimated Time: 6:47:05
+2023-01-13 12:31:26,604 Segmentron INFO: Epoch: 2/150 || Iters: 640/900 || Lr: 0.009897 || Loss: 0.1449 || Cost Time: 0:04:41 || Estimated Time: 6:46:33
+2023-01-13 12:31:28,093 Segmentron INFO: Epoch: 2/150 || Iters: 650/900 || Lr: 0.009897 || Loss: 0.1327 || Cost Time: 0:04:43 || Estimated Time: 6:46:01
+2023-01-13 12:31:29,583 Segmentron INFO: Epoch: 2/150 || Iters: 660/900 || Lr: 0.009896 || Loss: 0.0472 || Cost Time: 0:04:44 || Estimated Time: 6:45:30
+2023-01-13 12:31:31,060 Segmentron INFO: Epoch: 2/150 || Iters: 670/900 || Lr: 0.009895 || Loss: 0.0953 || Cost Time: 0:04:46 || Estimated Time: 6:44:59
+2023-01-13 12:31:32,537 Segmentron INFO: Epoch: 2/150 || Iters: 680/900 || Lr: 0.009895 || Loss: 0.0493 || Cost Time: 0:04:47 || Estimated Time: 6:44:29
+2023-01-13 12:31:34,020 Segmentron INFO: Epoch: 2/150 || Iters: 690/900 || Lr: 0.009894 || Loss: 0.0866 || Cost Time: 0:04:48 || Estimated Time: 6:43:58
+2023-01-13 12:31:35,500 Segmentron INFO: Epoch: 2/150 || Iters: 700/900 || Lr: 0.009893 || Loss: 0.2017 || Cost Time: 0:04:50 || Estimated Time: 6:43:29
+2023-01-13 12:31:36,982 Segmentron INFO: Epoch: 2/150 || Iters: 710/900 || Lr: 0.009893 || Loss: 0.0468 || Cost Time: 0:04:51 || Estimated Time: 6:42:59
+2023-01-13 12:31:38,466 Segmentron INFO: Epoch: 2/150 || Iters: 720/900 || Lr: 0.009892 || Loss: 0.1155 || Cost Time: 0:04:53 || Estimated Time: 6:42:30
+2023-01-13 12:31:39,943 Segmentron INFO: Epoch: 2/150 || Iters: 730/900 || Lr: 0.009891 || Loss: 0.1226 || Cost Time: 0:04:54 || Estimated Time: 6:42:01
+2023-01-13 12:31:41,431 Segmentron INFO: Epoch: 2/150 || Iters: 740/900 || Lr: 0.009891 || Loss: 0.1399 || Cost Time: 0:04:56 || Estimated Time: 6:41:34
+2023-01-13 12:31:42,930 Segmentron INFO: Epoch: 2/150 || Iters: 750/900 || Lr: 0.009890 || Loss: 0.0439 || Cost Time: 0:04:57 || Estimated Time: 6:41:06
+2023-01-13 12:31:44,412 Segmentron INFO: Epoch: 2/150 || Iters: 760/900 || Lr: 0.009889 || Loss: 0.0706 || Cost Time: 0:04:59 || Estimated Time: 6:40:39
+2023-01-13 12:31:45,893 Segmentron INFO: Epoch: 2/150 || Iters: 770/900 || Lr: 0.009889 || Loss: 0.3006 || Cost Time: 0:05:00 || Estimated Time: 6:40:12
+2023-01-13 12:31:47,386 Segmentron INFO: Epoch: 2/150 || Iters: 780/900 || Lr: 0.009888 || Loss: 0.1611 || Cost Time: 0:05:02 || Estimated Time: 6:39:46
+2023-01-13 12:31:48,868 Segmentron INFO: Epoch: 2/150 || Iters: 790/900 || Lr: 0.009887 || Loss: 10.0464 || Cost Time: 0:05:03 || Estimated Time: 6:39:19
+2023-01-13 12:31:50,355 Segmentron INFO: Epoch: 2/150 || Iters: 800/900 || Lr: 0.009887 || Loss: 1.4342 || Cost Time: 0:05:05 || Estimated Time: 6:38:52
+2023-01-13 12:31:51,833 Segmentron INFO: Epoch: 2/150 || Iters: 810/900 || Lr: 0.009886 || Loss: 1.3181 || Cost Time: 0:05:06 || Estimated Time: 6:38:26
+2023-01-13 12:31:53,314 Segmentron INFO: Epoch: 2/150 || Iters: 820/900 || Lr: 0.009885 || Loss: 0.3783 || Cost Time: 0:05:08 || Estimated Time: 6:38:00
+2023-01-13 12:31:54,795 Segmentron INFO: Epoch: 2/150 || Iters: 830/900 || Lr: 0.009885 || Loss: 0.2264 || Cost Time: 0:05:09 || Estimated Time: 6:37:34
+2023-01-13 12:31:56,280 Segmentron INFO: Epoch: 2/150 || Iters: 840/900 || Lr: 0.009884 || Loss: 0.0710 || Cost Time: 0:05:11 || Estimated Time: 6:37:09
+2023-01-13 12:31:57,771 Segmentron INFO: Epoch: 2/150 || Iters: 850/900 || Lr: 0.009883 || Loss: 0.1687 || Cost Time: 0:05:12 || Estimated Time: 6:36:45
+2023-01-13 12:31:59,253 Segmentron INFO: Epoch: 2/150 || Iters: 860/900 || Lr: 0.009883 || Loss: 0.1198 || Cost Time: 0:05:14 || Estimated Time: 6:36:20
+2023-01-13 12:32:00,751 Segmentron INFO: Epoch: 2/150 || Iters: 870/900 || Lr: 0.009882 || Loss: 0.0414 || Cost Time: 0:05:15 || Estimated Time: 6:35:56
+2023-01-13 12:32:02,238 Segmentron INFO: Epoch: 2/150 || Iters: 880/900 || Lr: 0.009881 || Loss: 0.0575 || Cost Time: 0:05:17 || Estimated Time: 6:35:32
+2023-01-13 12:32:03,721 Segmentron INFO: Epoch: 2/150 || Iters: 890/900 || Lr: 0.009881 || Loss: 0.1584 || Cost Time: 0:05:18 || Estimated Time: 6:35:08
+2023-01-13 12:32:05,201 Segmentron INFO: Epoch: 2/150 || Iters: 0/900 || Lr: 0.009880 || Loss: 0.2825 || Cost Time: 0:05:20 || Estimated Time: 6:34:44
+2023-01-13 12:32:05,714 Segmentron INFO: Epoch 2 model saved in: workdirs2/trans10kv2/trans2seg_small\2.pth
+2023-01-13 12:32:05,786 Segmentron INFO: [EVAL] Sample: 1, pixAcc: 11.937, mIoU: 0.523
+2023-01-13 12:32:05,848 Segmentron INFO: [EVAL] Sample: 2, pixAcc: 11.942, mIoU: 0.523
+2023-01-13 12:32:05,917 Segmentron INFO: [EVAL] Sample: 3, pixAcc: 11.942, mIoU: 0.523
+2023-01-13 12:32:05,988 Segmentron INFO: [EVAL] Sample: 4, pixAcc: 11.940, mIoU: 0.523
+2023-01-13 12:32:06,057 Segmentron INFO: [EVAL] Sample: 5, pixAcc: 11.941, mIoU: 0.524
+2023-01-13 12:32:06,121 Segmentron INFO: [EVAL] Sample: 6, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:06,185 Segmentron INFO: [EVAL] Sample: 7, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:06,247 Segmentron INFO: [EVAL] Sample: 8, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:06,310 Segmentron INFO: [EVAL] Sample: 9, pixAcc: 11.943, mIoU: 0.524
+2023-01-13 12:32:06,373 Segmentron INFO: [EVAL] Sample: 10, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:06,434 Segmentron INFO: [EVAL] Sample: 11, pixAcc: 11.941, mIoU: 0.524
+2023-01-13 12:32:06,497 Segmentron INFO: [EVAL] Sample: 12, pixAcc: 11.941, mIoU: 0.525
+2023-01-13 12:32:06,557 Segmentron INFO: [EVAL] Sample: 13, pixAcc: 11.941, mIoU: 0.525
+2023-01-13 12:32:06,619 Segmentron INFO: [EVAL] Sample: 14, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:06,686 Segmentron INFO: [EVAL] Sample: 15, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:06,752 Segmentron INFO: [EVAL] Sample: 16, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:06,818 Segmentron INFO: [EVAL] Sample: 17, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:06,887 Segmentron INFO: [EVAL] Sample: 18, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:06,953 Segmentron INFO: [EVAL] Sample: 19, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:07,021 Segmentron INFO: [EVAL] Sample: 20, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:07,087 Segmentron INFO: [EVAL] Sample: 21, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:07,153 Segmentron INFO: [EVAL] Sample: 22, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:07,220 Segmentron INFO: [EVAL] Sample: 23, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:07,286 Segmentron INFO: [EVAL] Sample: 24, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:07,352 Segmentron INFO: [EVAL] Sample: 25, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:07,418 Segmentron INFO: [EVAL] Sample: 26, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:07,485 Segmentron INFO: [EVAL] Sample: 27, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:07,551 Segmentron INFO: [EVAL] Sample: 28, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:07,624 Segmentron INFO: [EVAL] Sample: 29, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:07,694 Segmentron INFO: [EVAL] Sample: 30, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:07,768 Segmentron INFO: [EVAL] Sample: 31, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:07,839 Segmentron INFO: [EVAL] Sample: 32, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:07,914 Segmentron INFO: [EVAL] Sample: 33, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:07,990 Segmentron INFO: [EVAL] Sample: 34, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:08,060 Segmentron INFO: [EVAL] Sample: 35, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:08,137 Segmentron INFO: [EVAL] Sample: 36, pixAcc: 11.940, mIoU: 0.530
+2023-01-13 12:32:08,209 Segmentron INFO: [EVAL] Sample: 37, pixAcc: 11.940, mIoU: 0.530
+2023-01-13 12:32:08,282 Segmentron INFO: [EVAL] Sample: 38, pixAcc: 11.940, mIoU: 0.531
+2023-01-13 12:32:08,357 Segmentron INFO: [EVAL] Sample: 39, pixAcc: 11.939, mIoU: 0.531
+2023-01-13 12:32:08,424 Segmentron INFO: [EVAL] Sample: 40, pixAcc: 11.939, mIoU: 0.531
+2023-01-13 12:32:08,493 Segmentron INFO: [EVAL] Sample: 41, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:08,561 Segmentron INFO: [EVAL] Sample: 42, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:08,634 Segmentron INFO: [EVAL] Sample: 43, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:08,709 Segmentron INFO: [EVAL] Sample: 44, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:08,783 Segmentron INFO: [EVAL] Sample: 45, pixAcc: 11.939, mIoU: 0.533
+2023-01-13 12:32:08,857 Segmentron INFO: [EVAL] Sample: 46, pixAcc: 11.939, mIoU: 0.533
+2023-01-13 12:32:08,928 Segmentron INFO: [EVAL] Sample: 47, pixAcc: 11.939, mIoU: 0.534
+2023-01-13 12:32:09,006 Segmentron INFO: [EVAL] Sample: 48, pixAcc: 11.939, mIoU: 0.534
+2023-01-13 12:32:09,083 Segmentron INFO: [EVAL] Sample: 49, pixAcc: 11.939, mIoU: 0.535
+2023-01-13 12:32:09,158 Segmentron INFO: [EVAL] Sample: 50, pixAcc: 11.939, mIoU: 0.535
+2023-01-13 12:32:09,227 Segmentron INFO: [EVAL] Sample: 51, pixAcc: 11.939, mIoU: 0.536
+2023-01-13 12:32:09,304 Segmentron INFO: [EVAL] Sample: 52, pixAcc: 11.939, mIoU: 0.536
+2023-01-13 12:32:09,377 Segmentron INFO: [EVAL] Sample: 53, pixAcc: 11.939, mIoU: 0.537
+2023-01-13 12:32:09,453 Segmentron INFO: [EVAL] Sample: 54, pixAcc: 11.939, mIoU: 0.537
+2023-01-13 12:32:09,525 Segmentron INFO: [EVAL] Sample: 55, pixAcc: 11.939, mIoU: 0.538
+2023-01-13 12:32:09,595 Segmentron INFO: [EVAL] Sample: 56, pixAcc: 11.939, mIoU: 0.538
+2023-01-13 12:32:09,672 Segmentron INFO: [EVAL] Sample: 57, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:09,744 Segmentron INFO: [EVAL] Sample: 58, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:09,819 Segmentron INFO: [EVAL] Sample: 59, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:09,897 Segmentron INFO: [EVAL] Sample: 60, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:09,973 Segmentron INFO: [EVAL] Sample: 61, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:10,056 Segmentron INFO: [EVAL] Sample: 62, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:10,127 Segmentron INFO: [EVAL] Sample: 63, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:10,203 Segmentron INFO: [EVAL] Sample: 64, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:10,277 Segmentron INFO: [EVAL] Sample: 65, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:10,352 Segmentron INFO: [EVAL] Sample: 66, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:10,430 Segmentron INFO: [EVAL] Sample: 67, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:10,507 Segmentron INFO: [EVAL] Sample: 68, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:10,580 Segmentron INFO: [EVAL] Sample: 69, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:10,653 Segmentron INFO: [EVAL] Sample: 70, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:10,726 Segmentron INFO: [EVAL] Sample: 71, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:10,800 Segmentron INFO: [EVAL] Sample: 72, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:10,876 Segmentron INFO: [EVAL] Sample: 73, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:10,948 Segmentron INFO: [EVAL] Sample: 74, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,025 Segmentron INFO: [EVAL] Sample: 75, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,109 Segmentron INFO: [EVAL] Sample: 76, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,184 Segmentron INFO: [EVAL] Sample: 77, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,256 Segmentron INFO: [EVAL] Sample: 78, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,326 Segmentron INFO: [EVAL] Sample: 79, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,400 Segmentron INFO: [EVAL] Sample: 80, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:11,474 Segmentron INFO: [EVAL] Sample: 81, pixAcc: 11.937, mIoU: 0.541
+2023-01-13 12:32:11,548 Segmentron INFO: [EVAL] Sample: 82, pixAcc: 11.936, mIoU: 0.541
+2023-01-13 12:32:11,621 Segmentron INFO: [EVAL] Sample: 83, pixAcc: 11.935, mIoU: 0.541
+2023-01-13 12:32:11,690 Segmentron INFO: [EVAL] Sample: 84, pixAcc: 11.935, mIoU: 0.541
+2023-01-13 12:32:11,758 Segmentron INFO: [EVAL] Sample: 85, pixAcc: 11.934, mIoU: 0.541
+2023-01-13 12:32:11,827 Segmentron INFO: [EVAL] Sample: 86, pixAcc: 11.934, mIoU: 0.542
+2023-01-13 12:32:11,905 Segmentron INFO: [EVAL] Sample: 87, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:11,977 Segmentron INFO: [EVAL] Sample: 88, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:12,056 Segmentron INFO: [EVAL] Sample: 89, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:12,131 Segmentron INFO: [EVAL] Sample: 90, pixAcc: 11.933, mIoU: 0.542
+2023-01-13 12:32:12,206 Segmentron INFO: [EVAL] Sample: 91, pixAcc: 11.932, mIoU: 0.542
+2023-01-13 12:32:12,278 Segmentron INFO: [EVAL] Sample: 92, pixAcc: 11.932, mIoU: 0.542
+2023-01-13 12:32:12,353 Segmentron INFO: [EVAL] Sample: 93, pixAcc: 11.932, mIoU: 0.541
+2023-01-13 12:32:12,424 Segmentron INFO: [EVAL] Sample: 94, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:12,492 Segmentron INFO: [EVAL] Sample: 95, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:12,565 Segmentron INFO: [EVAL] Sample: 96, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:12,640 Segmentron INFO: [EVAL] Sample: 97, pixAcc: 11.930, mIoU: 0.541
+2023-01-13 12:32:12,718 Segmentron INFO: [EVAL] Sample: 98, pixAcc: 11.930, mIoU: 0.541
+2023-01-13 12:32:12,791 Segmentron INFO: [EVAL] Sample: 99, pixAcc: 11.930, mIoU: 0.542
+2023-01-13 12:32:12,863 Segmentron INFO: [EVAL] Sample: 100, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:12,939 Segmentron INFO: [EVAL] Sample: 101, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,017 Segmentron INFO: [EVAL] Sample: 102, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,097 Segmentron INFO: [EVAL] Sample: 103, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,174 Segmentron INFO: [EVAL] Sample: 104, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,247 Segmentron INFO: [EVAL] Sample: 105, pixAcc: 11.928, mIoU: 0.542
+2023-01-13 12:32:13,325 Segmentron INFO: [EVAL] Sample: 106, pixAcc: 11.928, mIoU: 0.542
+2023-01-13 12:32:13,400 Segmentron INFO: [EVAL] Sample: 107, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,475 Segmentron INFO: [EVAL] Sample: 108, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,542 Segmentron INFO: [EVAL] Sample: 109, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,601 Segmentron INFO: [EVAL] Sample: 110, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:13,664 Segmentron INFO: [EVAL] Sample: 111, pixAcc: 11.929, mIoU: 0.541
+2023-01-13 12:32:13,731 Segmentron INFO: [EVAL] Sample: 112, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:13,798 Segmentron INFO: [EVAL] Sample: 113, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:13,865 Segmentron INFO: [EVAL] Sample: 114, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:13,931 Segmentron INFO: [EVAL] Sample: 115, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:13,998 Segmentron INFO: [EVAL] Sample: 116, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:14,065 Segmentron INFO: [EVAL] Sample: 117, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:14,131 Segmentron INFO: [EVAL] Sample: 118, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:14,197 Segmentron INFO: [EVAL] Sample: 119, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:14,261 Segmentron INFO: [EVAL] Sample: 120, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:14,329 Segmentron INFO: [EVAL] Sample: 121, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,397 Segmentron INFO: [EVAL] Sample: 122, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:14,463 Segmentron INFO: [EVAL] Sample: 123, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:14,529 Segmentron INFO: [EVAL] Sample: 124, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:14,596 Segmentron INFO: [EVAL] Sample: 125, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,662 Segmentron INFO: [EVAL] Sample: 126, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,729 Segmentron INFO: [EVAL] Sample: 127, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,797 Segmentron INFO: [EVAL] Sample: 128, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,864 Segmentron INFO: [EVAL] Sample: 129, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,931 Segmentron INFO: [EVAL] Sample: 130, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:14,997 Segmentron INFO: [EVAL] Sample: 131, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,064 Segmentron INFO: [EVAL] Sample: 132, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,130 Segmentron INFO: [EVAL] Sample: 133, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,191 Segmentron INFO: [EVAL] Sample: 134, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,252 Segmentron INFO: [EVAL] Sample: 135, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,317 Segmentron INFO: [EVAL] Sample: 136, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,380 Segmentron INFO: [EVAL] Sample: 137, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,444 Segmentron INFO: [EVAL] Sample: 138, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,508 Segmentron INFO: [EVAL] Sample: 139, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,574 Segmentron INFO: [EVAL] Sample: 140, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,639 Segmentron INFO: [EVAL] Sample: 141, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,701 Segmentron INFO: [EVAL] Sample: 142, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:15,764 Segmentron INFO: [EVAL] Sample: 143, pixAcc: 11.929, mIoU: 0.540
+2023-01-13 12:32:15,827 Segmentron INFO: [EVAL] Sample: 144, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:15,890 Segmentron INFO: [EVAL] Sample: 145, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:15,954 Segmentron INFO: [EVAL] Sample: 146, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,021 Segmentron INFO: [EVAL] Sample: 147, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,087 Segmentron INFO: [EVAL] Sample: 148, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,154 Segmentron INFO: [EVAL] Sample: 149, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,220 Segmentron INFO: [EVAL] Sample: 150, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,288 Segmentron INFO: [EVAL] Sample: 151, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,354 Segmentron INFO: [EVAL] Sample: 152, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,421 Segmentron INFO: [EVAL] Sample: 153, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,486 Segmentron INFO: [EVAL] Sample: 154, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,553 Segmentron INFO: [EVAL] Sample: 155, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,619 Segmentron INFO: [EVAL] Sample: 156, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,686 Segmentron INFO: [EVAL] Sample: 157, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,753 Segmentron INFO: [EVAL] Sample: 158, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,820 Segmentron INFO: [EVAL] Sample: 159, pixAcc: 11.929, mIoU: 0.540
+2023-01-13 12:32:16,886 Segmentron INFO: [EVAL] Sample: 160, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:16,953 Segmentron INFO: [EVAL] Sample: 161, pixAcc: 11.928, mIoU: 0.539
+2023-01-13 12:32:17,022 Segmentron INFO: [EVAL] Sample: 162, pixAcc: 11.928, mIoU: 0.539
+2023-01-13 12:32:17,088 Segmentron INFO: [EVAL] Sample: 163, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:17,155 Segmentron INFO: [EVAL] Sample: 164, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:17,222 Segmentron INFO: [EVAL] Sample: 165, pixAcc: 11.926, mIoU: 0.541
+2023-01-13 12:32:17,288 Segmentron INFO: [EVAL] Sample: 166, pixAcc: 11.926, mIoU: 0.542
+2023-01-13 12:32:17,355 Segmentron INFO: [EVAL] Sample: 167, pixAcc: 11.926, mIoU: 0.542
+2023-01-13 12:32:17,422 Segmentron INFO: [EVAL] Sample: 168, pixAcc: 11.926, mIoU: 0.543
+2023-01-13 12:32:17,488 Segmentron INFO: [EVAL] Sample: 169, pixAcc: 11.927, mIoU: 0.543
+2023-01-13 12:32:17,555 Segmentron INFO: [EVAL] Sample: 170, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:17,621 Segmentron INFO: [EVAL] Sample: 171, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:17,688 Segmentron INFO: [EVAL] Sample: 172, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:17,755 Segmentron INFO: [EVAL] Sample: 173, pixAcc: 11.927, mIoU: 0.545
+2023-01-13 12:32:17,822 Segmentron INFO: [EVAL] Sample: 174, pixAcc: 11.927, mIoU: 0.545
+2023-01-13 12:32:17,888 Segmentron INFO: [EVAL] Sample: 175, pixAcc: 11.928, mIoU: 0.545
+2023-01-13 12:32:17,955 Segmentron INFO: [EVAL] Sample: 176, pixAcc: 11.928, mIoU: 0.546
+2023-01-13 12:32:18,021 Segmentron INFO: [EVAL] Sample: 177, pixAcc: 11.928, mIoU: 0.546
+2023-01-13 12:32:18,090 Segmentron INFO: [EVAL] Sample: 178, pixAcc: 11.928, mIoU: 0.547
+2023-01-13 12:32:18,155 Segmentron INFO: [EVAL] Sample: 179, pixAcc: 11.928, mIoU: 0.547
+2023-01-13 12:32:18,221 Segmentron INFO: [EVAL] Sample: 180, pixAcc: 11.929, mIoU: 0.548
+2023-01-13 12:32:18,288 Segmentron INFO: [EVAL] Sample: 181, pixAcc: 11.929, mIoU: 0.548
+2023-01-13 12:32:18,355 Segmentron INFO: [EVAL] Sample: 182, pixAcc: 11.929, mIoU: 0.549
+2023-01-13 12:32:18,422 Segmentron INFO: [EVAL] Sample: 183, pixAcc: 11.929, mIoU: 0.549
+2023-01-13 12:32:18,488 Segmentron INFO: [EVAL] Sample: 184, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:18,555 Segmentron INFO: [EVAL] Sample: 185, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:18,621 Segmentron INFO: [EVAL] Sample: 186, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:18,687 Segmentron INFO: [EVAL] Sample: 187, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:18,754 Segmentron INFO: [EVAL] Sample: 188, pixAcc: 11.929, mIoU: 0.550
+2023-01-13 12:32:18,821 Segmentron INFO: [EVAL] Sample: 189, pixAcc: 11.929, mIoU: 0.550
+2023-01-13 12:32:18,888 Segmentron INFO: [EVAL] Sample: 190, pixAcc: 11.930, mIoU: 0.550
+2023-01-13 12:32:18,955 Segmentron INFO: [EVAL] Sample: 191, pixAcc: 11.930, mIoU: 0.550
+2023-01-13 12:32:19,022 Segmentron INFO: [EVAL] Sample: 192, pixAcc: 11.930, mIoU: 0.551
+2023-01-13 12:32:19,097 Segmentron INFO: [EVAL] Sample: 193, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:19,167 Segmentron INFO: [EVAL] Sample: 194, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:19,236 Segmentron INFO: [EVAL] Sample: 195, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:19,306 Segmentron INFO: [EVAL] Sample: 196, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:19,374 Segmentron INFO: [EVAL] Sample: 197, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:19,439 Segmentron INFO: [EVAL] Sample: 198, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:19,505 Segmentron INFO: [EVAL] Sample: 199, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:19,576 Segmentron INFO: [EVAL] Sample: 200, pixAcc: 11.930, mIoU: 0.554
+2023-01-13 12:32:19,642 Segmentron INFO: [EVAL] Sample: 201, pixAcc: 11.930, mIoU: 0.554
+2023-01-13 12:32:19,709 Segmentron INFO: [EVAL] Sample: 202, pixAcc: 11.931, mIoU: 0.554
+2023-01-13 12:32:19,777 Segmentron INFO: [EVAL] Sample: 203, pixAcc: 11.931, mIoU: 0.554
+2023-01-13 12:32:19,845 Segmentron INFO: [EVAL] Sample: 204, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:19,912 Segmentron INFO: [EVAL] Sample: 205, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:19,980 Segmentron INFO: [EVAL] Sample: 206, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:20,056 Segmentron INFO: [EVAL] Sample: 207, pixAcc: 11.931, mIoU: 0.557
+2023-01-13 12:32:20,128 Segmentron INFO: [EVAL] Sample: 208, pixAcc: 11.931, mIoU: 0.558
+2023-01-13 12:32:20,204 Segmentron INFO: [EVAL] Sample: 209, pixAcc: 11.931, mIoU: 0.559
+2023-01-13 12:32:20,278 Segmentron INFO: [EVAL] Sample: 210, pixAcc: 11.931, mIoU: 0.560
+2023-01-13 12:32:20,352 Segmentron INFO: [EVAL] Sample: 211, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:20,423 Segmentron INFO: [EVAL] Sample: 212, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:20,498 Segmentron INFO: [EVAL] Sample: 213, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:20,564 Segmentron INFO: [EVAL] Sample: 214, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:20,629 Segmentron INFO: [EVAL] Sample: 215, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:20,691 Segmentron INFO: [EVAL] Sample: 216, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:20,755 Segmentron INFO: [EVAL] Sample: 217, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:20,821 Segmentron INFO: [EVAL] Sample: 218, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:20,886 Segmentron INFO: [EVAL] Sample: 219, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:20,952 Segmentron INFO: [EVAL] Sample: 220, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,017 Segmentron INFO: [EVAL] Sample: 221, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,083 Segmentron INFO: [EVAL] Sample: 222, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,146 Segmentron INFO: [EVAL] Sample: 223, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,212 Segmentron INFO: [EVAL] Sample: 224, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,276 Segmentron INFO: [EVAL] Sample: 225, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:21,339 Segmentron INFO: [EVAL] Sample: 226, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,401 Segmentron INFO: [EVAL] Sample: 227, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,464 Segmentron INFO: [EVAL] Sample: 228, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,530 Segmentron INFO: [EVAL] Sample: 229, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,592 Segmentron INFO: [EVAL] Sample: 230, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,655 Segmentron INFO: [EVAL] Sample: 231, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,722 Segmentron INFO: [EVAL] Sample: 232, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,788 Segmentron INFO: [EVAL] Sample: 233, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,853 Segmentron INFO: [EVAL] Sample: 234, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:21,920 Segmentron INFO: [EVAL] Sample: 235, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:21,987 Segmentron INFO: [EVAL] Sample: 236, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,055 Segmentron INFO: [EVAL] Sample: 237, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,123 Segmentron INFO: [EVAL] Sample: 238, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,188 Segmentron INFO: [EVAL] Sample: 239, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,255 Segmentron INFO: [EVAL] Sample: 240, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,321 Segmentron INFO: [EVAL] Sample: 241, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,388 Segmentron INFO: [EVAL] Sample: 242, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:22,455 Segmentron INFO: [EVAL] Sample: 243, pixAcc: 11.933, mIoU: 0.561
+2023-01-13 12:32:22,522 Segmentron INFO: [EVAL] Sample: 244, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,589 Segmentron INFO: [EVAL] Sample: 245, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,655 Segmentron INFO: [EVAL] Sample: 246, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,721 Segmentron INFO: [EVAL] Sample: 247, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,788 Segmentron INFO: [EVAL] Sample: 248, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,855 Segmentron INFO: [EVAL] Sample: 249, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,921 Segmentron INFO: [EVAL] Sample: 250, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:22,988 Segmentron INFO: [EVAL] Sample: 251, pixAcc: 11.932, mIoU: 0.560
+2023-01-13 12:32:23,055 Segmentron INFO: [EVAL] Sample: 252, pixAcc: 11.931, mIoU: 0.560
+2023-01-13 12:32:23,123 Segmentron INFO: [EVAL] Sample: 253, pixAcc: 11.930, mIoU: 0.560
+2023-01-13 12:32:23,188 Segmentron INFO: [EVAL] Sample: 254, pixAcc: 11.929, mIoU: 0.560
+2023-01-13 12:32:23,254 Segmentron INFO: [EVAL] Sample: 255, pixAcc: 11.928, mIoU: 0.561
+2023-01-13 12:32:23,321 Segmentron INFO: [EVAL] Sample: 256, pixAcc: 11.927, mIoU: 0.561
+2023-01-13 12:32:23,388 Segmentron INFO: [EVAL] Sample: 257, pixAcc: 11.926, mIoU: 0.562
+2023-01-13 12:32:23,454 Segmentron INFO: [EVAL] Sample: 258, pixAcc: 11.925, mIoU: 0.563
+2023-01-13 12:32:23,521 Segmentron INFO: [EVAL] Sample: 259, pixAcc: 11.924, mIoU: 0.563
+2023-01-13 12:32:23,587 Segmentron INFO: [EVAL] Sample: 260, pixAcc: 11.923, mIoU: 0.564
+2023-01-13 12:32:23,654 Segmentron INFO: [EVAL] Sample: 261, pixAcc: 11.922, mIoU: 0.564
+2023-01-13 12:32:23,721 Segmentron INFO: [EVAL] Sample: 262, pixAcc: 11.921, mIoU: 0.565
+2023-01-13 12:32:23,788 Segmentron INFO: [EVAL] Sample: 263, pixAcc: 11.920, mIoU: 0.565
+2023-01-13 12:32:23,854 Segmentron INFO: [EVAL] Sample: 264, pixAcc: 11.919, mIoU: 0.566
+2023-01-13 12:32:23,922 Segmentron INFO: [EVAL] Sample: 265, pixAcc: 11.918, mIoU: 0.566
+2023-01-13 12:32:23,989 Segmentron INFO: [EVAL] Sample: 266, pixAcc: 11.917, mIoU: 0.567
+2023-01-13 12:32:24,055 Segmentron INFO: [EVAL] Sample: 267, pixAcc: 11.916, mIoU: 0.567
+2023-01-13 12:32:24,123 Segmentron INFO: [EVAL] Sample: 268, pixAcc: 11.915, mIoU: 0.568
+2023-01-13 12:32:24,188 Segmentron INFO: [EVAL] Sample: 269, pixAcc: 11.914, mIoU: 0.568
+2023-01-13 12:32:24,254 Segmentron INFO: [EVAL] Sample: 270, pixAcc: 11.913, mIoU: 0.569
+2023-01-13 12:32:24,320 Segmentron INFO: [EVAL] Sample: 271, pixAcc: 11.912, mIoU: 0.569
+2023-01-13 12:32:24,387 Segmentron INFO: [EVAL] Sample: 272, pixAcc: 11.911, mIoU: 0.570
+2023-01-13 12:32:24,454 Segmentron INFO: [EVAL] Sample: 273, pixAcc: 11.910, mIoU: 0.570
+2023-01-13 12:32:24,521 Segmentron INFO: [EVAL] Sample: 274, pixAcc: 11.909, mIoU: 0.570
+2023-01-13 12:32:24,587 Segmentron INFO: [EVAL] Sample: 275, pixAcc: 11.908, mIoU: 0.571
+2023-01-13 12:32:24,655 Segmentron INFO: [EVAL] Sample: 276, pixAcc: 11.907, mIoU: 0.571
+2023-01-13 12:32:24,721 Segmentron INFO: [EVAL] Sample: 277, pixAcc: 11.906, mIoU: 0.572
+2023-01-13 12:32:24,787 Segmentron INFO: [EVAL] Sample: 278, pixAcc: 11.905, mIoU: 0.572
+2023-01-13 12:32:24,854 Segmentron INFO: [EVAL] Sample: 279, pixAcc: 11.904, mIoU: 0.573
+2023-01-13 12:32:24,921 Segmentron INFO: [EVAL] Sample: 280, pixAcc: 11.903, mIoU: 0.573
+2023-01-13 12:32:24,987 Segmentron INFO: [EVAL] Sample: 281, pixAcc: 11.903, mIoU: 0.574
+2023-01-13 12:32:25,054 Segmentron INFO: [EVAL] Sample: 282, pixAcc: 11.902, mIoU: 0.574
+2023-01-13 12:32:25,122 Segmentron INFO: [EVAL] Sample: 283, pixAcc: 11.899, mIoU: 0.575
+2023-01-13 12:32:25,188 Segmentron INFO: [EVAL] Sample: 284, pixAcc: 11.896, mIoU: 0.575
+2023-01-13 12:32:25,252 Segmentron INFO: [EVAL] Sample: 285, pixAcc: 11.894, mIoU: 0.575
+2023-01-13 12:32:25,319 Segmentron INFO: [EVAL] Sample: 286, pixAcc: 11.891, mIoU: 0.575
+2023-01-13 12:32:25,387 Segmentron INFO: [EVAL] Sample: 287, pixAcc: 11.889, mIoU: 0.575
+2023-01-13 12:32:25,453 Segmentron INFO: [EVAL] Sample: 288, pixAcc: 11.886, mIoU: 0.576
+2023-01-13 12:32:25,521 Segmentron INFO: [EVAL] Sample: 289, pixAcc: 11.884, mIoU: 0.576
+2023-01-13 12:32:25,589 Segmentron INFO: [EVAL] Sample: 290, pixAcc: 11.881, mIoU: 0.576
+2023-01-13 12:32:25,655 Segmentron INFO: [EVAL] Sample: 291, pixAcc: 11.879, mIoU: 0.576
+2023-01-13 12:32:25,723 Segmentron INFO: [EVAL] Sample: 292, pixAcc: 11.877, mIoU: 0.577
+2023-01-13 12:32:25,790 Segmentron INFO: [EVAL] Sample: 293, pixAcc: 11.874, mIoU: 0.577
+2023-01-13 12:32:25,856 Segmentron INFO: [EVAL] Sample: 294, pixAcc: 11.872, mIoU: 0.577
+2023-01-13 12:32:25,923 Segmentron INFO: [EVAL] Sample: 295, pixAcc: 11.870, mIoU: 0.577
+2023-01-13 12:32:25,989 Segmentron INFO: [EVAL] Sample: 296, pixAcc: 11.867, mIoU: 0.577
+2023-01-13 12:32:26,055 Segmentron INFO: [EVAL] Sample: 297, pixAcc: 11.865, mIoU: 0.578
+2023-01-13 12:32:26,123 Segmentron INFO: [EVAL] Sample: 298, pixAcc: 11.863, mIoU: 0.578
+2023-01-13 12:32:26,188 Segmentron INFO: [EVAL] Sample: 299, pixAcc: 11.860, mIoU: 0.578
+2023-01-13 12:32:26,255 Segmentron INFO: [EVAL] Sample: 300, pixAcc: 11.858, mIoU: 0.578
+2023-01-13 12:32:26,320 Segmentron INFO: [EVAL] Sample: 301, pixAcc: 11.856, mIoU: 0.578
+2023-01-13 12:32:26,388 Segmentron INFO: [EVAL] Sample: 302, pixAcc: 11.853, mIoU: 0.579
+2023-01-13 12:32:26,454 Segmentron INFO: [EVAL] Sample: 303, pixAcc: 11.851, mIoU: 0.579
+2023-01-13 12:32:26,521 Segmentron INFO: [EVAL] Sample: 304, pixAcc: 11.849, mIoU: 0.579
+2023-01-13 12:32:26,588 Segmentron INFO: [EVAL] Sample: 305, pixAcc: 11.847, mIoU: 0.579
+2023-01-13 12:32:26,656 Segmentron INFO: [EVAL] Sample: 306, pixAcc: 11.845, mIoU: 0.579
+2023-01-13 12:32:26,722 Segmentron INFO: [EVAL] Sample: 307, pixAcc: 11.842, mIoU: 0.580
+2023-01-13 12:32:26,789 Segmentron INFO: [EVAL] Sample: 308, pixAcc: 11.840, mIoU: 0.580
+2023-01-13 12:32:26,857 Segmentron INFO: [EVAL] Sample: 309, pixAcc: 11.838, mIoU: 0.580
+2023-01-13 12:32:26,923 Segmentron INFO: [EVAL] Sample: 310, pixAcc: 11.836, mIoU: 0.580
+2023-01-13 12:32:26,988 Segmentron INFO: [EVAL] Sample: 311, pixAcc: 11.836, mIoU: 0.580
+2023-01-13 12:32:27,053 Segmentron INFO: [EVAL] Sample: 312, pixAcc: 11.835, mIoU: 0.580
+2023-01-13 12:32:27,121 Segmentron INFO: [EVAL] Sample: 313, pixAcc: 11.834, mIoU: 0.579
+2023-01-13 12:32:27,188 Segmentron INFO: [EVAL] Sample: 314, pixAcc: 11.834, mIoU: 0.579
+2023-01-13 12:32:27,252 Segmentron INFO: [EVAL] Sample: 315, pixAcc: 11.833, mIoU: 0.579
+2023-01-13 12:32:27,317 Segmentron INFO: [EVAL] Sample: 316, pixAcc: 11.832, mIoU: 0.579
+2023-01-13 12:32:27,381 Segmentron INFO: [EVAL] Sample: 317, pixAcc: 11.832, mIoU: 0.579
+2023-01-13 12:32:27,443 Segmentron INFO: [EVAL] Sample: 318, pixAcc: 11.831, mIoU: 0.578
+2023-01-13 12:32:27,505 Segmentron INFO: [EVAL] Sample: 319, pixAcc: 11.830, mIoU: 0.578
+2023-01-13 12:32:27,566 Segmentron INFO: [EVAL] Sample: 320, pixAcc: 11.830, mIoU: 0.578
+2023-01-13 12:32:27,627 Segmentron INFO: [EVAL] Sample: 321, pixAcc: 11.829, mIoU: 0.578
+2023-01-13 12:32:27,686 Segmentron INFO: [EVAL] Sample: 322, pixAcc: 11.829, mIoU: 0.577
+2023-01-13 12:32:27,750 Segmentron INFO: [EVAL] Sample: 323, pixAcc: 11.828, mIoU: 0.577
+2023-01-13 12:32:27,813 Segmentron INFO: [EVAL] Sample: 324, pixAcc: 11.828, mIoU: 0.577
+2023-01-13 12:32:27,876 Segmentron INFO: [EVAL] Sample: 325, pixAcc: 11.827, mIoU: 0.577
+2023-01-13 12:32:27,936 Segmentron INFO: [EVAL] Sample: 326, pixAcc: 11.827, mIoU: 0.577
+2023-01-13 12:32:27,997 Segmentron INFO: [EVAL] Sample: 327, pixAcc: 11.826, mIoU: 0.576
+2023-01-13 12:32:28,058 Segmentron INFO: [EVAL] Sample: 328, pixAcc: 11.826, mIoU: 0.576
+2023-01-13 12:32:28,123 Segmentron INFO: [EVAL] Sample: 329, pixAcc: 11.825, mIoU: 0.576
+2023-01-13 12:32:28,187 Segmentron INFO: [EVAL] Sample: 330, pixAcc: 11.825, mIoU: 0.576
+2023-01-13 12:32:28,252 Segmentron INFO: [EVAL] Sample: 331, pixAcc: 11.824, mIoU: 0.576
+2023-01-13 12:32:28,317 Segmentron INFO: [EVAL] Sample: 332, pixAcc: 11.824, mIoU: 0.575
+2023-01-13 12:32:28,382 Segmentron INFO: [EVAL] Sample: 333, pixAcc: 11.823, mIoU: 0.575
+2023-01-13 12:32:28,446 Segmentron INFO: [EVAL] Sample: 334, pixAcc: 11.822, mIoU: 0.575
+2023-01-13 12:32:28,508 Segmentron INFO: [EVAL] Sample: 335, pixAcc: 11.822, mIoU: 0.575
+2023-01-13 12:32:28,569 Segmentron INFO: [EVAL] Sample: 336, pixAcc: 11.821, mIoU: 0.575
+2023-01-13 12:32:28,630 Segmentron INFO: [EVAL] Sample: 337, pixAcc: 11.820, mIoU: 0.575
+2023-01-13 12:32:28,690 Segmentron INFO: [EVAL] Sample: 338, pixAcc: 11.820, mIoU: 0.574
+2023-01-13 12:32:28,753 Segmentron INFO: [EVAL] Sample: 339, pixAcc: 11.819, mIoU: 0.574
+2023-01-13 12:32:28,817 Segmentron INFO: [EVAL] Sample: 340, pixAcc: 11.819, mIoU: 0.574
+2023-01-13 12:32:28,881 Segmentron INFO: [EVAL] Sample: 341, pixAcc: 11.818, mIoU: 0.574
+2023-01-13 12:32:28,945 Segmentron INFO: [EVAL] Sample: 342, pixAcc: 11.817, mIoU: 0.574
+2023-01-13 12:32:29,009 Segmentron INFO: [EVAL] Sample: 343, pixAcc: 11.817, mIoU: 0.573
+2023-01-13 12:32:29,073 Segmentron INFO: [EVAL] Sample: 344, pixAcc: 11.816, mIoU: 0.573
+2023-01-13 12:32:29,141 Segmentron INFO: [EVAL] Sample: 345, pixAcc: 11.816, mIoU: 0.573
+2023-01-13 12:32:29,205 Segmentron INFO: [EVAL] Sample: 346, pixAcc: 11.815, mIoU: 0.573
+2023-01-13 12:32:29,268 Segmentron INFO: [EVAL] Sample: 347, pixAcc: 11.815, mIoU: 0.573
+2023-01-13 12:32:29,331 Segmentron INFO: [EVAL] Sample: 348, pixAcc: 11.814, mIoU: 0.572
+2023-01-13 12:32:29,393 Segmentron INFO: [EVAL] Sample: 349, pixAcc: 11.813, mIoU: 0.572
+2023-01-13 12:32:29,454 Segmentron INFO: [EVAL] Sample: 350, pixAcc: 11.813, mIoU: 0.572
+2023-01-13 12:32:29,518 Segmentron INFO: [EVAL] Sample: 351, pixAcc: 11.812, mIoU: 0.572
+2023-01-13 12:32:29,585 Segmentron INFO: [EVAL] Sample: 352, pixAcc: 11.811, mIoU: 0.572
+2023-01-13 12:32:29,653 Segmentron INFO: [EVAL] Sample: 353, pixAcc: 11.811, mIoU: 0.572
+2023-01-13 12:32:29,721 Segmentron INFO: [EVAL] Sample: 354, pixAcc: 11.810, mIoU: 0.571
+2023-01-13 12:32:29,788 Segmentron INFO: [EVAL] Sample: 355, pixAcc: 11.810, mIoU: 0.571
+2023-01-13 12:32:29,855 Segmentron INFO: [EVAL] Sample: 356, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:29,922 Segmentron INFO: [EVAL] Sample: 357, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:29,989 Segmentron INFO: [EVAL] Sample: 358, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:30,057 Segmentron INFO: [EVAL] Sample: 359, pixAcc: 11.808, mIoU: 0.571
+2023-01-13 12:32:30,125 Segmentron INFO: [EVAL] Sample: 360, pixAcc: 11.808, mIoU: 0.571
+2023-01-13 12:32:30,188 Segmentron INFO: [EVAL] Sample: 361, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:30,256 Segmentron INFO: [EVAL] Sample: 362, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:30,323 Segmentron INFO: [EVAL] Sample: 363, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:30,389 Segmentron INFO: [EVAL] Sample: 364, pixAcc: 11.806, mIoU: 0.570
+2023-01-13 12:32:30,456 Segmentron INFO: [EVAL] Sample: 365, pixAcc: 11.806, mIoU: 0.570
+2023-01-13 12:32:30,523 Segmentron INFO: [EVAL] Sample: 366, pixAcc: 11.805, mIoU: 0.570
+2023-01-13 12:32:30,589 Segmentron INFO: [EVAL] Sample: 367, pixAcc: 11.805, mIoU: 0.569
+2023-01-13 12:32:30,656 Segmentron INFO: [EVAL] Sample: 368, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:30,723 Segmentron INFO: [EVAL] Sample: 369, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:30,789 Segmentron INFO: [EVAL] Sample: 370, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:30,856 Segmentron INFO: [EVAL] Sample: 371, pixAcc: 11.803, mIoU: 0.569
+2023-01-13 12:32:30,923 Segmentron INFO: [EVAL] Sample: 372, pixAcc: 11.803, mIoU: 0.569
+2023-01-13 12:32:30,988 Segmentron INFO: [EVAL] Sample: 373, pixAcc: 11.802, mIoU: 0.569
+2023-01-13 12:32:31,055 Segmentron INFO: [EVAL] Sample: 374, pixAcc: 11.802, mIoU: 0.568
+2023-01-13 12:32:31,123 Segmentron INFO: [EVAL] Sample: 375, pixAcc: 11.801, mIoU: 0.568
+2023-01-13 12:32:31,189 Segmentron INFO: [EVAL] Sample: 376, pixAcc: 11.801, mIoU: 0.568
+2023-01-13 12:32:31,256 Segmentron INFO: [EVAL] Sample: 377, pixAcc: 11.800, mIoU: 0.568
+2023-01-13 12:32:31,322 Segmentron INFO: [EVAL] Sample: 378, pixAcc: 11.800, mIoU: 0.568
+2023-01-13 12:32:31,388 Segmentron INFO: [EVAL] Sample: 379, pixAcc: 11.799, mIoU: 0.568
+2023-01-13 12:32:31,455 Segmentron INFO: [EVAL] Sample: 380, pixAcc: 11.799, mIoU: 0.568
+2023-01-13 12:32:31,521 Segmentron INFO: [EVAL] Sample: 381, pixAcc: 11.799, mIoU: 0.567
+2023-01-13 12:32:31,588 Segmentron INFO: [EVAL] Sample: 382, pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:31,655 Segmentron INFO: [EVAL] Sample: 383, pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:31,656 Segmentron INFO: [EVAL END] Epoch: 2, pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:31,723 Segmentron INFO: [TEST] Sample: 1, pixAcc: 11.937, mIoU: 0.523
+2023-01-13 12:32:31,788 Segmentron INFO: [TEST] Sample: 2, pixAcc: 11.942, mIoU: 0.523
+2023-01-13 12:32:31,853 Segmentron INFO: [TEST] Sample: 3, pixAcc: 11.942, mIoU: 0.523
+2023-01-13 12:32:31,917 Segmentron INFO: [TEST] Sample: 4, pixAcc: 11.940, mIoU: 0.523
+2023-01-13 12:32:31,981 Segmentron INFO: [TEST] Sample: 5, pixAcc: 11.941, mIoU: 0.524
+2023-01-13 12:32:32,049 Segmentron INFO: [TEST] Sample: 6, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:32,113 Segmentron INFO: [TEST] Sample: 7, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:32,175 Segmentron INFO: [TEST] Sample: 8, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:32,240 Segmentron INFO: [TEST] Sample: 9, pixAcc: 11.943, mIoU: 0.524
+2023-01-13 12:32:32,306 Segmentron INFO: [TEST] Sample: 10, pixAcc: 11.942, mIoU: 0.524
+2023-01-13 12:32:32,371 Segmentron INFO: [TEST] Sample: 11, pixAcc: 11.941, mIoU: 0.524
+2023-01-13 12:32:32,436 Segmentron INFO: [TEST] Sample: 12, pixAcc: 11.941, mIoU: 0.525
+2023-01-13 12:32:32,500 Segmentron INFO: [TEST] Sample: 13, pixAcc: 11.941, mIoU: 0.525
+2023-01-13 12:32:32,565 Segmentron INFO: [TEST] Sample: 14, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:32,632 Segmentron INFO: [TEST] Sample: 15, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:32,698 Segmentron INFO: [TEST] Sample: 16, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:32,764 Segmentron INFO: [TEST] Sample: 17, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:32,831 Segmentron INFO: [TEST] Sample: 18, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:32,898 Segmentron INFO: [TEST] Sample: 19, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:32,963 Segmentron INFO: [TEST] Sample: 20, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:33,031 Segmentron INFO: [TEST] Sample: 21, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:33,105 Segmentron INFO: [TEST] Sample: 22, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:33,175 Segmentron INFO: [TEST] Sample: 23, pixAcc: 11.941, mIoU: 0.526
+2023-01-13 12:32:33,240 Segmentron INFO: [TEST] Sample: 24, pixAcc: 11.940, mIoU: 0.526
+2023-01-13 12:32:33,305 Segmentron INFO: [TEST] Sample: 25, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:33,372 Segmentron INFO: [TEST] Sample: 26, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:33,435 Segmentron INFO: [TEST] Sample: 27, pixAcc: 11.941, mIoU: 0.527
+2023-01-13 12:32:33,500 Segmentron INFO: [TEST] Sample: 28, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:33,574 Segmentron INFO: [TEST] Sample: 29, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:33,647 Segmentron INFO: [TEST] Sample: 30, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:33,721 Segmentron INFO: [TEST] Sample: 31, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:33,789 Segmentron INFO: [TEST] Sample: 32, pixAcc: 11.940, mIoU: 0.528
+2023-01-13 12:32:33,860 Segmentron INFO: [TEST] Sample: 33, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:33,934 Segmentron INFO: [TEST] Sample: 34, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:34,009 Segmentron INFO: [TEST] Sample: 35, pixAcc: 11.940, mIoU: 0.529
+2023-01-13 12:32:34,084 Segmentron INFO: [TEST] Sample: 36, pixAcc: 11.940, mIoU: 0.530
+2023-01-13 12:32:34,157 Segmentron INFO: [TEST] Sample: 37, pixAcc: 11.940, mIoU: 0.530
+2023-01-13 12:32:34,225 Segmentron INFO: [TEST] Sample: 38, pixAcc: 11.940, mIoU: 0.531
+2023-01-13 12:32:34,299 Segmentron INFO: [TEST] Sample: 39, pixAcc: 11.939, mIoU: 0.531
+2023-01-13 12:32:34,373 Segmentron INFO: [TEST] Sample: 40, pixAcc: 11.939, mIoU: 0.531
+2023-01-13 12:32:34,445 Segmentron INFO: [TEST] Sample: 41, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:34,519 Segmentron INFO: [TEST] Sample: 42, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:34,590 Segmentron INFO: [TEST] Sample: 43, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:34,659 Segmentron INFO: [TEST] Sample: 44, pixAcc: 11.939, mIoU: 0.532
+2023-01-13 12:32:34,731 Segmentron INFO: [TEST] Sample: 45, pixAcc: 11.939, mIoU: 0.533
+2023-01-13 12:32:34,807 Segmentron INFO: [TEST] Sample: 46, pixAcc: 11.939, mIoU: 0.533
+2023-01-13 12:32:34,884 Segmentron INFO: [TEST] Sample: 47, pixAcc: 11.939, mIoU: 0.534
+2023-01-13 12:32:34,958 Segmentron INFO: [TEST] Sample: 48, pixAcc: 11.939, mIoU: 0.534
+2023-01-13 12:32:35,029 Segmentron INFO: [TEST] Sample: 49, pixAcc: 11.939, mIoU: 0.535
+2023-01-13 12:32:35,120 Segmentron INFO: [TEST] Sample: 50, pixAcc: 11.939, mIoU: 0.535
+2023-01-13 12:32:35,192 Segmentron INFO: [TEST] Sample: 51, pixAcc: 11.939, mIoU: 0.536
+2023-01-13 12:32:35,264 Segmentron INFO: [TEST] Sample: 52, pixAcc: 11.939, mIoU: 0.536
+2023-01-13 12:32:35,343 Segmentron INFO: [TEST] Sample: 53, pixAcc: 11.939, mIoU: 0.537
+2023-01-13 12:32:35,419 Segmentron INFO: [TEST] Sample: 54, pixAcc: 11.939, mIoU: 0.537
+2023-01-13 12:32:35,492 Segmentron INFO: [TEST] Sample: 55, pixAcc: 11.939, mIoU: 0.538
+2023-01-13 12:32:35,565 Segmentron INFO: [TEST] Sample: 56, pixAcc: 11.939, mIoU: 0.538
+2023-01-13 12:32:35,640 Segmentron INFO: [TEST] Sample: 57, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:35,715 Segmentron INFO: [TEST] Sample: 58, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:35,790 Segmentron INFO: [TEST] Sample: 59, pixAcc: 11.939, mIoU: 0.539
+2023-01-13 12:32:35,867 Segmentron INFO: [TEST] Sample: 60, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:35,943 Segmentron INFO: [TEST] Sample: 61, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:36,020 Segmentron INFO: [TEST] Sample: 62, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:36,099 Segmentron INFO: [TEST] Sample: 63, pixAcc: 11.939, mIoU: 0.540
+2023-01-13 12:32:36,174 Segmentron INFO: [TEST] Sample: 64, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:36,251 Segmentron INFO: [TEST] Sample: 65, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:36,324 Segmentron INFO: [TEST] Sample: 66, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:36,399 Segmentron INFO: [TEST] Sample: 67, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:36,475 Segmentron INFO: [TEST] Sample: 68, pixAcc: 11.939, mIoU: 0.541
+2023-01-13 12:32:36,549 Segmentron INFO: [TEST] Sample: 69, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,625 Segmentron INFO: [TEST] Sample: 70, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,699 Segmentron INFO: [TEST] Sample: 71, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,775 Segmentron INFO: [TEST] Sample: 72, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,850 Segmentron INFO: [TEST] Sample: 73, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,922 Segmentron INFO: [TEST] Sample: 74, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:36,994 Segmentron INFO: [TEST] Sample: 75, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,073 Segmentron INFO: [TEST] Sample: 76, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,150 Segmentron INFO: [TEST] Sample: 77, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,223 Segmentron INFO: [TEST] Sample: 78, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,293 Segmentron INFO: [TEST] Sample: 79, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,363 Segmentron INFO: [TEST] Sample: 80, pixAcc: 11.938, mIoU: 0.541
+2023-01-13 12:32:37,441 Segmentron INFO: [TEST] Sample: 81, pixAcc: 11.937, mIoU: 0.541
+2023-01-13 12:32:37,514 Segmentron INFO: [TEST] Sample: 82, pixAcc: 11.936, mIoU: 0.541
+2023-01-13 12:32:37,588 Segmentron INFO: [TEST] Sample: 83, pixAcc: 11.935, mIoU: 0.541
+2023-01-13 12:32:37,657 Segmentron INFO: [TEST] Sample: 84, pixAcc: 11.935, mIoU: 0.541
+2023-01-13 12:32:37,725 Segmentron INFO: [TEST] Sample: 85, pixAcc: 11.934, mIoU: 0.541
+2023-01-13 12:32:37,794 Segmentron INFO: [TEST] Sample: 86, pixAcc: 11.934, mIoU: 0.542
+2023-01-13 12:32:37,868 Segmentron INFO: [TEST] Sample: 87, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:37,943 Segmentron INFO: [TEST] Sample: 88, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:38,022 Segmentron INFO: [TEST] Sample: 89, pixAcc: 11.933, mIoU: 0.541
+2023-01-13 12:32:38,106 Segmentron INFO: [TEST] Sample: 90, pixAcc: 11.933, mIoU: 0.542
+2023-01-13 12:32:38,180 Segmentron INFO: [TEST] Sample: 91, pixAcc: 11.932, mIoU: 0.542
+2023-01-13 12:32:38,253 Segmentron INFO: [TEST] Sample: 92, pixAcc: 11.932, mIoU: 0.542
+2023-01-13 12:32:38,324 Segmentron INFO: [TEST] Sample: 93, pixAcc: 11.932, mIoU: 0.541
+2023-01-13 12:32:38,392 Segmentron INFO: [TEST] Sample: 94, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:38,464 Segmentron INFO: [TEST] Sample: 95, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:38,540 Segmentron INFO: [TEST] Sample: 96, pixAcc: 11.931, mIoU: 0.541
+2023-01-13 12:32:38,616 Segmentron INFO: [TEST] Sample: 97, pixAcc: 11.930, mIoU: 0.541
+2023-01-13 12:32:38,690 Segmentron INFO: [TEST] Sample: 98, pixAcc: 11.930, mIoU: 0.541
+2023-01-13 12:32:38,759 Segmentron INFO: [TEST] Sample: 99, pixAcc: 11.930, mIoU: 0.542
+2023-01-13 12:32:38,830 Segmentron INFO: [TEST] Sample: 100, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:38,908 Segmentron INFO: [TEST] Sample: 101, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:38,986 Segmentron INFO: [TEST] Sample: 102, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,059 Segmentron INFO: [TEST] Sample: 103, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,131 Segmentron INFO: [TEST] Sample: 104, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,208 Segmentron INFO: [TEST] Sample: 105, pixAcc: 11.928, mIoU: 0.542
+2023-01-13 12:32:39,284 Segmentron INFO: [TEST] Sample: 106, pixAcc: 11.928, mIoU: 0.542
+2023-01-13 12:32:39,357 Segmentron INFO: [TEST] Sample: 107, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,428 Segmentron INFO: [TEST] Sample: 108, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,489 Segmentron INFO: [TEST] Sample: 109, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,552 Segmentron INFO: [TEST] Sample: 110, pixAcc: 11.929, mIoU: 0.542
+2023-01-13 12:32:39,618 Segmentron INFO: [TEST] Sample: 111, pixAcc: 11.929, mIoU: 0.541
+2023-01-13 12:32:39,685 Segmentron INFO: [TEST] Sample: 112, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:39,752 Segmentron INFO: [TEST] Sample: 113, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:39,820 Segmentron INFO: [TEST] Sample: 114, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:39,887 Segmentron INFO: [TEST] Sample: 115, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:39,954 Segmentron INFO: [TEST] Sample: 116, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:40,021 Segmentron INFO: [TEST] Sample: 117, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:40,088 Segmentron INFO: [TEST] Sample: 118, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:40,155 Segmentron INFO: [TEST] Sample: 119, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:40,220 Segmentron INFO: [TEST] Sample: 120, pixAcc: 11.927, mIoU: 0.541
+2023-01-13 12:32:40,287 Segmentron INFO: [TEST] Sample: 121, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,354 Segmentron INFO: [TEST] Sample: 122, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:40,421 Segmentron INFO: [TEST] Sample: 123, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:40,488 Segmentron INFO: [TEST] Sample: 124, pixAcc: 11.927, mIoU: 0.540
+2023-01-13 12:32:40,555 Segmentron INFO: [TEST] Sample: 125, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,620 Segmentron INFO: [TEST] Sample: 126, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,687 Segmentron INFO: [TEST] Sample: 127, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,754 Segmentron INFO: [TEST] Sample: 128, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,822 Segmentron INFO: [TEST] Sample: 129, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,889 Segmentron INFO: [TEST] Sample: 130, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:40,953 Segmentron INFO: [TEST] Sample: 131, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,021 Segmentron INFO: [TEST] Sample: 132, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,089 Segmentron INFO: [TEST] Sample: 133, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,155 Segmentron INFO: [TEST] Sample: 134, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,219 Segmentron INFO: [TEST] Sample: 135, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,284 Segmentron INFO: [TEST] Sample: 136, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,351 Segmentron INFO: [TEST] Sample: 137, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,416 Segmentron INFO: [TEST] Sample: 138, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,484 Segmentron INFO: [TEST] Sample: 139, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,548 Segmentron INFO: [TEST] Sample: 140, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,613 Segmentron INFO: [TEST] Sample: 141, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,677 Segmentron INFO: [TEST] Sample: 142, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:41,741 Segmentron INFO: [TEST] Sample: 143, pixAcc: 11.929, mIoU: 0.540
+2023-01-13 12:32:41,805 Segmentron INFO: [TEST] Sample: 144, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:41,868 Segmentron INFO: [TEST] Sample: 145, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:41,930 Segmentron INFO: [TEST] Sample: 146, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:41,997 Segmentron INFO: [TEST] Sample: 147, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,063 Segmentron INFO: [TEST] Sample: 148, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,129 Segmentron INFO: [TEST] Sample: 149, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,191 Segmentron INFO: [TEST] Sample: 150, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,254 Segmentron INFO: [TEST] Sample: 151, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,321 Segmentron INFO: [TEST] Sample: 152, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,385 Segmentron INFO: [TEST] Sample: 153, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,452 Segmentron INFO: [TEST] Sample: 154, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,519 Segmentron INFO: [TEST] Sample: 155, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,586 Segmentron INFO: [TEST] Sample: 156, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,652 Segmentron INFO: [TEST] Sample: 157, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,719 Segmentron INFO: [TEST] Sample: 158, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,786 Segmentron INFO: [TEST] Sample: 159, pixAcc: 11.929, mIoU: 0.540
+2023-01-13 12:32:42,853 Segmentron INFO: [TEST] Sample: 160, pixAcc: 11.929, mIoU: 0.539
+2023-01-13 12:32:42,921 Segmentron INFO: [TEST] Sample: 161, pixAcc: 11.928, mIoU: 0.539
+2023-01-13 12:32:42,988 Segmentron INFO: [TEST] Sample: 162, pixAcc: 11.928, mIoU: 0.539
+2023-01-13 12:32:43,055 Segmentron INFO: [TEST] Sample: 163, pixAcc: 11.928, mIoU: 0.540
+2023-01-13 12:32:43,124 Segmentron INFO: [TEST] Sample: 164, pixAcc: 11.928, mIoU: 0.541
+2023-01-13 12:32:43,190 Segmentron INFO: [TEST] Sample: 165, pixAcc: 11.926, mIoU: 0.541
+2023-01-13 12:32:43,258 Segmentron INFO: [TEST] Sample: 166, pixAcc: 11.926, mIoU: 0.542
+2023-01-13 12:32:43,323 Segmentron INFO: [TEST] Sample: 167, pixAcc: 11.926, mIoU: 0.542
+2023-01-13 12:32:43,390 Segmentron INFO: [TEST] Sample: 168, pixAcc: 11.926, mIoU: 0.543
+2023-01-13 12:32:43,457 Segmentron INFO: [TEST] Sample: 169, pixAcc: 11.927, mIoU: 0.543
+2023-01-13 12:32:43,524 Segmentron INFO: [TEST] Sample: 170, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:43,589 Segmentron INFO: [TEST] Sample: 171, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:43,655 Segmentron INFO: [TEST] Sample: 172, pixAcc: 11.927, mIoU: 0.544
+2023-01-13 12:32:43,722 Segmentron INFO: [TEST] Sample: 173, pixAcc: 11.927, mIoU: 0.545
+2023-01-13 12:32:43,788 Segmentron INFO: [TEST] Sample: 174, pixAcc: 11.927, mIoU: 0.545
+2023-01-13 12:32:43,855 Segmentron INFO: [TEST] Sample: 175, pixAcc: 11.928, mIoU: 0.545
+2023-01-13 12:32:43,922 Segmentron INFO: [TEST] Sample: 176, pixAcc: 11.928, mIoU: 0.546
+2023-01-13 12:32:43,989 Segmentron INFO: [TEST] Sample: 177, pixAcc: 11.928, mIoU: 0.546
+2023-01-13 12:32:44,056 Segmentron INFO: [TEST] Sample: 178, pixAcc: 11.928, mIoU: 0.547
+2023-01-13 12:32:44,123 Segmentron INFO: [TEST] Sample: 179, pixAcc: 11.928, mIoU: 0.547
+2023-01-13 12:32:44,189 Segmentron INFO: [TEST] Sample: 180, pixAcc: 11.929, mIoU: 0.548
+2023-01-13 12:32:44,255 Segmentron INFO: [TEST] Sample: 181, pixAcc: 11.929, mIoU: 0.548
+2023-01-13 12:32:44,322 Segmentron INFO: [TEST] Sample: 182, pixAcc: 11.929, mIoU: 0.549
+2023-01-13 12:32:44,390 Segmentron INFO: [TEST] Sample: 183, pixAcc: 11.929, mIoU: 0.549
+2023-01-13 12:32:44,456 Segmentron INFO: [TEST] Sample: 184, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:44,522 Segmentron INFO: [TEST] Sample: 185, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:44,587 Segmentron INFO: [TEST] Sample: 186, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:44,654 Segmentron INFO: [TEST] Sample: 187, pixAcc: 11.930, mIoU: 0.549
+2023-01-13 12:32:44,722 Segmentron INFO: [TEST] Sample: 188, pixAcc: 11.929, mIoU: 0.550
+2023-01-13 12:32:44,789 Segmentron INFO: [TEST] Sample: 189, pixAcc: 11.929, mIoU: 0.550
+2023-01-13 12:32:44,855 Segmentron INFO: [TEST] Sample: 190, pixAcc: 11.930, mIoU: 0.550
+2023-01-13 12:32:44,922 Segmentron INFO: [TEST] Sample: 191, pixAcc: 11.930, mIoU: 0.550
+2023-01-13 12:32:44,990 Segmentron INFO: [TEST] Sample: 192, pixAcc: 11.930, mIoU: 0.551
+2023-01-13 12:32:45,057 Segmentron INFO: [TEST] Sample: 193, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:45,126 Segmentron INFO: [TEST] Sample: 194, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:45,195 Segmentron INFO: [TEST] Sample: 195, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:45,264 Segmentron INFO: [TEST] Sample: 196, pixAcc: 11.930, mIoU: 0.552
+2023-01-13 12:32:45,331 Segmentron INFO: [TEST] Sample: 197, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:45,396 Segmentron INFO: [TEST] Sample: 198, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:45,465 Segmentron INFO: [TEST] Sample: 199, pixAcc: 11.930, mIoU: 0.553
+2023-01-13 12:32:45,535 Segmentron INFO: [TEST] Sample: 200, pixAcc: 11.930, mIoU: 0.554
+2023-01-13 12:32:45,605 Segmentron INFO: [TEST] Sample: 201, pixAcc: 11.930, mIoU: 0.554
+2023-01-13 12:32:45,676 Segmentron INFO: [TEST] Sample: 202, pixAcc: 11.931, mIoU: 0.554
+2023-01-13 12:32:45,744 Segmentron INFO: [TEST] Sample: 203, pixAcc: 11.931, mIoU: 0.554
+2023-01-13 12:32:45,811 Segmentron INFO: [TEST] Sample: 204, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:45,878 Segmentron INFO: [TEST] Sample: 205, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:45,945 Segmentron INFO: [TEST] Sample: 206, pixAcc: 11.931, mIoU: 0.555
+2023-01-13 12:32:46,022 Segmentron INFO: [TEST] Sample: 207, pixAcc: 11.931, mIoU: 0.557
+2023-01-13 12:32:46,101 Segmentron INFO: [TEST] Sample: 208, pixAcc: 11.931, mIoU: 0.558
+2023-01-13 12:32:46,177 Segmentron INFO: [TEST] Sample: 209, pixAcc: 11.931, mIoU: 0.559
+2023-01-13 12:32:46,252 Segmentron INFO: [TEST] Sample: 210, pixAcc: 11.931, mIoU: 0.560
+2023-01-13 12:32:46,324 Segmentron INFO: [TEST] Sample: 211, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:46,392 Segmentron INFO: [TEST] Sample: 212, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:46,466 Segmentron INFO: [TEST] Sample: 213, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:46,528 Segmentron INFO: [TEST] Sample: 214, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:46,591 Segmentron INFO: [TEST] Sample: 215, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:46,655 Segmentron INFO: [TEST] Sample: 216, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:46,720 Segmentron INFO: [TEST] Sample: 217, pixAcc: 11.932, mIoU: 0.564
+2023-01-13 12:32:46,786 Segmentron INFO: [TEST] Sample: 218, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:46,852 Segmentron INFO: [TEST] Sample: 219, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:46,917 Segmentron INFO: [TEST] Sample: 220, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:46,984 Segmentron INFO: [TEST] Sample: 221, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:47,051 Segmentron INFO: [TEST] Sample: 222, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:47,118 Segmentron INFO: [TEST] Sample: 223, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:47,184 Segmentron INFO: [TEST] Sample: 224, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:47,251 Segmentron INFO: [TEST] Sample: 225, pixAcc: 11.932, mIoU: 0.563
+2023-01-13 12:32:47,315 Segmentron INFO: [TEST] Sample: 226, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,380 Segmentron INFO: [TEST] Sample: 227, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,444 Segmentron INFO: [TEST] Sample: 228, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,508 Segmentron INFO: [TEST] Sample: 229, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,572 Segmentron INFO: [TEST] Sample: 230, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,638 Segmentron INFO: [TEST] Sample: 231, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,701 Segmentron INFO: [TEST] Sample: 232, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,764 Segmentron INFO: [TEST] Sample: 233, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,828 Segmentron INFO: [TEST] Sample: 234, pixAcc: 11.932, mIoU: 0.562
+2023-01-13 12:32:47,891 Segmentron INFO: [TEST] Sample: 235, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:47,955 Segmentron INFO: [TEST] Sample: 236, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,022 Segmentron INFO: [TEST] Sample: 237, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,087 Segmentron INFO: [TEST] Sample: 238, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,154 Segmentron INFO: [TEST] Sample: 239, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,221 Segmentron INFO: [TEST] Sample: 240, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,287 Segmentron INFO: [TEST] Sample: 241, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,353 Segmentron INFO: [TEST] Sample: 242, pixAcc: 11.932, mIoU: 0.561
+2023-01-13 12:32:48,420 Segmentron INFO: [TEST] Sample: 243, pixAcc: 11.933, mIoU: 0.561
+2023-01-13 12:32:48,487 Segmentron INFO: [TEST] Sample: 244, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,555 Segmentron INFO: [TEST] Sample: 245, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,621 Segmentron INFO: [TEST] Sample: 246, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,691 Segmentron INFO: [TEST] Sample: 247, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,757 Segmentron INFO: [TEST] Sample: 248, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,823 Segmentron INFO: [TEST] Sample: 249, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,889 Segmentron INFO: [TEST] Sample: 250, pixAcc: 11.933, mIoU: 0.560
+2023-01-13 12:32:48,956 Segmentron INFO: [TEST] Sample: 251, pixAcc: 11.932, mIoU: 0.560
+2023-01-13 12:32:49,021 Segmentron INFO: [TEST] Sample: 252, pixAcc: 11.931, mIoU: 0.560
+2023-01-13 12:32:49,087 Segmentron INFO: [TEST] Sample: 253, pixAcc: 11.930, mIoU: 0.560
+2023-01-13 12:32:49,154 Segmentron INFO: [TEST] Sample: 254, pixAcc: 11.929, mIoU: 0.560
+2023-01-13 12:32:49,220 Segmentron INFO: [TEST] Sample: 255, pixAcc: 11.928, mIoU: 0.561
+2023-01-13 12:32:49,287 Segmentron INFO: [TEST] Sample: 256, pixAcc: 11.927, mIoU: 0.561
+2023-01-13 12:32:49,353 Segmentron INFO: [TEST] Sample: 257, pixAcc: 11.926, mIoU: 0.562
+2023-01-13 12:32:49,419 Segmentron INFO: [TEST] Sample: 258, pixAcc: 11.925, mIoU: 0.563
+2023-01-13 12:32:49,487 Segmentron INFO: [TEST] Sample: 259, pixAcc: 11.924, mIoU: 0.563
+2023-01-13 12:32:49,552 Segmentron INFO: [TEST] Sample: 260, pixAcc: 11.923, mIoU: 0.564
+2023-01-13 12:32:49,619 Segmentron INFO: [TEST] Sample: 261, pixAcc: 11.922, mIoU: 0.564
+2023-01-13 12:32:49,686 Segmentron INFO: [TEST] Sample: 262, pixAcc: 11.921, mIoU: 0.565
+2023-01-13 12:32:49,754 Segmentron INFO: [TEST] Sample: 263, pixAcc: 11.920, mIoU: 0.565
+2023-01-13 12:32:49,820 Segmentron INFO: [TEST] Sample: 264, pixAcc: 11.919, mIoU: 0.566
+2023-01-13 12:32:49,887 Segmentron INFO: [TEST] Sample: 265, pixAcc: 11.918, mIoU: 0.566
+2023-01-13 12:32:49,954 Segmentron INFO: [TEST] Sample: 266, pixAcc: 11.917, mIoU: 0.567
+2023-01-13 12:32:50,020 Segmentron INFO: [TEST] Sample: 267, pixAcc: 11.916, mIoU: 0.567
+2023-01-13 12:32:50,087 Segmentron INFO: [TEST] Sample: 268, pixAcc: 11.915, mIoU: 0.568
+2023-01-13 12:32:50,154 Segmentron INFO: [TEST] Sample: 269, pixAcc: 11.914, mIoU: 0.568
+2023-01-13 12:32:50,220 Segmentron INFO: [TEST] Sample: 270, pixAcc: 11.913, mIoU: 0.569
+2023-01-13 12:32:50,287 Segmentron INFO: [TEST] Sample: 271, pixAcc: 11.912, mIoU: 0.569
+2023-01-13 12:32:50,354 Segmentron INFO: [TEST] Sample: 272, pixAcc: 11.911, mIoU: 0.570
+2023-01-13 12:32:50,420 Segmentron INFO: [TEST] Sample: 273, pixAcc: 11.910, mIoU: 0.570
+2023-01-13 12:32:50,487 Segmentron INFO: [TEST] Sample: 274, pixAcc: 11.909, mIoU: 0.570
+2023-01-13 12:32:50,555 Segmentron INFO: [TEST] Sample: 275, pixAcc: 11.908, mIoU: 0.571
+2023-01-13 12:32:50,621 Segmentron INFO: [TEST] Sample: 276, pixAcc: 11.907, mIoU: 0.571
+2023-01-13 12:32:50,687 Segmentron INFO: [TEST] Sample: 277, pixAcc: 11.906, mIoU: 0.572
+2023-01-13 12:32:50,754 Segmentron INFO: [TEST] Sample: 278, pixAcc: 11.905, mIoU: 0.572
+2023-01-13 12:32:50,821 Segmentron INFO: [TEST] Sample: 279, pixAcc: 11.904, mIoU: 0.573
+2023-01-13 12:32:50,887 Segmentron INFO: [TEST] Sample: 280, pixAcc: 11.903, mIoU: 0.573
+2023-01-13 12:32:50,955 Segmentron INFO: [TEST] Sample: 281, pixAcc: 11.903, mIoU: 0.574
+2023-01-13 12:32:51,021 Segmentron INFO: [TEST] Sample: 282, pixAcc: 11.902, mIoU: 0.574
+2023-01-13 12:32:51,090 Segmentron INFO: [TEST] Sample: 283, pixAcc: 11.899, mIoU: 0.575
+2023-01-13 12:32:51,157 Segmentron INFO: [TEST] Sample: 284, pixAcc: 11.896, mIoU: 0.575
+2023-01-13 12:32:51,222 Segmentron INFO: [TEST] Sample: 285, pixAcc: 11.894, mIoU: 0.575
+2023-01-13 12:32:51,288 Segmentron INFO: [TEST] Sample: 286, pixAcc: 11.891, mIoU: 0.575
+2023-01-13 12:32:51,354 Segmentron INFO: [TEST] Sample: 287, pixAcc: 11.889, mIoU: 0.575
+2023-01-13 12:32:51,420 Segmentron INFO: [TEST] Sample: 288, pixAcc: 11.886, mIoU: 0.576
+2023-01-13 12:32:51,489 Segmentron INFO: [TEST] Sample: 289, pixAcc: 11.884, mIoU: 0.576
+2023-01-13 12:32:51,554 Segmentron INFO: [TEST] Sample: 290, pixAcc: 11.881, mIoU: 0.576
+2023-01-13 12:32:51,620 Segmentron INFO: [TEST] Sample: 291, pixAcc: 11.879, mIoU: 0.576
+2023-01-13 12:32:51,686 Segmentron INFO: [TEST] Sample: 292, pixAcc: 11.877, mIoU: 0.577
+2023-01-13 12:32:51,754 Segmentron INFO: [TEST] Sample: 293, pixAcc: 11.874, mIoU: 0.577
+2023-01-13 12:32:51,822 Segmentron INFO: [TEST] Sample: 294, pixAcc: 11.872, mIoU: 0.577
+2023-01-13 12:32:51,885 Segmentron INFO: [TEST] Sample: 295, pixAcc: 11.870, mIoU: 0.577
+2023-01-13 12:32:51,948 Segmentron INFO: [TEST] Sample: 296, pixAcc: 11.867, mIoU: 0.577
+2023-01-13 12:32:52,014 Segmentron INFO: [TEST] Sample: 297, pixAcc: 11.865, mIoU: 0.578
+2023-01-13 12:32:52,082 Segmentron INFO: [TEST] Sample: 298, pixAcc: 11.863, mIoU: 0.578
+2023-01-13 12:32:52,149 Segmentron INFO: [TEST] Sample: 299, pixAcc: 11.860, mIoU: 0.578
+2023-01-13 12:32:52,215 Segmentron INFO: [TEST] Sample: 300, pixAcc: 11.858, mIoU: 0.578
+2023-01-13 12:32:52,281 Segmentron INFO: [TEST] Sample: 301, pixAcc: 11.856, mIoU: 0.578
+2023-01-13 12:32:52,347 Segmentron INFO: [TEST] Sample: 302, pixAcc: 11.853, mIoU: 0.579
+2023-01-13 12:32:52,413 Segmentron INFO: [TEST] Sample: 303, pixAcc: 11.851, mIoU: 0.579
+2023-01-13 12:32:52,481 Segmentron INFO: [TEST] Sample: 304, pixAcc: 11.849, mIoU: 0.579
+2023-01-13 12:32:52,547 Segmentron INFO: [TEST] Sample: 305, pixAcc: 11.847, mIoU: 0.579
+2023-01-13 12:32:52,615 Segmentron INFO: [TEST] Sample: 306, pixAcc: 11.845, mIoU: 0.579
+2023-01-13 12:32:52,684 Segmentron INFO: [TEST] Sample: 307, pixAcc: 11.842, mIoU: 0.580
+2023-01-13 12:32:52,753 Segmentron INFO: [TEST] Sample: 308, pixAcc: 11.840, mIoU: 0.580
+2023-01-13 12:32:52,825 Segmentron INFO: [TEST] Sample: 309, pixAcc: 11.838, mIoU: 0.580
+2023-01-13 12:32:52,899 Segmentron INFO: [TEST] Sample: 310, pixAcc: 11.836, mIoU: 0.580
+2023-01-13 12:32:52,967 Segmentron INFO: [TEST] Sample: 311, pixAcc: 11.836, mIoU: 0.580
+2023-01-13 12:32:53,034 Segmentron INFO: [TEST] Sample: 312, pixAcc: 11.835, mIoU: 0.580
+2023-01-13 12:32:53,113 Segmentron INFO: [TEST] Sample: 313, pixAcc: 11.834, mIoU: 0.579
+2023-01-13 12:32:53,183 Segmentron INFO: [TEST] Sample: 314, pixAcc: 11.834, mIoU: 0.579
+2023-01-13 12:32:53,250 Segmentron INFO: [TEST] Sample: 315, pixAcc: 11.833, mIoU: 0.579
+2023-01-13 12:32:53,317 Segmentron INFO: [TEST] Sample: 316, pixAcc: 11.832, mIoU: 0.579
+2023-01-13 12:32:53,383 Segmentron INFO: [TEST] Sample: 317, pixAcc: 11.832, mIoU: 0.579
+2023-01-13 12:32:53,450 Segmentron INFO: [TEST] Sample: 318, pixAcc: 11.831, mIoU: 0.578
+2023-01-13 12:32:53,517 Segmentron INFO: [TEST] Sample: 319, pixAcc: 11.830, mIoU: 0.578
+2023-01-13 12:32:53,585 Segmentron INFO: [TEST] Sample: 320, pixAcc: 11.830, mIoU: 0.578
+2023-01-13 12:32:53,652 Segmentron INFO: [TEST] Sample: 321, pixAcc: 11.829, mIoU: 0.578
+2023-01-13 12:32:53,720 Segmentron INFO: [TEST] Sample: 322, pixAcc: 11.829, mIoU: 0.577
+2023-01-13 12:32:53,788 Segmentron INFO: [TEST] Sample: 323, pixAcc: 11.828, mIoU: 0.577
+2023-01-13 12:32:53,855 Segmentron INFO: [TEST] Sample: 324, pixAcc: 11.828, mIoU: 0.577
+2023-01-13 12:32:53,921 Segmentron INFO: [TEST] Sample: 325, pixAcc: 11.827, mIoU: 0.577
+2023-01-13 12:32:53,988 Segmentron INFO: [TEST] Sample: 326, pixAcc: 11.827, mIoU: 0.577
+2023-01-13 12:32:54,056 Segmentron INFO: [TEST] Sample: 327, pixAcc: 11.826, mIoU: 0.576
+2023-01-13 12:32:54,122 Segmentron INFO: [TEST] Sample: 328, pixAcc: 11.826, mIoU: 0.576
+2023-01-13 12:32:54,188 Segmentron INFO: [TEST] Sample: 329, pixAcc: 11.825, mIoU: 0.576
+2023-01-13 12:32:54,255 Segmentron INFO: [TEST] Sample: 330, pixAcc: 11.825, mIoU: 0.576
+2023-01-13 12:32:54,322 Segmentron INFO: [TEST] Sample: 331, pixAcc: 11.824, mIoU: 0.576
+2023-01-13 12:32:54,389 Segmentron INFO: [TEST] Sample: 332, pixAcc: 11.824, mIoU: 0.575
+2023-01-13 12:32:54,457 Segmentron INFO: [TEST] Sample: 333, pixAcc: 11.823, mIoU: 0.575
+2023-01-13 12:32:54,524 Segmentron INFO: [TEST] Sample: 334, pixAcc: 11.822, mIoU: 0.575
+2023-01-13 12:32:54,591 Segmentron INFO: [TEST] Sample: 335, pixAcc: 11.822, mIoU: 0.575
+2023-01-13 12:32:54,657 Segmentron INFO: [TEST] Sample: 336, pixAcc: 11.821, mIoU: 0.575
+2023-01-13 12:32:54,723 Segmentron INFO: [TEST] Sample: 337, pixAcc: 11.820, mIoU: 0.575
+2023-01-13 12:32:54,790 Segmentron INFO: [TEST] Sample: 338, pixAcc: 11.820, mIoU: 0.574
+2023-01-13 12:32:54,856 Segmentron INFO: [TEST] Sample: 339, pixAcc: 11.819, mIoU: 0.574
+2023-01-13 12:32:54,923 Segmentron INFO: [TEST] Sample: 340, pixAcc: 11.819, mIoU: 0.574
+2023-01-13 12:32:54,989 Segmentron INFO: [TEST] Sample: 341, pixAcc: 11.818, mIoU: 0.574
+2023-01-13 12:32:55,055 Segmentron INFO: [TEST] Sample: 342, pixAcc: 11.817, mIoU: 0.574
+2023-01-13 12:32:55,124 Segmentron INFO: [TEST] Sample: 343, pixAcc: 11.817, mIoU: 0.573
+2023-01-13 12:32:55,191 Segmentron INFO: [TEST] Sample: 344, pixAcc: 11.816, mIoU: 0.573
+2023-01-13 12:32:55,258 Segmentron INFO: [TEST] Sample: 345, pixAcc: 11.816, mIoU: 0.573
+2023-01-13 12:32:55,325 Segmentron INFO: [TEST] Sample: 346, pixAcc: 11.815, mIoU: 0.573
+2023-01-13 12:32:55,396 Segmentron INFO: [TEST] Sample: 347, pixAcc: 11.815, mIoU: 0.573
+2023-01-13 12:32:55,464 Segmentron INFO: [TEST] Sample: 348, pixAcc: 11.814, mIoU: 0.572
+2023-01-13 12:32:55,530 Segmentron INFO: [TEST] Sample: 349, pixAcc: 11.813, mIoU: 0.572
+2023-01-13 12:32:55,597 Segmentron INFO: [TEST] Sample: 350, pixAcc: 11.813, mIoU: 0.572
+2023-01-13 12:32:55,665 Segmentron INFO: [TEST] Sample: 351, pixAcc: 11.812, mIoU: 0.572
+2023-01-13 12:32:55,735 Segmentron INFO: [TEST] Sample: 352, pixAcc: 11.811, mIoU: 0.572
+2023-01-13 12:32:55,803 Segmentron INFO: [TEST] Sample: 353, pixAcc: 11.811, mIoU: 0.572
+2023-01-13 12:32:55,873 Segmentron INFO: [TEST] Sample: 354, pixAcc: 11.810, mIoU: 0.571
+2023-01-13 12:32:55,946 Segmentron INFO: [TEST] Sample: 355, pixAcc: 11.810, mIoU: 0.571
+2023-01-13 12:32:56,016 Segmentron INFO: [TEST] Sample: 356, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:56,085 Segmentron INFO: [TEST] Sample: 357, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:56,154 Segmentron INFO: [TEST] Sample: 358, pixAcc: 11.809, mIoU: 0.571
+2023-01-13 12:32:56,223 Segmentron INFO: [TEST] Sample: 359, pixAcc: 11.808, mIoU: 0.571
+2023-01-13 12:32:56,291 Segmentron INFO: [TEST] Sample: 360, pixAcc: 11.808, mIoU: 0.571
+2023-01-13 12:32:56,355 Segmentron INFO: [TEST] Sample: 361, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:56,425 Segmentron INFO: [TEST] Sample: 362, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:56,496 Segmentron INFO: [TEST] Sample: 363, pixAcc: 11.807, mIoU: 0.570
+2023-01-13 12:32:56,567 Segmentron INFO: [TEST] Sample: 364, pixAcc: 11.806, mIoU: 0.570
+2023-01-13 12:32:56,635 Segmentron INFO: [TEST] Sample: 365, pixAcc: 11.806, mIoU: 0.570
+2023-01-13 12:32:56,703 Segmentron INFO: [TEST] Sample: 366, pixAcc: 11.805, mIoU: 0.570
+2023-01-13 12:32:56,774 Segmentron INFO: [TEST] Sample: 367, pixAcc: 11.805, mIoU: 0.569
+2023-01-13 12:32:56,848 Segmentron INFO: [TEST] Sample: 368, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:56,918 Segmentron INFO: [TEST] Sample: 369, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:56,988 Segmentron INFO: [TEST] Sample: 370, pixAcc: 11.804, mIoU: 0.569
+2023-01-13 12:32:57,057 Segmentron INFO: [TEST] Sample: 371, pixAcc: 11.803, mIoU: 0.569
+2023-01-13 12:32:57,131 Segmentron INFO: [TEST] Sample: 372, pixAcc: 11.803, mIoU: 0.569
+2023-01-13 12:32:57,202 Segmentron INFO: [TEST] Sample: 373, pixAcc: 11.802, mIoU: 0.569
+2023-01-13 12:32:57,274 Segmentron INFO: [TEST] Sample: 374, pixAcc: 11.802, mIoU: 0.568
+2023-01-13 12:32:57,347 Segmentron INFO: [TEST] Sample: 375, pixAcc: 11.801, mIoU: 0.568
+2023-01-13 12:32:57,418 Segmentron INFO: [TEST] Sample: 376, pixAcc: 11.801, mIoU: 0.568
+2023-01-13 12:32:57,488 Segmentron INFO: [TEST] Sample: 377, pixAcc: 11.800, mIoU: 0.568
+2023-01-13 12:32:57,558 Segmentron INFO: [TEST] Sample: 378, pixAcc: 11.800, mIoU: 0.568
+2023-01-13 12:32:57,629 Segmentron INFO: [TEST] Sample: 379, pixAcc: 11.799, mIoU: 0.568
+2023-01-13 12:32:57,699 Segmentron INFO: [TEST] Sample: 380, pixAcc: 11.799, mIoU: 0.568
+2023-01-13 12:32:57,768 Segmentron INFO: [TEST] Sample: 381, pixAcc: 11.799, mIoU: 0.567
+2023-01-13 12:32:57,836 Segmentron INFO: [TEST] Sample: 382, pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:57,907 Segmentron INFO: [TEST] Sample: 383, pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:57,908 Segmentron INFO: [TEST END]  pixAcc: 11.798, mIoU: 0.567
+2023-01-13 12:32:57,909 Segmentron INFO: Category iou: 
+ +------------+------------------+------------+
+|  class id  |    class name    |    iou     |
++============+==================+============+
+|     0      |    Background    |  0.108749  |
++------------+------------------+------------+
+|     1      |     pipette      |     0      |
++------------+------------------+------------+
+|     2      |     PCR_tube     |     0      |
++------------+------------------+------------+
+|     3      |       tube       | 0.00556255 |
++------------+------------------+------------+
+|     4      |    waste_box     |     0      |
++------------+------------------+------------+
+|     5      |       vial       |     0      |
++------------+------------------+------------+
+|     6      | measuring_flask  | 0.00480029 |
++------------+------------------+------------+
+|     7      |      beaker      |     0      |
++------------+------------------+------------+
+|     8      |   wash_bottle    |     0      |
++------------+------------------+------------+
+|     9      |   water_bottle   |     0      |
++------------+------------------+------------+
+|     10     | erlenmeyer_flask |     0      |
++------------+------------------+------------+
+|     11     |  culture_plate   |     0      |
++------------+------------------+------------+
+|     12     |      spoon       |     0      |
++------------+------------------+------------+
+|     13     | electronic_scale |     0      |
++------------+------------------+------------+
+|     14     |   LB_solution    |     0      |
++------------+------------------+------------+
+|     15     |    stopwatch     |     0      |
++------------+------------------+------------+
+|     16     |    D_sorbitol    |     0      |
++------------+------------------+------------+
+|     17     |   solution_P1    |     0      |
++------------+------------------+------------+
+|     18     |  plastic_bottle  |     0      |
++------------+------------------+------------+
+|     19     |     agarose      |     0      |
++------------+------------------+------------+
+|     20     |  cell_spreader   |     0      |
++------------+------------------+------------+
+2023-01-13 12:32:59,470 Segmentron INFO: Epoch: 3/150 || Iters: 10/900 || Lr: 0.009879 || Loss: 0.2022 || Cost Time: 0:06:14 || Estimated Time: 7:39:04
+2023-01-13 12:33:01,060 Segmentron INFO: Epoch: 3/150 || Iters: 20/900 || Lr: 0.009879 || Loss: 0.1843 || Cost Time: 0:06:16 || Estimated Time: 7:38:28
+2023-01-13 12:33:02,544 Segmentron INFO: Epoch: 3/150 || Iters: 30/900 || Lr: 0.009878 || Loss: 0.1012 || Cost Time: 0:06:17 || Estimated Time: 7:37:44
+2023-01-13 12:33:04,034 Segmentron INFO: Epoch: 3/150 || Iters: 40/900 || Lr: 0.009877 || Loss: 0.1076 || Cost Time: 0:06:18 || Estimated Time: 7:37:00
+2023-01-13 12:33:05,579 Segmentron INFO: Epoch: 3/150 || Iters: 50/900 || Lr: 0.009877 || Loss: 0.1520 || Cost Time: 0:06:20 || Estimated Time: 7:36:21
+2023-01-13 12:33:07,144 Segmentron INFO: Epoch: 3/150 || Iters: 60/900 || Lr: 0.009876 || Loss: 0.0674 || Cost Time: 0:06:22 || Estimated Time: 7:35:45
+2023-01-13 12:33:08,733 Segmentron INFO: Epoch: 3/150 || Iters: 70/900 || Lr: 0.009875 || Loss: 0.1437 || Cost Time: 0:06:23 || Estimated Time: 7:35:07
+2023-01-13 12:33:10,378 Segmentron INFO: Epoch: 3/150 || Iters: 80/900 || Lr: 0.009875 || Loss: 0.1193 || Cost Time: 0:06:25 || Estimated Time: 7:34:35
+2023-01-13 12:33:12,038 Segmentron INFO: Epoch: 3/150 || Iters: 90/900 || Lr: 0.009874 || Loss: 0.0832 || Cost Time: 0:06:26 || Estimated Time: 7:34:06
+2023-01-13 12:33:13,646 Segmentron INFO: Epoch: 3/150 || Iters: 100/900 || Lr: 0.009873 || Loss: 0.1236 || Cost Time: 0:06:28 || Estimated Time: 7:33:36
+2023-01-13 12:33:15,181 Segmentron INFO: Epoch: 3/150 || Iters: 110/900 || Lr: 0.009873 || Loss: 0.1920 || Cost Time: 0:06:30 || Estimated Time: 7:32:58
+2023-01-13 12:33:16,661 Segmentron INFO: Epoch: 3/150 || Iters: 120/900 || Lr: 0.009872 || Loss: 0.1185 || Cost Time: 0:06:31 || Estimated Time: 7:32:17
+2023-01-13 12:33:18,179 Segmentron INFO: Epoch: 3/150 || Iters: 130/900 || Lr: 0.009871 || Loss: 0.2185 || Cost Time: 0:06:33 || Estimated Time: 7:31:40
+2023-01-13 12:33:19,667 Segmentron INFO: Epoch: 3/150 || Iters: 140/900 || Lr: 0.009871 || Loss: 0.0467 || Cost Time: 0:06:34 || Estimated Time: 7:30:59
+2023-01-13 12:33:21,158 Segmentron INFO: Epoch: 3/150 || Iters: 150/900 || Lr: 0.009870 || Loss: 0.1077 || Cost Time: 0:06:36 || Estimated Time: 7:30:21
+2023-01-13 12:33:22,634 Segmentron INFO: Epoch: 3/150 || Iters: 160/900 || Lr: 0.009869 || Loss: 0.1234 || Cost Time: 0:06:37 || Estimated Time: 7:29:41
+2023-01-13 12:33:24,123 Segmentron INFO: Epoch: 3/150 || Iters: 170/900 || Lr: 0.009869 || Loss: 0.0634 || Cost Time: 0:06:39 || Estimated Time: 7:29:03
+2023-01-13 12:33:25,603 Segmentron INFO: Epoch: 3/150 || Iters: 180/900 || Lr: 0.009868 || Loss: 0.1127 || Cost Time: 0:06:40 || Estimated Time: 7:28:24
+2023-01-13 12:33:27,082 Segmentron INFO: Epoch: 3/150 || Iters: 190/900 || Lr: 0.009867 || Loss: 0.1452 || Cost Time: 0:06:42 || Estimated Time: 7:27:46
+2023-01-13 12:33:28,566 Segmentron INFO: Epoch: 3/150 || Iters: 200/900 || Lr: 0.009867 || Loss: 0.0308 || Cost Time: 0:06:43 || Estimated Time: 7:27:08
+2023-01-13 12:33:30,275 Segmentron INFO: Epoch: 3/150 || Iters: 210/900 || Lr: 0.009866 || Loss: 0.2093 || Cost Time: 0:06:45 || Estimated Time: 7:26:44
+2023-01-13 12:33:31,757 Segmentron INFO: Epoch: 3/150 || Iters: 220/900 || Lr: 0.009865 || Loss: 0.0376 || Cost Time: 0:06:46 || Estimated Time: 7:26:08
